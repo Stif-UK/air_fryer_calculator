@@ -39,6 +39,7 @@ dependencies:
   get: ^4.6.5
   package_info_plus: ^3.0.3
   shared_preferences: ^2.0.17
+  json_theme: ^4.0.3+5
 
 
 dev_dependencies:
@@ -62,6 +63,9 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets:
+    - assets/theme/appainter_theme.json
+    - assets/theme/appainter_theme_dark.json
 
   # To add assets to your application, add an assets section, like this:
   # assets:
