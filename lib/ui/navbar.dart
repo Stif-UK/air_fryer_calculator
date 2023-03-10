@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class NavBar extends StatefulWidget {
 class _NavBarState extends State<NavBar> {
 
   String _buildVersion = "Not Determined";
-  bool _celcius = true;
+  bool _celcius = FryerPreferences.getTemperaturePreference() ?? false;
 
   @override
   void initState() {
@@ -27,7 +28,6 @@ class _NavBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     int clickCounter =0;
-    //bool _celcius = true;
 
     return Drawer(
       child: Column(
@@ -54,9 +54,9 @@ class _NavBarState extends State<NavBar> {
 
                 SwitchListTile(
                   title: _celcius? const Text("Temperature: Celcius"): const Text("Temperature: Fahrenheit"),
-                  activeThumbImage: ,
                   value: _celcius,
-                  onChanged: (bool newValue){
+                  onChanged: (bool newValue) async{
+                    await FryerPreferences.setTemperaturePreference(newValue);
                     setState(() {
                       _celcius = newValue;
 
