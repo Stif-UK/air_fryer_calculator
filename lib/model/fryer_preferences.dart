@@ -13,6 +13,7 @@ class FryerPreferences {
   static const _keyAppPurchased = 'appPurchased';
   static const _keyAppReviewPrompt = 'appReviewPrompt';
   static const _keyLatestVersion = 'latestAppVersion';
+  static const _keyTempPreference = 'temperaturePreference';
 
 
   //Getters and setters
@@ -40,5 +41,11 @@ class FryerPreferences {
 
   static Future setAppReviewPrompted(bool appReviewPrompted) async =>
       await _preferences.setBool(_keyAppReviewPrompt, appReviewPrompted);
+
+  //Getter and setter for purchased bool
+  static bool? getTemperaturePreference() => _preferences.getBool(_keyTempPreference);
+
+  static Future setTemperaturePreference(bool tempPreference) async =>
+      await _preferences.setBool(_keyTempPreference, tempPreference);
 
 }
