@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       darkTheme: darkTheme,
       themeMode: ThemeMode.system,
       home: AirFryerHome(),
-    )
+    );
   }
 }
 

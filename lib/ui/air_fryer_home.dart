@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:air_fryer_calculator/ui/navbar.dart';
 
 class AirFryerHome extends StatefulWidget {
   const AirFryerHome({Key? key}) : super(key: key);
@@ -14,6 +15,8 @@ class _AirFryerHomeState extends State<AirFryerHome> {
       appBar: AppBar(
         title: const Text('AF Calc'),
       ),
+      drawer: const NavBar(),
+      body: Column(),
     );
   }
 }
