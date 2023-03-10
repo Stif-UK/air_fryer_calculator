@@ -10,8 +10,14 @@ class AirFryerNotes extends StatefulWidget {
 class _AirFryerNotesState extends State<AirFryerNotes> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const Text("Air Fryer Notes"),
+    return  Center(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          Icon(Icons.note_alt_outlined),
+          Text("Your Notebook is currently empty"),
+        ],
+      ),
     );
   }
 }
