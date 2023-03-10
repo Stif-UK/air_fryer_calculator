@@ -12,6 +12,7 @@ class NavBar extends StatefulWidget {
 class _NavBarState extends State<NavBar> {
 
   String _buildVersion = "Not Determined";
+  bool _celcius = true;
 
   @override
   void initState() {
@@ -26,6 +27,8 @@ class _NavBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     int clickCounter =0;
+    //bool _celcius = true;
+
     return Drawer(
       child: Column(
         children: [
@@ -49,6 +52,18 @@ class _NavBarState extends State<NavBar> {
 
                 )),
 
+                SwitchListTile(
+                  title: _celcius? const Text("Temperature: Celcius"): const Text("Temperature: Fahrenheit"),
+                  activeThumbImage: ,
+                  value: _celcius,
+                  onChanged: (bool newValue){
+                    setState(() {
+                      _celcius = newValue;
+
+                    });
+                  },
+
+                ),
                 ListTile(
                   title: const Text("Privacy Policy"),
                   trailing: const Icon(Icons.privacy_tip_outlined),
