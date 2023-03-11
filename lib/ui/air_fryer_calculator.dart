@@ -109,13 +109,21 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
                     style: Theme.of(context).textTheme.displaySmall,
                     textAlign: TextAlign.center,),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: ElevatedButton(
+                      child: const Text("Save to Notes"),
+                      onPressed: (){
+                        print("Note Saved Pressed");
+                      },
+                    ),
+                  )
 
                 ]
               ),
             ),
           ),
-          // //insert ad into Widget Tree
-          // purchaseStatus? const SizedBox(height: 0,) : AdWidgetHelper.buildSmallAdSpace(banner, context),
+
         ],
       ),
     );
