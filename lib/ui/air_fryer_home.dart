@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:air_fryer_calculator/ui/air_fryer_calculator.dar.dart';
+import 'package:air_fryer_calculator/ui/air_fryer_calculator.dart';
 import 'package:air_fryer_calculator/ui/air_fryer_notes.dart';
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:flutter/material.dart';
