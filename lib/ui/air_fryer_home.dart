@@ -21,7 +21,7 @@ class _AirFryerHomeState extends State<AirFryerHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AF Calc'),
+        title: const Text('AirFry Calc'),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
