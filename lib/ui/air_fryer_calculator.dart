@@ -114,3 +114,5 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
     );
   }
 }
+
+
