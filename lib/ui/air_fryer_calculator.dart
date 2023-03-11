@@ -1,14 +1,17 @@
+import 'package:air_fryer_calculator/controller/FryerController.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 import 'package:air_fryer_calculator/util/ad_widget_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
 import '../model/adUnits.dart';
 import '../provider/adstate.dart';
 
 class AirFryerCalculator extends StatefulWidget {
-  const AirFryerCalculator({Key? key}) : super(key: key);
+  AirFryerCalculator({Key? key}) : super(key: key);
+  final fryerController = Get.put(FryerController());
 
   @override
   State<AirFryerCalculator> createState() => _AirFryerCalculatorState();
@@ -102,6 +105,7 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
                   style: Theme.of(context).textTheme.displaySmall,
                   textAlign: TextAlign.center,),
                 ),
+                Obx( () => Text("Adding some random text here ${widget.fryerController.tempIsCelcius}"))
 
 
               ]

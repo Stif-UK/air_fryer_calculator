@@ -16,7 +16,7 @@ class AirFryerHome extends StatefulWidget {
 class _AirFryerHomeState extends State<AirFryerHome> {
   int _selectedIndex = 0;
   final List<Widget> _children =[
-    const AirFryerCalculator(),
+    AirFryerCalculator(),
     const AirFryerNotes(),
   ];
 
@@ -33,7 +33,7 @@ class _AirFryerHomeState extends State<AirFryerHome> {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      drawer: const NavBar(),
+      drawer: NavBar(),
       body: _children[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
