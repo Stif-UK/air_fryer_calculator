@@ -15,7 +15,8 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Text("Oven Temperature: ${temperature.toInt()}°C"),
+          Text("Oven Temperature: ${temperature.toInt()}°C",
+          style: Theme.of(context).textTheme.bodyMedium,),
           Slider(
             value: temperature,
             min: 150,
@@ -29,7 +30,8 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
           //Text("${temperature.toInt()}°C"),
           Padding(
             padding: const EdgeInsets.fromLTRB(0,10,0,25),
-            child: Text("Oven Time: ${time.toInt()} minutes"),
+            child: Text("Oven Time: ${time.toInt()} minutes",
+            style: Theme.of(context).textTheme.bodyMedium,),
           ),
           Slider(
             value: time,
