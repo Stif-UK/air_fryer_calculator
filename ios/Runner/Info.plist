@@ -49,5 +49,7 @@
 	<string>ca-app-pub-5693473214019178~3323337140</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSUserTrackingUsageDescription</key>
+    <string>This identifier will be used to deliver personalized ads to you.</string>
 </dict>
 </plist>

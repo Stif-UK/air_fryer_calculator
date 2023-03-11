@@ -23,9 +23,9 @@ class _AirFryerHomeState extends State<AirFryerHome> {
   @override
   Widget build(BuildContext context) {
     //If platform is iOS, request tracking permission for ads
-    // if(Platform.isIOS) {
-    //   AppTrackingTransparency.requestTrackingAuthorization();
-    // }
+    if(Platform.isIOS) {
+      AppTrackingTransparency.requestTrackingAuthorization();
+    }
 
     return Scaffold(
       appBar: AppBar(
