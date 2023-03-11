@@ -1,14 +1,20 @@
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
+import 'package:air_fryer_calculator/provider/adstate.dart';
 import 'package:air_fryer_calculator/ui/air_fryer_home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:air_fryer_calculator/theme/theme_constants.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:json_theme/json_theme.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  //Initialise Ads
+  final initFuture = MobileAds.instance.initialize();
+  final adState = AdState(initFuture);
 
   //Load the theme from assets
   final themeStrLight = await rootBundle.loadString('assets/theme/appainter_theme.json');
@@ -24,33 +30,19 @@ void main() async {
   await FryerPreferences.init();
 
   runApp(
-      GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Air Fryer Calculator',
-        theme: themeLight,
-        darkTheme: themeDark,
-        themeMode: ThemeMode.system,
-        home: const AirFryerHome(),
+      Provider.value(
+        value: adState,
+        builder: (context, child) => GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Air Fryer Calculator',
+          theme: themeLight,
+          darkTheme: themeDark,
+          themeMode: ThemeMode.system,
+          home: const AirFryerHome(),
+        ),
       )
   );
 }
 
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-//
-//   //Get SharedPreferences
-//   await FryerPreferences.init();
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return GetMaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       title: 'Air Fryer Calculator',
-//       theme: lightTheme,
-//       darkTheme: darkTheme,
-//       themeMode: ThemeMode.system,
-//       home: AirFryerHome(),
-//     );
-//   }
-// }
+
 
