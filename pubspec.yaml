@@ -40,6 +40,7 @@ dependencies:
   package_info_plus: ^3.0.3
   shared_preferences: ^2.0.17
   json_theme: ^4.0.3+5
+  google_mobile_ads: ^2.3.0
 
 
 dev_dependencies:
