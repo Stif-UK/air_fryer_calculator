@@ -59,17 +59,20 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Text("Oven Temperature: ${temperature.toInt()}${getTempSuffix(widget.fryerController.tempIsCelcius.value)}",
-                  style: Theme.of(context).textTheme.bodyMedium,),
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Text("Oven Temperature: ${temperature.toInt()}${getTempSuffix(widget.fryerController.tempIsCelcius.value)}",
+                    style: Theme.of(context).textTheme.bodyMedium,),
+                  ),
                   Slider(
                     value: temperature,
                     min: 150,
-                    max: 350,
+                    max: 400,
                     onChanged: (double value) {
                       setState(()
                         => temperature = value);
                       },
-                  divisions: 20,
+                  divisions: 25,
                   label: "${temperature.toInt()}${getTempSuffix(widget.fryerController.tempIsCelcius.value)}",),
                   //Text("${temperature.toInt()}°C"),
                   Padding(
