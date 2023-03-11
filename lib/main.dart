@@ -29,6 +29,11 @@ void main() async {
   //Get SharedPreferences
   await FryerPreferences.init();
 
+  //Ensure temperature scale preference is instantiated in preferences
+  if(FryerPreferences.getTemperaturePreference() == null){
+    FryerPreferences.setTemperaturePreference(true);
+  }
+
   runApp(
        Provider.value(
          value: adState,
