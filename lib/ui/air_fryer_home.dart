@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:air_fryer_calculator/ui/air_fryer_calculator.dar.dart';
 import 'package:air_fryer_calculator/ui/air_fryer_notes.dart';
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:flutter/material.dart';
 import 'package:air_fryer_calculator/ui/navbar.dart';
 
@@ -19,6 +22,11 @@ class _AirFryerHomeState extends State<AirFryerHome> {
 
   @override
   Widget build(BuildContext context) {
+    //If platform is iOS, request tracking permission for ads
+    // if(Platform.isIOS) {
+    //   AppTrackingTransparency.requestTrackingAuthorization();
+    // }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('AirFry Calc'),

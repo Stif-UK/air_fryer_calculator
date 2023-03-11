@@ -42,6 +42,7 @@ dependencies:
   json_theme: ^4.0.3+5
   google_mobile_ads: ^2.3.0
   provider: ^6.0.5
+  app_tracking_transparency: ^2.0.3
 
 
 dev_dependencies:

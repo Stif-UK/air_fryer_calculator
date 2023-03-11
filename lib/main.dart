@@ -30,17 +30,18 @@ void main() async {
   await FryerPreferences.init();
 
   runApp(
-      Provider.value(
-        value: adState,
-        builder: (context, child) => GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Air Fryer Calculator',
-          theme: themeLight,
-          darkTheme: themeDark,
-          themeMode: ThemeMode.system,
-          home: const AirFryerHome(),
-        ),
-      )
+       Provider.value(
+         value: adState,
+         builder: (context, child) => GetMaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Air Fryer Calculator',
+            theme: themeLight,
+            darkTheme: themeDark,
+            themeMode: ThemeMode.system,
+            home: const AirFryerHome(),
+          ),
+       ),
+
   );
 }
 
