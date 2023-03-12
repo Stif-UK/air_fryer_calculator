@@ -1,5 +1,6 @@
 import 'package:air_fryer_calculator/controller/FryerController.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
+import 'package:air_fryer_calculator/ui/add_notes.dart';
 import 'package:air_fryer_calculator/util/ad_widget_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -114,7 +115,7 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
                     child: ElevatedButton(
                       child: const Text("Save to Notes"),
                       onPressed: (){
-                        print("Note Saved Pressed");
+                        Get.to(() => AddNotes());
                       },
                     ),
                   )
