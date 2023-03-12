@@ -16,6 +16,7 @@ class AddNotes extends StatefulWidget {
 
 class _AddNotesState extends State<AddNotes> {
 
+  //Setup Ads
   BannerAd? banner;
   bool purchaseStatus = FryerPreferences.getAppPurchasedStatus() ?? false;
 
@@ -40,6 +41,9 @@ class _AddNotesState extends State<AddNotes> {
     }
   }
 
+  //Instance Variables
+  late int temperature = 200;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,10 +57,11 @@ class _AddNotesState extends State<AddNotes> {
           Expanded(
               child: SingleChildScrollView(
                 child: Column(
-                  children: const [
-                    Center(
-                      child: Text("Add Note Page goes here!"),
-                    )
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children:  [
+                    _buildTitleInputRow(),
+                    const Divider(thickness: 2,),
+                    _buildTemperatureInputRow(temperature),
                   ],
                 ),
               )
@@ -67,4 +72,65 @@ class _AddNotesState extends State<AddNotes> {
       ),
     );
   }
+
+  Widget _buildTitleInputRow(){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0),
+          child: Text("Title:",
+            style: Theme.of(context).textTheme.bodyLarge,
+            textAlign: TextAlign.left,),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(width: 3, color: Theme.of(context).focusColor),
+                    borderRadius: BorderRadius.circular(50.0)
+                ),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(width: 3, color: Theme.of(context).primaryColor),
+                    borderRadius: BorderRadius.circular(50.0)
+                )
+
+            ),
+
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildTemperatureInputRow(int temperature){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0),
+          child: Text("Temperature:",
+            style: Theme.of(context).textTheme.bodyLarge,
+            textAlign: TextAlign.left,),
+        ),
+    Slider(
+    value: temperature.toDouble(),
+    min: 150,
+    max: 400,
+    onChanged: (double value) {
+    setState(()
+    => temperature = value.toInt());
+    },
+    divisions: 25,
+    label: "${temperature.toInt()}°C"
+
+    //"${temperature.toInt()}${getTempSuffix(widget.fryerController.tempIsCelcius.value)}",),
+        ),
+      ],
+    );
+  }
+
+
 }
+

@@ -33,6 +33,12 @@ class _AirFryerHomeState extends State<AirFryerHome> {
         //backgroundColor: Colors.transparent,
         elevation: 0,
       ),
+      floatingActionButton: _selectedIndex == 0? null : FloatingActionButton(
+        backgroundColor: Colors.red,
+        //foregroundColor: Colors.white,
+        onPressed: () {  },
+        child: const Icon(Icons.add),
+      ),
       drawer: NavBar(),
       body: _children[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
