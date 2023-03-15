@@ -1,10 +1,11 @@
 import 'package:air_fryer_calculator/model/adUnits.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
+import 'package:air_fryer_calculator/ui/custom_form_field.dart';
 import 'package:air_fryer_calculator/util/ad_widget_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-
+import 'package:intl/date_symbol_data_custom.dart';
 import '../provider/adstate.dart';
 
 class AddNotes extends StatefulWidget {
@@ -42,7 +43,9 @@ class _AddNotesState extends State<AddNotes> {
   }
 
   //Instance Variables
-  late int temperature = 200;
+
+  //Form Key
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -56,13 +59,16 @@ class _AddNotesState extends State<AddNotes> {
           purchaseStatus? const SizedBox(height: 0,) : AdWidgetHelper.buildSmallAdSpace(banner, context),
           Expanded(
               child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children:  [
-                    _buildTitleInputRow(),
-                    const Divider(thickness: 2,),
-                    _buildTemperatureInputRow(temperature),
-                  ],
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children:  [
+                      //Title Row
+                      CustomFormField(fieldTitle: "Title:",hintText: "Title"),
+                      CustomFormField(fieldTitle: "Notes", hintText: "Enter Notes")
+                    ],
+                  ),
                 ),
               )
           ),
@@ -73,63 +79,7 @@ class _AddNotesState extends State<AddNotes> {
     );
   }
 
-  Widget _buildTitleInputRow(){
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0),
-          child: Text("Title:",
-            style: Theme.of(context).textTheme.bodyLarge,
-            textAlign: TextAlign.left,),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: TextFormField(
-            decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(width: 3, color: Theme.of(context).focusColor),
-                    borderRadius: BorderRadius.circular(50.0)
-                ),
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(width: 3, color: Theme.of(context).primaryColor),
-                    borderRadius: BorderRadius.circular(50.0)
-                )
 
-            ),
-
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildTemperatureInputRow(int temperature){
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0),
-          child: Text("Temperature:",
-            style: Theme.of(context).textTheme.bodyLarge,
-            textAlign: TextAlign.left,),
-        ),
-    Slider(
-    value: temperature.toDouble(),
-    min: 150,
-    max: 400,
-    onChanged: (double value) {
-    setState(()
-    => temperature = value.toInt());
-    },
-    divisions: 25,
-    label: "${temperature.toInt()}°C"
-
-    //"${temperature.toInt()}${getTempSuffix(widget.fryerController.tempIsCelcius.value)}",),
-        ),
-      ],
-    );
-  }
 
 
 }
