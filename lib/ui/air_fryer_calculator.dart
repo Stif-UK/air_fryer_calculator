@@ -106,7 +106,7 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("Time:\n ${(time * 0.8).toInt()} minutes",
+                    child: Text("Time:\n ${calculateTime(time).toInt()} minutes",
                     style: Theme.of(context).textTheme.displaySmall,
                     textAlign: TextAlign.center,),
                   ),
@@ -115,7 +115,10 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
                     child: ElevatedButton(
                       child: const Text("Save to Notes"),
                       onPressed: (){
-                        Get.to(() => AddNotes());
+                        Get.to(() => AddNotes(
+                          time: calculateTime(time),
+                        temperature: calculateAFTemp(widget.fryerController.tempIsCelcius.value, temperature).toDouble()
+                          ,));
                       },
                     ),
                   )
@@ -140,6 +143,10 @@ int calculateAFTemp(bool? isCelcius, double temperature){
   isCelcius ??= true;
   return isCelcius? temperature.toInt() - 20 : temperature.toInt() - 35;
 
+}
+
+double calculateTime(double ovenTime){
+  return (ovenTime * 0.8);
 }
 
 

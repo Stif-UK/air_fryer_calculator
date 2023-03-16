@@ -9,8 +9,14 @@ import 'package:intl/date_symbol_data_custom.dart';
 import '../provider/adstate.dart';
 
 class AddNotes extends StatefulWidget {
-  const AddNotes({Key? key}) : super(key: key);
+  AddNotes({
+    Key? key,
+    required this.time,
+    required this.temperature
+  }) : super(key: key);
 
+  double time;
+  double temperature;
   @override
   State<AddNotes> createState() => _AddNotesState();
 }
@@ -43,6 +49,7 @@ class _AddNotesState extends State<AddNotes> {
   }
 
   //Instance Variables
+  // int time = widget.time;
 
   //Form Key
   final _formKey = GlobalKey<FormState>();
@@ -66,6 +73,66 @@ class _AddNotesState extends State<AddNotes> {
                     children:  [
                       //Title Row
                       CustomFormField(fieldTitle: "Title:",hintText: "Title"),
+                      const Divider(thickness: 2,),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Text("Temperature: ${widget.temperature.toInt()} degrees",
+                                textAlign: TextAlign.start,
+                                style: Theme.of(context).textTheme.bodyLarge,),
+                            ),
+                          ),
+
+                          //Increase time button
+                          IconButton(onPressed: (){setState(() {
+                            widget.temperature = widget.temperature + 5;
+                          });
+                          }, icon: const Icon(Icons.add_circle_outline)),
+                          //Decrease time button
+                          IconButton(onPressed: (){setState(() {
+                            widget.temperature = widget.temperature - 5;
+                          });
+                          }, icon: const Icon(Icons.remove_circle_outline)),
+
+                        ],
+                      ),
+                      const Divider(thickness: 2,),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Text("Time: ${widget.time.toInt()} minutes",
+                                textAlign: TextAlign.start,
+                                style: Theme.of(context).textTheme.bodyLarge,),
+                            ),
+                          ),
+
+                          //Increase time button
+                          IconButton(onPressed: (){setState(() {
+                                     widget.time = widget.time + 1;
+                                      });
+                                      }, icon: const Icon(Icons.add_circle_outline)),
+                          //Decrease time button
+                          IconButton(onPressed: (){setState(() {
+                            widget.time = widget.time - 1;
+                          });
+                          }, icon: const Icon(Icons.remove_circle_outline)),
+
+                        ],
+                      ),
+                      Slider(
+                        value: widget.time,
+                        min: 0,
+                        max: 180,
+                        onChanged: (double value) {
+                          setState(()
+                          => widget.time = value);
+                        },
+                       label: "${widget.time.toInt()} mins",),
+                      const Divider(thickness: 2,),
                       CustomFormField(fieldTitle: "Notes", hintText: "Enter Notes")
                     ],
                   ),
