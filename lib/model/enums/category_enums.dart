@@ -1,0 +1,1 @@
+enum CategoryEnum {sides, meat, seafood, poultry, vegetarian, dessert, other }
