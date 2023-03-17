@@ -68,12 +68,12 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
                   Slider(
                     value: temperature,
                     min: 150,
-                    max: 400,
+                    max: 450,
                     onChanged: (double value) {
                       setState(()
                         => temperature = value);
                       },
-                  divisions: 25,
+                  divisions: 30,
                   label: "${temperature.toInt()}${getTempSuffix(widget.fryerController.tempIsCelcius.value)}",),
                   //Text("${temperature.toInt()}°C"),
                   Padding(

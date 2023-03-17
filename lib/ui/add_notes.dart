@@ -49,7 +49,11 @@ class _AddNotesState extends State<AddNotes> {
   }
 
   //Instance Variables
-  // int time = widget.time;
+  double maximumTemp = 450;
+  double minimumTemp = 130;
+  double maximumTime = 180;
+  double minimumTime = 0;
+
 
   //Form Key
   final _formKey = GlobalKey<FormState>();
@@ -85,19 +89,29 @@ class _AddNotesState extends State<AddNotes> {
                             ),
                           ),
 
-                          //Increase time button
+                          //Increase temperature button
                           IconButton(onPressed: (){setState(() {
-                            widget.temperature = widget.temperature + 5;
+                            widget.temperature = increaseTemp(widget.temperature);
                           });
                           }, icon: const Icon(Icons.add_circle_outline)),
-                          //Decrease time button
+                          //Decrease temperature button
                           IconButton(onPressed: (){setState(() {
-                            widget.temperature = widget.temperature - 5;
+                            widget.temperature = decreaseTemp(widget.temperature);
                           });
                           }, icon: const Icon(Icons.remove_circle_outline)),
 
                         ],
                       ),
+                      Slider(
+                        value: widget.temperature,
+                        min: minimumTemp,
+                        max: maximumTemp,
+                        onChanged: (double value) {
+                          setState(()
+                          => widget.temperature = value);
+                        },
+                        divisions: 64,
+                        label: "${widget.temperature.toInt()} degrees",),
                       const Divider(thickness: 2,),
                       Row(
                         children: [
@@ -112,12 +126,12 @@ class _AddNotesState extends State<AddNotes> {
 
                           //Increase time button
                           IconButton(onPressed: (){setState(() {
-                                     widget.time = widget.time + 1;
+                                     widget.time = increaseTime(widget.time);
                                       });
                                       }, icon: const Icon(Icons.add_circle_outline)),
                           //Decrease time button
                           IconButton(onPressed: (){setState(() {
-                            widget.time = widget.time - 1;
+                            widget.time = decreaseTime(widget.time);
                           });
                           }, icon: const Icon(Icons.remove_circle_outline)),
 
@@ -125,8 +139,8 @@ class _AddNotesState extends State<AddNotes> {
                       ),
                       Slider(
                         value: widget.time,
-                        min: 0,
-                        max: 180,
+                        min: minimumTime,
+                        max: maximumTime,
                         onChanged: (double value) {
                           setState(()
                           => widget.time = value);
@@ -146,8 +160,33 @@ class _AddNotesState extends State<AddNotes> {
     );
   }
 
+//Increase Temperature by 5 degrees up to maximum
+double increaseTemp(double currentTemp){
+    double maxTemp = maximumTemp;
+    double returnTemp = currentTemp + 5;
+    return returnTemp < maxTemp? returnTemp : maxTemp;
+}
 
+//Decrease Temperature by 5 degrees down to minimum
+  double decreaseTemp(double currentTemp){
+    double minTemp = minimumTemp;
+    double returnTemp = currentTemp - 5;
+    return returnTemp > minTemp? returnTemp : minTemp;
+  }
 
+  //Increase Time by 5 minute up to maximum
+  double increaseTime(double currentTime){
+    double maxTime = maximumTime;
+    double returnTime = currentTime + 5;
+    return returnTime < maxTime? returnTime : maxTime;
+  }
+
+  //Decrease Time by 5 minute up to maximum
+  double decreaseTime(double currentTime){
+    double minTime = minimumTime;
+    double returnTime = currentTime - 5;
+    return returnTime > minTime? returnTime : minTime;
+  }
 
 }
 
