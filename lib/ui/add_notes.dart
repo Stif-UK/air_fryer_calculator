@@ -1,4 +1,5 @@
 import 'package:air_fryer_calculator/model/adUnits.dart';
+import 'package:air_fryer_calculator/model/enums/category_enums.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 import 'package:air_fryer_calculator/ui/custom_form_field.dart';
 import 'package:air_fryer_calculator/util/ad_widget_helper.dart';
@@ -53,6 +54,8 @@ class _AddNotesState extends State<AddNotes> {
   double minimumTemp = 130;
   double maximumTime = 180;
   double minimumTime = 0;
+  CategoryEnum _selectedValue = CategoryEnum.meat;
+
 
 
   //Form Key
@@ -77,6 +80,41 @@ class _AddNotesState extends State<AddNotes> {
                     children:  [
                       //Title Row
                       const CustomFormField(fieldTitle: "Title:",hintText: "Title"),
+                      const Divider(thickness: 2,),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 4,
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Text("Category:",
+                                textAlign: TextAlign.start,
+                                style: Theme.of(context).textTheme.bodyLarge,),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 6,
+                            child: DropdownButtonFormField(
+                              value: _selectedValue,
+                                items: <CategoryEnum>[CategoryEnum.sides, CategoryEnum.meat, CategoryEnum.poultry, CategoryEnum.seafood, CategoryEnum.vegetarian, CategoryEnum.dessert, CategoryEnum.other]
+                                    .map<DropdownMenuItem<CategoryEnum>>((CategoryEnum value) {
+                                  return DropdownMenuItem<CategoryEnum>(
+                                    value: value,
+                                    child: Text(
+                                      value.toString(),
+                                      style: Theme.of(context).textTheme.bodyLarge,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  );
+                                }).toList(),
+                                onChanged: (CategoryEnum? value){
+                                setState(() {
+                                  _selectedValue = value!;
+                                });
+              }),
+                          )
+                        ],
+                      ),
                       const Divider(thickness: 2,),
                       Row(
                         children: [
