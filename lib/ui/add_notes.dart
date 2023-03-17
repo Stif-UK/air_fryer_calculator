@@ -3,6 +3,7 @@ import 'package:air_fryer_calculator/model/enums/category_enums.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 import 'package:air_fryer_calculator/ui/custom_form_field.dart';
 import 'package:air_fryer_calculator/util/ad_widget_helper.dart';
+import 'package:air_fryer_calculator/util/text_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -84,7 +85,7 @@ class _AddNotesState extends State<AddNotes> {
                       Row(
                         children: [
                           Expanded(
-                            flex: 4,
+                            flex: 3,
                             child: Padding(
                               padding: const EdgeInsets.all(10.0),
                               child: Text("Category:",
@@ -93,15 +94,26 @@ class _AddNotesState extends State<AddNotes> {
                             ),
                           ),
                           Expanded(
-                            flex: 6,
+                            flex: 7,
                             child: DropdownButtonFormField(
+                              decoration: InputDecoration(
+                                  enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(width: 3, color: Theme.of(context).focusColor),
+                                      borderRadius: BorderRadius.circular(20.0)
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(width: 3, color: Colors.lightBlue),
+                                      borderRadius: BorderRadius.circular(20.0)
+                                  )
+
+                              ),
                               value: _selectedValue,
-                                items: <CategoryEnum>[CategoryEnum.sides, CategoryEnum.meat, CategoryEnum.poultry, CategoryEnum.seafood, CategoryEnum.vegetarian, CategoryEnum.dessert, CategoryEnum.other]
+                                items: <CategoryEnum>[CategoryEnum.sides, CategoryEnum.meat, CategoryEnum.poultry, CategoryEnum.seafood, CategoryEnum.vegetarian, CategoryEnum.vegan, CategoryEnum.dessert, CategoryEnum.other]
                                     .map<DropdownMenuItem<CategoryEnum>>((CategoryEnum value) {
                                   return DropdownMenuItem<CategoryEnum>(
                                     value: value,
                                     child: Text(
-                                      value.toString(),
+                                      TextHelper.getCategoryText(value),
                                       style: Theme.of(context).textTheme.bodyLarge,
                                       textAlign: TextAlign.center,
                                     ),
@@ -185,7 +197,7 @@ class _AddNotesState extends State<AddNotes> {
                         },
                        label: "${widget.time.toInt()} mins",),
                       const Divider(thickness: 2,),
-                      const CustomFormField(fieldTitle: "Notes", hintText: "Enter Notes", minLines: 4, maxLines: 20,)
+                      const CustomFormField(fieldTitle: "Notes:", hintText: "Enter Notes", minLines: 4, maxLines: 20,)
                     ],
                   ),
                 ),
