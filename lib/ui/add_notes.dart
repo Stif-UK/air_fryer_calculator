@@ -76,7 +76,7 @@ class _AddNotesState extends State<AddNotes> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children:  [
                       //Title Row
-                      CustomFormField(fieldTitle: "Title:",hintText: "Title"),
+                      const CustomFormField(fieldTitle: "Title:",hintText: "Title"),
                       const Divider(thickness: 2,),
                       Row(
                         children: [
@@ -147,7 +147,7 @@ class _AddNotesState extends State<AddNotes> {
                         },
                        label: "${widget.time.toInt()} mins",),
                       const Divider(thickness: 2,),
-                      CustomFormField(fieldTitle: "Notes", hintText: "Enter Notes")
+                      const CustomFormField(fieldTitle: "Notes", hintText: "Enter Notes", minLines: 4, maxLines: 20,)
                     ],
                   ),
                 ),
