@@ -1,5 +1,6 @@
 import 'dart:io';
-
+import 'package:air_fryer_calculator/ui/add_notes.dart';
+import 'package:get/get.dart';
 import 'package:air_fryer_calculator/ui/air_fryer_calculator.dart';
 import 'package:air_fryer_calculator/ui/air_fryer_notes.dart';
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
@@ -36,7 +37,9 @@ class _AirFryerHomeState extends State<AirFryerHome> {
       floatingActionButton: _selectedIndex == 0? null : FloatingActionButton(
         backgroundColor: Colors.red,
         //foregroundColor: Colors.white,
-        onPressed: () {  },
+        onPressed: () {
+          Get.to(() => AddNotes(time: 30.0, temperature: 200.0));
+        },
         child: const Icon(Icons.add),
       ),
       drawer: NavBar(),
