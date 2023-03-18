@@ -1,3 +1,4 @@
+import 'package:air_fryer_calculator/controller/FryerController.dart';
 import 'package:air_fryer_calculator/model/adUnits.dart';
 import 'package:air_fryer_calculator/model/enums/category_enums.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
@@ -10,6 +11,7 @@ import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:intl/date_symbol_data_custom.dart';
 import '../provider/adstate.dart';
+import 'package:get/get.dart';
 
 class AddNotes extends StatefulWidget {
   AddNotes({
@@ -18,6 +20,7 @@ class AddNotes extends StatefulWidget {
     required this.temperature
   }) : super(key: key);
 
+  final fryerController = Get.put(FryerController());
   double time;
   double temperature;
   @override
@@ -140,7 +143,7 @@ class _AddNotesState extends State<AddNotes> {
                           Expanded(
                             child: Padding(
                               padding: const EdgeInsets.all(10.0),
-                              child: Text("Temperature: ${widget.temperature.toInt()} degrees",
+                              child: Text("Temperature: ${widget.temperature.toInt()} ${TextHelper.getTempSuffix(widget.fryerController.tempIsCelcius.value)}",
                                 textAlign: TextAlign.start,
                                 style: Theme.of(context).textTheme.bodyLarge,),
                             ),
@@ -168,7 +171,7 @@ class _AddNotesState extends State<AddNotes> {
                           => widget.temperature = value);
                         },
                         divisions: 64,
-                        label: "${widget.temperature.toInt()} degrees",),
+                        label: "${widget.temperature.toInt()} ${TextHelper.getTempSuffix(widget.fryerController.tempIsCelcius.value)}",),
                       const Divider(thickness: 2,),
                       Row(
                         children: [
