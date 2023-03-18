@@ -207,10 +207,11 @@ class _AddNotesState extends State<AddNotes> {
                       const CustomFormField(fieldTitle: "Notes:", hintText: "Enter Notes", minLines: 4, maxLines: 20,),
                       const Divider(thickness: 2,),
                       Center(
-                        child: ElevatedButton(onPressed: (){},
-                          child:
+                        child: ElevatedButton(
+                            onPressed: (){
 
-                        Row(
+                            },
+                          child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           mainAxisSize: MainAxisSize.min,
                           children: const [

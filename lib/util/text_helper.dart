@@ -67,4 +67,8 @@ class TextHelper{
     return returnIcon;
   }
 
+  static String getTempSuffix(bool? isCelcius){
+    isCelcius ??= true;
+    return isCelcius? "°C" : "°F";
+  }
 }

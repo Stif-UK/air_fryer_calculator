@@ -2,6 +2,7 @@ import 'package:air_fryer_calculator/controller/FryerController.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 import 'package:air_fryer_calculator/ui/add_notes.dart';
 import 'package:air_fryer_calculator/util/ad_widget_helper.dart';
+import 'package:air_fryer_calculator/util/text_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
@@ -62,7 +63,7 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(12.0),
-                    child: Text("Oven Temperature: ${temperature.toInt()}${getTempSuffix(widget.fryerController.tempIsCelcius.value)}",
+                    child: Text("Oven Temperature: ${temperature.toInt()}${TextHelper.getTempSuffix(widget.fryerController.tempIsCelcius.value)}",
                     style: Theme.of(context).textTheme.bodyMedium,),
                   ),
                   Slider(
@@ -74,7 +75,7 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
                         => temperature = value);
                       },
                   divisions: 30,
-                  label: "${temperature.toInt()}${getTempSuffix(widget.fryerController.tempIsCelcius.value)}",),
+                  label: "${temperature.toInt()}${TextHelper.getTempSuffix(widget.fryerController.tempIsCelcius.value)}",),
                   //Text("${temperature.toInt()}°C"),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0,10,0,25),
@@ -100,7 +101,7 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: Text("Temperature: ${calculateAFTemp(widget.fryerController.tempIsCelcius.value, temperature)}${getTempSuffix(widget.fryerController.tempIsCelcius.value)}",
+                    child: Text("Temperature: ${calculateAFTemp(widget.fryerController.tempIsCelcius.value, temperature)}${TextHelper.getTempSuffix(widget.fryerController.tempIsCelcius.value)}",
                     style: Theme.of(context).textTheme.displaySmall,
                     textAlign: TextAlign.center,),
                   ),
@@ -134,10 +135,6 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
   }
 }
 
-String getTempSuffix(bool? isCelcius){
-  isCelcius ??= true;
-  return isCelcius? "°C" : "°F";
-}
 
 int calculateAFTemp(bool? isCelcius, double temperature){
   isCelcius ??= true;
