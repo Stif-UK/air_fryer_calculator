@@ -9,7 +9,8 @@ class CustomFormField extends StatelessWidget {
     this.minLines,
     this.maxLines,
     this.inputFormatters,
-    this.validator
+    this.validator,
+    required this.controller
   }) : super(key: key);
 
   final String fieldTitle;
@@ -18,6 +19,7 @@ class CustomFormField extends StatelessWidget {
   final int? maxLines;
   final List<TextInputFormatter>? inputFormatters;
   final String? Function(String?)? validator;
+  final TextEditingController controller;
 
 
   @override
@@ -31,6 +33,7 @@ class CustomFormField extends StatelessWidget {
           textAlign: TextAlign.start,
           style: Theme.of(context).textTheme.bodyLarge,),
           TextFormField(
+            controller: controller,
             minLines: minLines,
             maxLines: maxLines,
             decoration: InputDecoration(

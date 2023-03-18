@@ -59,12 +59,24 @@ class _AddNotesState extends State<AddNotes> {
   double minimumTemp = 130;
   double maximumTime = 180;
   double minimumTime = 0;
-  CategoryEnum _selectedValue = CategoryEnum.meat;
+  CategoryEnum _selectedCategory = CategoryEnum.meat;
+  String title = "";
 
 
 
   //Form Key
   final _formKey = GlobalKey<FormState>();
+  //Text Controller
+  final titleFieldController = TextEditingController();
+  final notesFieldController = TextEditingController();
+
+  @override
+  void dispose(){
+    //clean up the controller when the widget is disposed
+    titleFieldController.dispose();
+    notesFieldController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +96,7 @@ class _AddNotesState extends State<AddNotes> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children:  [
                       //Title Row
-                      const CustomFormField(fieldTitle: "Title:",hintText: "Title"),
+                      CustomFormField(fieldTitle: "Title:",hintText: "Title", controller: titleFieldController,),
                       const Divider(thickness: 2,),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,7 +123,7 @@ class _AddNotesState extends State<AddNotes> {
                                       )
 
                                   ),
-                                  value: _selectedValue,
+                                  value: _selectedCategory,
                                     items: <CategoryEnum>[CategoryEnum.sides, CategoryEnum.meat, CategoryEnum.poultry, CategoryEnum.seafood, CategoryEnum.vegetarian, CategoryEnum.vegan, CategoryEnum.dessert, CategoryEnum.other]
                                         .map<DropdownMenuItem<CategoryEnum>>((CategoryEnum value) {
                                       return DropdownMenuItem<CategoryEnum>(
@@ -125,14 +137,14 @@ class _AddNotesState extends State<AddNotes> {
                                     }).toList(),
                                     onChanged: (CategoryEnum? value){
                                     setState(() {
-                                      _selectedValue = value!;
+                                      _selectedCategory = value!;
                                     });
               }),
                               ),
                               Expanded(
                                   flex: 2,
                                   child: Center(
-                                      child: TextHelper.getCategoryIcon(_selectedValue)))
+                                      child: TextHelper.getCategoryIcon(_selectedCategory)))
                             ],
                           ),
                         ],
@@ -207,11 +219,16 @@ class _AddNotesState extends State<AddNotes> {
                         },
                        label: "${widget.time.toInt()} mins",),
                       const Divider(thickness: 2,),
-                      const CustomFormField(fieldTitle: "Notes:", hintText: "Enter Notes", minLines: 4, maxLines: 20,),
+                      CustomFormField(fieldTitle: "Notes:", hintText: "Enter Notes", minLines: 4, maxLines: 20, controller: notesFieldController,),
                       const Divider(thickness: 2,),
                       Center(
                         child: ElevatedButton(
                             onPressed: (){
+                              print("Title: ${titleFieldController.text}");
+                              print("Category: ${_selectedCategory}");
+                              print("Temperature: ${widget.temperature}");
+                              print("Time: ${widget.time}");
+                              print("Notes: ${notesFieldController.text}");
 
                             },
                           child: Row(
