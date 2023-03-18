@@ -36,6 +36,7 @@ class CustomFormField extends StatelessWidget {
             controller: controller,
             minLines: minLines,
             maxLines: maxLines,
+            validator: validator,
             decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(width: 3, color: Theme.of(context).focusColor),

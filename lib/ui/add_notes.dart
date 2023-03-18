@@ -6,12 +6,11 @@ import 'package:air_fryer_calculator/ui/custom_form_field.dart';
 import 'package:air_fryer_calculator/util/ad_widget_helper.dart';
 import 'package:air_fryer_calculator/util/text_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:intl/date_symbol_data_custom.dart';
 import '../provider/adstate.dart';
 import 'package:get/get.dart';
+import 'package:air_fryer_calculator/util/string_extention.dart';
 
 class AddNotes extends StatefulWidget {
   AddNotes({
@@ -96,7 +95,20 @@ class _AddNotesState extends State<AddNotes> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children:  [
                       //Title Row
-                      CustomFormField(fieldTitle: "Title:",hintText: "Title", controller: titleFieldController,),
+                      CustomFormField(
+                        fieldTitle: "Title:",
+                        hintText: "Title",
+                        maxLines: 1,
+                        controller: titleFieldController,
+                        validator: (String? val) {
+                          if(!val!.isAlphaNumericAndNotEmpty) {
+                            print(!val!.isAlphaNumericAndNotEmpty);
+                            return 'Title missing or invalid characters included';
+                          }
+                        },
+                      ),
+
+
                       const Divider(thickness: 2,),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -224,13 +236,16 @@ class _AddNotesState extends State<AddNotes> {
                       Center(
                         child: ElevatedButton(
                             onPressed: (){
-                              print("Title: ${titleFieldController.text}");
-                              print("Category: ${_selectedCategory}");
-                              print("Temperature: ${widget.temperature}");
-                              print("Time: ${widget.time}");
-                              print("Notes: ${notesFieldController.text}");
-
-                            },
+                              if(_formKey.currentState!.validate()) {
+                            print("Title: ${titleFieldController.text}");
+                            print("Category: ${_selectedCategory}");
+                            print("Temperature: ${widget.temperature}");
+                            print("Time: ${widget.time}");
+                            print("Notes: ${notesFieldController.text}");
+                          }else{
+                                print("Form validation failed");
+                              }
+                        },
                           child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           mainAxisSize: MainAxisSize.min,
