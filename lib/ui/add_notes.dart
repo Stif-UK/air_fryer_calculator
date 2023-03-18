@@ -204,7 +204,25 @@ class _AddNotesState extends State<AddNotes> {
                         },
                        label: "${widget.time.toInt()} mins",),
                       const Divider(thickness: 2,),
-                      const CustomFormField(fieldTitle: "Notes:", hintText: "Enter Notes", minLines: 4, maxLines: 20,)
+                      const CustomFormField(fieldTitle: "Notes:", hintText: "Enter Notes", minLines: 4, maxLines: 20,),
+                      const Divider(thickness: 2,),
+                      Center(
+                        child: ElevatedButton(onPressed: (){},
+                          child:
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: const [
+                            Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Icon(Icons.save),
+                            ),
+                            Text("Save Note"),
+                          ],
+                        )
+                        ),
+                      )
                     ],
                   ),
                 ),
