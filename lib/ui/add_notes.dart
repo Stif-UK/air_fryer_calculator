@@ -82,49 +82,54 @@ class _AddNotesState extends State<AddNotes> {
                       //Title Row
                       const CustomFormField(fieldTitle: "Title:",hintText: "Title"),
                       const Divider(thickness: 2,),
-                      Row(
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(
-                            flex: 3,
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Text("Category:",
-                                textAlign: TextAlign.start,
-                                style: Theme.of(context).textTheme.bodyLarge,),
-                            ),
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Text("Category:",
+                              textAlign: TextAlign.start,
+                              style: Theme.of(context).textTheme.bodyLarge,),
                           ),
-                          Expanded(
-                            flex: 7,
-                            child: DropdownButtonFormField(
-                              decoration: InputDecoration(
-                                  enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(width: 3, color: Theme.of(context).focusColor),
-                                      borderRadius: BorderRadius.circular(20.0)
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(width: 3, color: Colors.lightBlue),
-                                      borderRadius: BorderRadius.circular(20.0)
-                                  )
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 7,
+                                child: DropdownButtonFormField(
+                                  decoration: InputDecoration(
+                                      enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(width: 3, color: Theme.of(context).focusColor),
+                                          borderRadius: BorderRadius.circular(20.0)
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderSide: const BorderSide(width: 3, color: Colors.lightBlue),
+                                          borderRadius: BorderRadius.circular(20.0)
+                                      )
 
-                              ),
-                              value: _selectedValue,
-                                items: <CategoryEnum>[CategoryEnum.sides, CategoryEnum.meat, CategoryEnum.poultry, CategoryEnum.seafood, CategoryEnum.vegetarian, CategoryEnum.vegan, CategoryEnum.dessert, CategoryEnum.other]
-                                    .map<DropdownMenuItem<CategoryEnum>>((CategoryEnum value) {
-                                  return DropdownMenuItem<CategoryEnum>(
-                                    value: value,
-                                    child: Text(
-                                      TextHelper.getCategoryText(value),
-                                      style: Theme.of(context).textTheme.bodyLarge,
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  );
-                                }).toList(),
-                                onChanged: (CategoryEnum? value){
-                                setState(() {
-                                  _selectedValue = value!;
-                                });
+                                  ),
+                                  value: _selectedValue,
+                                    items: <CategoryEnum>[CategoryEnum.sides, CategoryEnum.meat, CategoryEnum.poultry, CategoryEnum.seafood, CategoryEnum.vegetarian, CategoryEnum.vegan, CategoryEnum.dessert, CategoryEnum.other]
+                                        .map<DropdownMenuItem<CategoryEnum>>((CategoryEnum value) {
+                                      return DropdownMenuItem<CategoryEnum>(
+                                        value: value,
+                                        child: Text(
+                                          TextHelper.getCategoryText(value),
+                                          style: Theme.of(context).textTheme.bodyLarge,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      );
+                                    }).toList(),
+                                    onChanged: (CategoryEnum? value){
+                                    setState(() {
+                                      _selectedValue = value!;
+                                    });
               }),
-                          )
+                              ),
+                              Expanded(
+                                  flex: 2,
+                                  child: Icon(Icons.fastfood)),
+                            ],
+                          ),
                         ],
                       ),
                       const Divider(thickness: 2,),
