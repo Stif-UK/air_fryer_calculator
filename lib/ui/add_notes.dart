@@ -5,6 +5,7 @@ import 'package:air_fryer_calculator/ui/custom_form_field.dart';
 import 'package:air_fryer_calculator/util/ad_widget_helper.dart';
 import 'package:air_fryer_calculator/util/text_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:intl/date_symbol_data_custom.dart';
@@ -127,7 +128,8 @@ class _AddNotesState extends State<AddNotes> {
                               ),
                               Expanded(
                                   flex: 2,
-                                  child: Icon(Icons.fastfood)),
+                                  child: Center(
+                                      child: TextHelper.getCategoryIcon(_selectedValue)))
                             ],
                           ),
                         ],
