@@ -245,7 +245,7 @@ class _AddNotesState extends State<AddNotes> {
                             print("Time: ${widget.time}");
                             print("Notes: ${notesFieldController.text}");
                             //Add a new object to the database, notify user and close the window
-                            await DataBaseHelper.addNote(titleFieldController.text, _selectedCategory, widget.temperature, widget.time, notesFieldController.text);
+                            await DataBaseHelper.addNote(titleFieldController.text, _selectedCategory, widget.temperature, widget.time, notesFieldController.text, widget.fryerController.tempIsCelcius.value);
                             Get.back();
                             Get.snackbar(
                                 "$title added to notebook",

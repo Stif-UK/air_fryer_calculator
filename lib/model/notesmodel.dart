@@ -21,6 +21,9 @@ class Notes extends HiveObject{
   @HiveField(4)
   late String? notes;
 
+  @HiveField(5)
+  late bool isCelcius;
+
 
 
 

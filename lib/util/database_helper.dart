@@ -9,13 +9,14 @@ class DataBaseHelper {
     return Hive.box<Notes>("NoteBook");
   }
 
-  static Future addNote(String title, CategoryEnum category, double temperature, double time, String? notes){
+  static Future addNote(String title, CategoryEnum category, double temperature, double time, String? notes, bool isCelcius){
     final note = Notes()
         ..title = title
         ..category = category.toString()
         ..temperature = temperature
         ..time = time
-        ..notes = notes;
+        ..notes = notes
+        ..isCelcius = isCelcius;
 
     final Box<Notes> box = getNotes();
     return box.add(note);

@@ -21,13 +21,14 @@ class NotesAdapter extends TypeAdapter<Notes> {
       ..category = fields[1] as String
       ..temperature = fields[2] as double
       ..time = fields[3] as double
-      ..notes = fields[4] as String?;
+      ..notes = fields[4] as String?
+      ..isCelcius = fields[5] as bool;
   }
 
   @override
   void write(BinaryWriter writer, Notes obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.title)
       ..writeByte(1)
@@ -37,7 +38,9 @@ class NotesAdapter extends TypeAdapter<Notes> {
       ..writeByte(3)
       ..write(obj.time)
       ..writeByte(4)
-      ..write(obj.notes);
+      ..write(obj.notes)
+      ..writeByte(5)
+      ..write(obj.isCelcius);
   }
 
   @override
