@@ -246,9 +246,15 @@ class _AddNotesState extends State<AddNotes> {
                             print("Notes: ${notesFieldController.text}");
                             //Add a new object to the database, notify user and close the window
                             await DataBaseHelper.addNote(titleFieldController.text, _selectedCategory, widget.temperature, widget.time, notesFieldController.text);
-                            DataBaseHelper.noteAddedSnackbar(titleFieldController.text);
                             Get.back();
-                            //Otherwise do nothing TODO:Remove else clause, only here for testing
+                            Get.snackbar(
+                                "$title added to notebook",
+                                "Your notebook has been updated",
+                            snackPosition: SnackPosition.BOTTOM,
+                            icon: TextHelper.getCategoryIcon(_selectedCategory));
+
+
+                                //Otherwise do nothing TODO:Remove else clause, only here for testing
                               }else{
                                 print("Form validation failed");
                               }
