@@ -1,10 +1,15 @@
 import 'package:air_fryer_calculator/model/adUnits.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
+import 'package:air_fryer_calculator/model/notesmodel.dart';
 import 'package:air_fryer_calculator/provider/adstate.dart';
 import 'package:air_fryer_calculator/util/ad_widget_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
+import 'package:air_fryer_calculator/util/database_helper.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
 
 class AirFryerNotes extends StatefulWidget {
   const AirFryerNotes({Key? key}) : super(key: key);
@@ -40,13 +45,19 @@ class _AirFryerNotesState extends State<AirFryerNotes> {
 
   @override
   Widget build(BuildContext context) {
+
+    Box<Notes> notebook = DataBaseHelper.getNotes();
+
     return  Column(
       children: [
         //Insert Ad into Widget Tree
         purchaseStatus? const SizedBox(height: 0,) : AdWidgetHelper.buildSmallAdSpace(banner, context),
 
         Expanded(
-          child: Center(
+          //Check if the database is empty
+          child: notebook.isEmpty?
+              //if it is display a message
+          Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
@@ -54,7 +65,17 @@ class _AirFryerNotesState extends State<AirFryerNotes> {
                 Text("Your Notebook is currently empty"),
               ],
             ),
-          ),
+          )
+              //if not empty, display the listview
+              :
+              Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("You have ${notebook.length} entries in your notebook!")
+                  ],
+                )
+              )
         ),
       ],
     );

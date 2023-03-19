@@ -4,6 +4,7 @@ import 'package:air_fryer_calculator/model/enums/category_enums.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 import 'package:air_fryer_calculator/ui/custom_form_field.dart';
 import 'package:air_fryer_calculator/util/ad_widget_helper.dart';
+import 'package:air_fryer_calculator/util/database_helper.dart';
 import 'package:air_fryer_calculator/util/text_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -235,14 +236,20 @@ class _AddNotesState extends State<AddNotes> {
                       const Divider(thickness: 2,),
                       Center(
                         child: ElevatedButton(
-                            onPressed: (){
+                            onPressed: () async {
+                              //Check that fields are valid
                               if(_formKey.currentState!.validate()) {
                             print("Title: ${titleFieldController.text}");
                             print("Category: ${_selectedCategory}");
                             print("Temperature: ${widget.temperature}");
                             print("Time: ${widget.time}");
                             print("Notes: ${notesFieldController.text}");
-                          }else{
+                            //Add a new object to the database, notify user and close the window
+                            await DataBaseHelper.addNote(titleFieldController.text, _selectedCategory, widget.temperature, widget.time, notesFieldController.text);
+                            DataBaseHelper.noteAddedSnackbar(titleFieldController.text);
+                            Get.back();
+                            //Otherwise do nothing TODO:Remove else clause, only here for testing
+                              }else{
                                 print("Form validation failed");
                               }
                         },

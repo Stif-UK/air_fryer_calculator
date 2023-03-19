@@ -1,4 +1,5 @@
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
+import 'package:air_fryer_calculator/model/notesmodel.dart';
 import 'package:air_fryer_calculator/provider/adstate.dart';
 import 'package:air_fryer_calculator/ui/air_fryer_home.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +30,8 @@ void main() async {
 
   //Initialise database
   await Hive.initFlutter();
+  Hive.registerAdapter(NotesAdapter());
+  await Hive.openBox<Notes>("NoteBook");
 
   //Get SharedPreferences
   await FryerPreferences.init();

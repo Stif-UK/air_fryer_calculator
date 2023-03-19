@@ -18,7 +18,7 @@ class NotesAdapter extends TypeAdapter<Notes> {
     };
     return Notes()
       ..title = fields[0] as String
-      ..category = fields[1] as CategoryEnum
+      ..category = fields[1] as String
       ..temperature = fields[2] as double
       ..time = fields[3] as double
       ..notes = fields[4] as String?;

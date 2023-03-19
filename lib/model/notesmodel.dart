@@ -10,7 +10,7 @@ class Notes extends HiveObject{
   late String title;
 
   @HiveField(1)
-  late CategoryEnum category;
+  late String category;
 
   @HiveField(2)
   late double temperature;
