@@ -71,4 +71,37 @@ class TextHelper{
     isCelcius ??= true;
     return isCelcius? "°C" : "°F";
   }
+
+  static CategoryEnum getEnumFromString(String enumString){
+    CategoryEnum returnEnum = CategoryEnum.other;
+
+    switch (enumString){
+      case "CategoryEnum.sides":
+        returnEnum = CategoryEnum.sides;
+        break;
+      case "CategoryEnum.meat":
+        returnEnum = CategoryEnum.meat;
+        break;
+      case "CategoryEnum.seafood":
+        returnEnum = CategoryEnum.seafood;
+        break;
+      case "CategoryEnum.poultry":
+        returnEnum = CategoryEnum.poultry;
+        break;
+      case "CategoryEnum.vegetarian":
+        returnEnum = CategoryEnum.vegetarian;
+        break;
+      case "CategoryEnum.dessert":
+        returnEnum = CategoryEnum.dessert;
+        break;
+      case "CategoryEnum.other":
+        returnEnum = CategoryEnum.other;
+        break;
+      case "CategoryEnum.vegan":
+        returnEnum = CategoryEnum.vegan;
+        break;
+    }
+    return returnEnum;
+
+  }
 }
