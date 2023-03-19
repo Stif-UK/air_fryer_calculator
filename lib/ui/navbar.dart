@@ -39,7 +39,7 @@ class _NavBarState extends State<NavBar> {
               children: [
                 DrawerHeader(child: IconButton(
                   splashColor: Colors.transparent,
-                  icon: const Icon(Icons.accessibility, size: 40.0),
+                  icon: const Icon(Icons.fastfood, size: 40.0),
                   onPressed: (){
                     print(clickCounter);
                     clickCounter++;
