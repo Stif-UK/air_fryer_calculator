@@ -9,6 +9,8 @@ import 'package:json_theme/json_theme.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:provider/provider.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +27,8 @@ void main() async {
   final themeJsonDark = jsonDecode(themeStrDark);
   final themeDark = ThemeDecoder.decodeThemeData(themeJsonDark);
 
+  //Initialise database
+  await Hive.initFlutter();
 
   //Get SharedPreferences
   await FryerPreferences.init();
