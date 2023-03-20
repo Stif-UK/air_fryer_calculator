@@ -1,6 +1,7 @@
 import 'package:air_fryer_calculator/controller/FryerController.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/about_app.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/attributions.dart';
+import 'package:air_fryer_calculator/ui/sidebar_links/version_history.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -95,7 +96,7 @@ class _NavBarState extends State<NavBar> {
                   title: const Text("Version History"),
                   trailing: const Icon(Icons.history),
                   onTap: (){
-                    //Get.to(() => const VersionHistory());
+                    Get.to(() => const VersionHistory());
                   },
                 ),
                 const SizedBox(height: 100,),
