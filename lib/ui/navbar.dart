@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
+import 'package:air_fryer_calculator/ui/sidebar_links/privacy_policy.dart';
 
 class NavBar extends StatefulWidget {
   NavBar({Key? key}) : super(key: key);
@@ -71,7 +72,7 @@ class _NavBarState extends State<NavBar> {
                   title: const Text("Privacy Policy"),
                   trailing: const Icon(Icons.privacy_tip_outlined),
                   onTap: (){
-                    //Get.to(() => PrivacyPolicy());
+                    Get.to(() => PrivacyPolicy());
                   },
                 ),
                 ListTile(

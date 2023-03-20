@@ -79,11 +79,12 @@ class _AirFryerNotesState extends State<AirFryerNotes> {
                     String _category = note!.category;
                     double _temp = note!.temperature;
                     double _time = note!.time;
+                    bool _isCelcius = note!.isCelcius;
 
                     return ListTile(
                       leading: TextHelper.getCategoryIcon(TextHelper.getEnumFromString(_category)),
                       title: Text(_title),
-                      subtitle: Text("${_temp.toInt()} for ${_time.toInt()} minutes"),
+                      subtitle: Text("${_temp.toInt()}${TextHelper.getTempSuffix(_isCelcius)} for ${_time.toInt()} minutes"),
                     );
                   },
                   separatorBuilder: (context, index){
