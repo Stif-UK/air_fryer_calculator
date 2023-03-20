@@ -94,30 +94,6 @@ class _AirFryerNotesState extends State<AirFryerNotes> {
 
             },
           ),
-          //Check if the database is empty
-    //       child: notebook.isEmpty?
-    //           //if it is display a message
-    //       Center(
-    //         child: Row(
-    //           mainAxisAlignment: MainAxisAlignment.center,
-    //           children: const [
-    //             Icon(Icons.note_alt_outlined),
-    //             Text("Your Notebook is currently empty"),
-    //           ],
-    //         ),
-    //       )
-    //           //if not empty, display the listview
-    //           :
-    //           SingleChildScrollView(
-    //             child: ValueListenableBuilder<Box<Notes>>(
-    //               valueListenable: notebook.listenable(),
-    //               builder: (context, box, _){
-    //
-    //               }
-    //             ),
-    //
-    // )
-
         ),
       ],
     );
