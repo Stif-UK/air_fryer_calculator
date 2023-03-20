@@ -1,4 +1,5 @@
 import 'package:air_fryer_calculator/controller/FryerController.dart';
+import 'package:air_fryer_calculator/ui/sidebar_links/attributions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -86,7 +87,7 @@ class _NavBarState extends State<NavBar> {
                   title: const Text("Attributions"),
                   trailing: const Icon(Icons.check_box_outlined),
                   onTap: (){
-                    //Get.to(() => const Attributions());
+                    Get.to(() => const Attributions());
                   },
                 ),
                 ListTile(
