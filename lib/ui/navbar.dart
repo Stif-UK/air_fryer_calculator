@@ -1,4 +1,5 @@
 import 'package:air_fryer_calculator/controller/FryerController.dart';
+import 'package:air_fryer_calculator/ui/sidebar_links/about_app.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/attributions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -80,7 +81,7 @@ class _NavBarState extends State<NavBar> {
                   title: const Text("About App"),
                   trailing: const Icon(Icons.info_outline),
                   onTap: (){
-                    //Get.to(() => const AboutApp());
+                    Get.to(() => const AboutApp());
                   },
                 ),
                 ListTile(
