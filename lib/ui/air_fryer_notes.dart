@@ -60,7 +60,9 @@ class _AirFryerNotesState extends State<AirFryerNotes> {
           child: ValueListenableBuilder<Box<Notes>>(
             valueListenable: notebook.listenable(),
             builder: (context, box, _){
-              return notebook.isEmpty?
+              List<Notes> filteredList = notebook.values.where((note) => note.isArchived != true).toList();
+
+              return filteredList.isEmpty?
                     Center(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -72,19 +74,51 @@ class _AirFryerNotesState extends State<AirFryerNotes> {
                     ):
                   //If the notebook is not empty, we build the listview
               ListView.separated(
-                itemCount: notebook.length,
+                itemCount: filteredList.length,
                   itemBuilder: (BuildContext context, int index){
-                    var note = notebook.getAt(index);
+                    var note = filteredList.elementAt(index);
+                    String key = note.toString();
                     String _title = note!.title;
                     String _category = note!.category;
                     double _temp = note!.temperature;
                     double _time = note!.time;
                     bool _isCelcius = note!.isCelcius;
+                    bool _isArchived = note!.isArchived ?? false;
 
-                    return ListTile(
-                      leading: TextHelper.getCategoryIcon(TextHelper.getEnumFromString(_category)),
-                      title: Text(_title),
-                      subtitle: Text("${_temp.toInt()}${TextHelper.getTempSuffix(_isCelcius)} for ${_time.toInt()} minutes"),
+                    return Dismissible(
+                      key: Key(key),
+                      direction: DismissDirection.endToStart,
+                      onDismissed: (direction){
+                        setState(() {
+                          note.isArchived = true;
+                          note.save();
+                          // Then show a snackbar?
+
+                        });
+                      },
+                    // Show a red background as the item is swiped away.
+                    background: Container(
+                    alignment: Alignment.center,color: Colors.red,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(15.0, 0, 15.0, 0),
+                          child: Text("Deleting",
+                          style: Theme.of(context).textTheme.bodyLarge,),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.fromLTRB(0.0, 0.0, 20.0, 0.0),
+                          child: Icon(Icons.delete_outline),
+                        )
+                      ],
+                    ),),
+                      child: ListTile(
+                        leading: TextHelper.getCategoryIcon(TextHelper.getEnumFromString(_category)),
+                        title: Text(_title),
+                        subtitle: Text("${_temp.toInt()}${TextHelper.getTempSuffix(_isCelcius)} for ${_time.toInt()} minutes"),
+                        trailing: _isArchived? const Icon(Icons.delete_outline): const Icon(Icons.golf_course),
+                      ),
                     );
                   },
                   separatorBuilder: (context, index){
