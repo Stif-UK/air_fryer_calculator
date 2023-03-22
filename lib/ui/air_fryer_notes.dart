@@ -117,7 +117,6 @@ class _AirFryerNotesState extends State<AirFryerNotes> {
                         leading: TextHelper.getCategoryIcon(TextHelper.getEnumFromString(_category)),
                         title: Text(_title),
                         subtitle: Text("${_temp.toInt()}${TextHelper.getTempSuffix(_isCelcius)} for ${_time.toInt()} minutes"),
-                        trailing: _isArchived? const Icon(Icons.delete_outline): const Icon(Icons.golf_course),
                       ),
                     );
                   },

@@ -9,6 +9,11 @@ class DataBaseHelper {
     return Hive.box<Notes>("NoteBook");
   }
 
+  static List<Notes> getArchivedNotes(){
+    final Box<Notes> notebook = getNotes();
+    return notebook.values.where((note) => note.isArchived == true).toList();
+  }
+
   static Future addNote(String title, CategoryEnum category, double temperature, double time, String? notes, bool isCelcius){
     final note = Notes()
         ..title = title
@@ -22,6 +27,8 @@ class DataBaseHelper {
     final Box<Notes> box = getNotes();
     return box.add(note);
   }
+
+
 
   static noteAddedSnackbar(String title){
     Get.snackbar("$title added to notebook", "Your notebook has been updated");

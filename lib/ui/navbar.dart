@@ -1,6 +1,7 @@
 import 'package:air_fryer_calculator/controller/FryerController.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/about_app.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/attributions.dart';
+import 'package:air_fryer_calculator/ui/sidebar_links/deleted_notes.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/version_history.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -104,6 +105,13 @@ class _NavBarState extends State<NavBar> {
               ],
             ),
           ),
+              ListTile(
+                title: const Text("Deleted Notes"),
+                trailing: const Icon(Icons.delete_outline),
+                onTap: (){
+                    Get.to(() => const DeletedNotes());
+                  }),
+          const SizedBox(height: 20,),
           Text("App Version: $_buildVersion "),
           const SizedBox(height: 25,)
         ],
