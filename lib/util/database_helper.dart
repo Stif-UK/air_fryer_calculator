@@ -16,7 +16,8 @@ class DataBaseHelper {
         ..temperature = temperature
         ..time = time
         ..notes = notes
-        ..isCelcius = isCelcius;
+        ..isCelcius = isCelcius
+        ..isArchived = false;
 
     final Box<Notes> box = getNotes();
     return box.add(note);
