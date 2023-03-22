@@ -10,6 +10,7 @@ class CustomFormField extends StatelessWidget {
     this.maxLines,
     this.inputFormatters,
     this.validator,
+    required this.textCapitalization,
     required this.controller
   }) : super(key: key);
 
@@ -17,6 +18,7 @@ class CustomFormField extends StatelessWidget {
   final String hintText;
   final int? minLines;
   final int? maxLines;
+  final TextCapitalization textCapitalization;
   final List<TextInputFormatter>? inputFormatters;
   final String? Function(String?)? validator;
   final TextEditingController controller;
@@ -33,6 +35,7 @@ class CustomFormField extends StatelessWidget {
           textAlign: TextAlign.start,
           style: Theme.of(context).textTheme.bodyLarge,),
           TextFormField(
+            textCapitalization: textCapitalization,
             controller: controller,
             minLines: minLines,
             maxLines: maxLines,

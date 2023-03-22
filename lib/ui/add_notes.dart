@@ -101,6 +101,7 @@ class _AddNotesState extends State<AddNotes> {
                         hintText: "Title",
                         maxLines: 1,
                         controller: titleFieldController,
+                        textCapitalization: TextCapitalization.words,
                         validator: (String? val) {
                           if(!val!.isAlphaNumericAndNotEmpty) {
                             print(!val!.isAlphaNumericAndNotEmpty);
@@ -232,7 +233,7 @@ class _AddNotesState extends State<AddNotes> {
                         },
                        label: "${widget.time.toInt()} mins",),
                       const Divider(thickness: 2,),
-                      CustomFormField(fieldTitle: "Notes:", hintText: "Enter Notes", minLines: 4, maxLines: 20, controller: notesFieldController,),
+                      CustomFormField(fieldTitle: "Notes:", hintText: "Enter Notes", minLines: 4, maxLines: 20, controller: notesFieldController,textCapitalization: TextCapitalization.sentences,),
                       const Divider(thickness: 2,),
                       Center(
                         child: ElevatedButton(
