@@ -2,6 +2,7 @@ import 'package:air_fryer_calculator/controller/FryerController.dart';
 import 'package:air_fryer_calculator/model/adUnits.dart';
 import 'package:air_fryer_calculator/model/enums/category_enums.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
+import 'package:air_fryer_calculator/model/notesmodel.dart';
 import 'package:air_fryer_calculator/ui/custom_form_field.dart';
 import 'package:air_fryer_calculator/util/ad_widget_helper.dart';
 import 'package:air_fryer_calculator/util/database_helper.dart';
@@ -17,12 +18,15 @@ class AddNotes extends StatefulWidget {
   AddNotes({
     Key? key,
     required this.time,
-    required this.temperature
+    required this.temperature,
+    this.currentNote
   }) : super(key: key);
 
   final fryerController = Get.put(FryerController());
   double time;
   double temperature;
+  Notes? currentNote;
+
   @override
   State<AddNotes> createState() => _AddNotesState();
 }
@@ -61,6 +65,8 @@ class _AddNotesState extends State<AddNotes> {
   double minimumTime = 0;
   CategoryEnum _selectedCategory = CategoryEnum.meat;
   String title = "";
+  //isViewNote is true if a note object is passed in the constructor
+  bool _isViewNote = false;
 
 
 
@@ -80,9 +86,13 @@ class _AddNotesState extends State<AddNotes> {
 
   @override
   Widget build(BuildContext context) {
+    if(widget.currentNote != null){
+      _isViewNote = true;
+      title = widget.currentNote!.title;
+    }
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Save Note"),
+        title: _isViewNote? Text(widget.currentNote!.title): const Text("Save Note"),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -97,6 +107,7 @@ class _AddNotesState extends State<AddNotes> {
                     children:  [
                       //Title Row
                       CustomFormField(
+                        enabled: _isViewNote? false: true,
                         fieldTitle: "Title:",
                         hintText: "Title",
                         maxLines: 1,
@@ -175,20 +186,27 @@ class _AddNotesState extends State<AddNotes> {
                             ),
                           ),
 
-                          //Increase temperature button
-                          IconButton(onPressed: (){setState(() {
-                            widget.temperature = increaseTemp(widget.temperature);
-                          });
-                          }, icon: const Icon(Icons.add_circle_outline)),
-                          //Decrease temperature button
-                          IconButton(onPressed: (){setState(() {
-                            widget.temperature = decreaseTemp(widget.temperature);
-                          });
-                          }, icon: const Icon(Icons.remove_circle_outline)),
+
+                          _isViewNote? const SizedBox(height: 0,): Row(
+                            children: [
+                              //Increase temperature button
+                              IconButton(onPressed: (){setState(() {
+                                widget.temperature = increaseTemp(widget.temperature);
+                              });
+                              }, icon: const Icon(Icons.add_circle_outline)),
+                              //Decrease temperature button
+                              IconButton(onPressed: (){setState(() {
+                                widget.temperature = decreaseTemp(widget.temperature);
+                              });
+                              }, icon: const Icon(Icons.remove_circle_outline)),
+                            ],
+                          ),
+
+
 
                         ],
                       ),
-                      Slider(
+                      _isViewNote? const SizedBox(height: 0,):Slider(
                         value: widget.temperature,
                         min: minimumTemp,
                         max: maximumTemp,
@@ -211,19 +229,24 @@ class _AddNotesState extends State<AddNotes> {
                           ),
 
                           //Increase time button
-                          IconButton(onPressed: (){setState(() {
-                                     widget.time = increaseTime(widget.time);
-                                      });
-                                      }, icon: const Icon(Icons.add_circle_outline)),
-                          //Decrease time button
-                          IconButton(onPressed: (){setState(() {
-                            widget.time = decreaseTime(widget.time);
-                          });
-                          }, icon: const Icon(Icons.remove_circle_outline)),
+                          _isViewNote? const SizedBox(height: 0,) :Row(
+                            children: [
+                              IconButton(onPressed: (){setState(() {
+                                         widget.time = increaseTime(widget.time);
+                                          });
+                                          }, icon: const Icon(Icons.add_circle_outline)),
+                              //Decrease time button
+                              IconButton(onPressed: (){setState(() {
+                                widget.time = decreaseTime(widget.time);
+                              });
+                              }, icon: const Icon(Icons.remove_circle_outline)),
+                            ],
+                          ),
+
 
                         ],
                       ),
-                      Slider(
+                      _isViewNote? const SizedBox(height: 0,): Slider(
                         value: widget.time,
                         min: minimumTime,
                         max: maximumTime,
@@ -233,9 +256,16 @@ class _AddNotesState extends State<AddNotes> {
                         },
                        label: "${widget.time.toInt()} mins",),
                       const Divider(thickness: 2,),
-                      CustomFormField(fieldTitle: "Notes:", hintText: "Enter Notes", minLines: 4, maxLines: 20, controller: notesFieldController,textCapitalization: TextCapitalization.sentences,),
+                      CustomFormField(
+                        enabled: _isViewNote? false: true,
+                        fieldTitle: "Notes:",
+                        hintText: "Enter Notes",
+                        minLines: 4,
+                        maxLines: 20,
+                        controller: notesFieldController,
+                        textCapitalization: TextCapitalization.sentences,),
                       const Divider(thickness: 2,),
-                      Center(
+                      !_isViewNote?Center(
                         child: ElevatedButton(
                             onPressed: () async {
                               //Check that fields are valid
@@ -272,7 +302,7 @@ class _AddNotesState extends State<AddNotes> {
                           ],
                         )
                         ),
-                      )
+                      ): const SizedBox(height: 0,)
                     ],
                   ),
                 ),
@@ -299,17 +329,17 @@ double increaseTemp(double currentTemp){
     return returnTemp > minTemp? returnTemp : minTemp;
   }
 
-  //Increase Time by 5 minute up to maximum
+  //Increase Time by 1 minute up to maximum
   double increaseTime(double currentTime){
     double maxTime = maximumTime;
-    double returnTime = currentTime + 5;
+    double returnTime = currentTime + 1;
     return returnTime < maxTime? returnTime : maxTime;
   }
 
-  //Decrease Time by 5 minute up to maximum
+  //Decrease Time by 1 minute up to maximum
   double decreaseTime(double currentTime){
     double minTime = minimumTime;
-    double returnTime = currentTime - 5;
+    double returnTime = currentTime - 1;
     return returnTime > minTime? returnTime : minTime;
   }
 

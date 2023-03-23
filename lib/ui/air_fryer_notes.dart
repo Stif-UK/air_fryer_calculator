@@ -2,9 +2,11 @@ import 'package:air_fryer_calculator/model/adUnits.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 import 'package:air_fryer_calculator/model/notesmodel.dart';
 import 'package:air_fryer_calculator/provider/adstate.dart';
+import 'package:air_fryer_calculator/ui/add_notes.dart';
 import 'package:air_fryer_calculator/util/ad_widget_helper.dart';
 import 'package:air_fryer_calculator/util/text_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:air_fryer_calculator/util/database_helper.dart';
@@ -117,6 +119,9 @@ class _AirFryerNotesState extends State<AirFryerNotes> {
                         leading: TextHelper.getCategoryIcon(TextHelper.getEnumFromString(_category)),
                         title: Text(_title),
                         subtitle: Text("${_temp.toInt()}${TextHelper.getTempSuffix(_isCelcius)} for ${_time.toInt()} minutes"),
+                        onTap: (){
+                          Get.to(() => AddNotes(time: _time, temperature: _temp, currentNote: note,));
+                        },
                       ),
                     );
                   },

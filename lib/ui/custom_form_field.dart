@@ -11,7 +11,8 @@ class CustomFormField extends StatelessWidget {
     this.inputFormatters,
     this.validator,
     required this.textCapitalization,
-    required this.controller
+    required this.controller,
+    required this.enabled
   }) : super(key: key);
 
   final String fieldTitle;
@@ -22,6 +23,7 @@ class CustomFormField extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final String? Function(String?)? validator;
   final TextEditingController controller;
+  final bool enabled;
 
 
   @override
@@ -35,6 +37,7 @@ class CustomFormField extends StatelessWidget {
           textAlign: TextAlign.start,
           style: Theme.of(context).textTheme.bodyLarge,),
           TextFormField(
+            enabled: enabled,
             textCapitalization: textCapitalization,
             controller: controller,
             minLines: minLines,
