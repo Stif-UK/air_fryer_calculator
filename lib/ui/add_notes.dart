@@ -70,7 +70,6 @@ class _AddNotesState extends State<AddNotes> {
   CategoryEnum _selectedCategory = CategoryEnum.meat;
   String title = "";
   //isViewNote is true if a note object is passed in the constructor
-  bool _isViewNote = false;
 
 
 
@@ -92,8 +91,8 @@ class _AddNotesState extends State<AddNotes> {
   Widget build(BuildContext context) {
     NoteEnum noteState = NoteHelper.getNoteViewState(widget.currentNote, widget.canEdit);
     if(noteState!= NoteEnum.add){
-      _isViewNote = true;
       title = widget.currentNote!.title;
+      _selectedCategory = TextHelper.getEnumFromString(widget.currentNote!.category);
       titleFieldController.value = TextEditingValue(text: widget.currentNote!.title);
       notesFieldController.value = TextEditingValue(text: widget.currentNote!.notes??"");
     }
@@ -128,7 +127,7 @@ class _AddNotesState extends State<AddNotes> {
                     children:  [
                       //Title Row
                       CustomFormField(
-                        enabled: _isViewNote? false: true,
+                        enabled: noteState == NoteEnum.view? false: true,
                         fieldTitle: "Title:",
                         hintText: "Title",
                         maxLines: 1,
@@ -143,7 +142,7 @@ class _AddNotesState extends State<AddNotes> {
                       ),
 
 
-                      _isViewNote? const SizedBox(height: 0,): const Divider(thickness: 2,),
+                      noteState == NoteEnum.view? const SizedBox(height: 0,): const Divider(thickness: 2,),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -157,7 +156,7 @@ class _AddNotesState extends State<AddNotes> {
                             children: [
                               Expanded(
                                 flex: 7,
-                                child: _isViewNote?
+                                child: noteState == NoteEnum.view?
                                     //if view only then just show text
                                 Padding(
                                   padding: const EdgeInsets.fromLTRB(10.0, 0, 0, 0),
@@ -165,6 +164,7 @@ class _AddNotesState extends State<AddNotes> {
                                   style: Theme.of(context).textTheme.bodyLarge,),
                                 ):
                                     //else show dropdown
+                                //TODO: Bug when editing note - changing category resets other fields - potentially refactor to use Controller rather than setState?
                                 DropdownButtonFormField(
                                   decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
@@ -190,6 +190,11 @@ class _AddNotesState extends State<AddNotes> {
                                       );
                                     }).toList(),
                                     onChanged: (CategoryEnum? value){
+                                    noteState == NoteEnum.edit?
+                                    setState(() {
+                                      widget.currentNote!.category = value!.toString();
+                                      widget.currentNote!.save();
+                                    }):
                                     setState(() {
                                       _selectedCategory = value!;
                                     });
@@ -214,7 +219,7 @@ class _AddNotesState extends State<AddNotes> {
                                 style: Theme.of(context).textTheme.bodyLarge,),
                             ),
                           ),
-                          _isViewNote? const SizedBox(height: 0,): Row(
+                          noteState == NoteEnum.view? const SizedBox(height: 0,): Row(
                             children: [
 
                               //Decrease temperature button
@@ -234,7 +239,7 @@ class _AddNotesState extends State<AddNotes> {
 
                         ],
                       ),
-                      _isViewNote? const SizedBox(height: 0,):Slider(
+                      noteState == NoteEnum.view? const SizedBox(height: 0,):Slider(
                         value: widget.temperature,
                         min: minimumTemp,
                         max: maximumTemp,
@@ -257,7 +262,7 @@ class _AddNotesState extends State<AddNotes> {
                           ),
 
 
-                          _isViewNote? const SizedBox(height: 0,) :Row(
+                          noteState == NoteEnum.view? const SizedBox(height: 0,) :Row(
                             children: [
                               //Decrease time button
                               IconButton(onPressed: (){setState(() {
@@ -275,7 +280,7 @@ class _AddNotesState extends State<AddNotes> {
 
                         ],
                       ),
-                      _isViewNote? const SizedBox(height: 0,): Slider(
+                      noteState == NoteEnum.view? const SizedBox(height: 0,): Slider(
                         value: widget.time,
                         min: minimumTime,
                         max: maximumTime,
@@ -286,15 +291,17 @@ class _AddNotesState extends State<AddNotes> {
                        label: "${widget.time.toInt()} mins",),
                       const Divider(thickness: 2,),
                       CustomFormField(
-                        enabled: _isViewNote? false: true,
+                        enabled: noteState == NoteEnum.view? false: true,
                         fieldTitle: "Notes:",
                         hintText: "Enter Notes",
                         minLines: 4,
                         maxLines: 20,
                         controller: notesFieldController,
                         textCapitalization: TextCapitalization.sentences,),
-                      _isViewNote? const SizedBox(height: 0,): const Divider(thickness: 2,),
-                      !_isViewNote?Center(
+                      noteState == NoteEnum.view? const SizedBox(height: 0,): const Divider(thickness: 2,),
+
+                      //If page is to save a new note, show the save button
+                      noteState == NoteEnum.add?Center(
                         child: ElevatedButton(
                             onPressed: () async {
                               //Check that fields are valid
@@ -302,6 +309,7 @@ class _AddNotesState extends State<AddNotes> {
                             //Add a new object to the database, notify user and close the window
                             await DataBaseHelper.addNote(titleFieldController.text, _selectedCategory, widget.temperature, widget.time, notesFieldController.text, widget.fryerController.tempIsCelcius.value);
                             Get.back();
+                            title = titleFieldController.text;
                             Get.snackbar(
                                 "$title added to notebook",
                                 "Your notebook has been updated",
@@ -309,9 +317,6 @@ class _AddNotesState extends State<AddNotes> {
                             icon: TextHelper.getCategoryIcon(_selectedCategory));
 
 
-                                //Otherwise do nothing TODO:Remove else clause, only here for testing
-                              }else{
-                                print("Form validation failed");
                               }
                         },
                           child: Row(
@@ -325,6 +330,42 @@ class _AddNotesState extends State<AddNotes> {
                             Text("Save Note"),
                           ],
                         )
+                        ),
+                      ): const SizedBox(height: 0,),
+
+                      //If page is to edit a note, show edit button
+                      noteState == NoteEnum.edit?Center(
+                        child: ElevatedButton(
+                            onPressed: () async {
+                              //Check that fields are valid
+                              if(_formKey.currentState!.validate()) {
+                                widget.currentNote!.title = titleFieldController.text;
+                                widget.currentNote!.notes = notesFieldController.text;
+                                widget.currentNote!.save();
+                                title = titleFieldController.text;
+                                setState(() {
+                                  widget.canEdit = false;
+                                });
+                                Get.snackbar(
+                                    "$title has been edited",
+                                    "Your notebook has been updated",
+                                    snackPosition: SnackPosition.BOTTOM,
+                                    icon: TextHelper.getCategoryIcon(_selectedCategory));
+
+
+                              }
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: const [
+                                Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Icon(Icons.save),
+                                ),
+                                Text("Update Note"),
+                              ],
+                            )
                         ),
                       ): const SizedBox(height: 0,)
                     ],
