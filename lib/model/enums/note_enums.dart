@@ -1,0 +1,1 @@
+enum NoteEnum {add, view, edit}

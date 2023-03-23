@@ -1,13 +1,16 @@
 import 'package:air_fryer_calculator/controller/FryerController.dart';
 import 'package:air_fryer_calculator/model/adUnits.dart';
 import 'package:air_fryer_calculator/model/enums/category_enums.dart';
+import 'package:air_fryer_calculator/model/enums/note_enums.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 import 'package:air_fryer_calculator/model/notesmodel.dart';
 import 'package:air_fryer_calculator/ui/custom_form_field.dart';
 import 'package:air_fryer_calculator/util/ad_widget_helper.dart';
 import 'package:air_fryer_calculator/util/database_helper.dart';
+import 'package:air_fryer_calculator/util/note_helper.dart';
 import 'package:air_fryer_calculator/util/text_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../provider/adstate.dart';
@@ -26,6 +29,7 @@ class AddNotes extends StatefulWidget {
   double time;
   double temperature;
   Notes? currentNote;
+  bool canEdit = false;
 
   @override
   State<AddNotes> createState() => _AddNotesState();
@@ -86,13 +90,30 @@ class _AddNotesState extends State<AddNotes> {
 
   @override
   Widget build(BuildContext context) {
-    if(widget.currentNote != null){
+    NoteEnum noteState = NoteHelper.getNoteViewState(widget.currentNote, widget.canEdit);
+    if(noteState!= NoteEnum.add){
       _isViewNote = true;
       title = widget.currentNote!.title;
+      titleFieldController.value = TextEditingValue(text: widget.currentNote!.title);
+      notesFieldController.value = TextEditingValue(text: widget.currentNote!.notes??"");
     }
     return Scaffold(
       appBar: AppBar(
-        title: _isViewNote? Text(widget.currentNote!.title): const Text("Save Note"),
+        title: NoteHelper.getTitle(noteState, title),
+        //title: _isViewNote? Text(widget.currentNote!.title): const Text("Save Note"),
+      //Show edit button if a note object is loaded
+        actions: NoteHelper.getNoteViewState(widget.currentNote, widget.canEdit) == NoteEnum.view? [Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: IconButton(
+              icon: const Icon(FontAwesomeIcons.edit),
+              onPressed: (){
+                setState(() {
+                  widget.canEdit = true;
+                });
+              },
+
+          ),
+        )] : null,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -122,7 +143,7 @@ class _AddNotesState extends State<AddNotes> {
                       ),
 
 
-                      const Divider(thickness: 2,),
+                      _isViewNote? const SizedBox(height: 0,): const Divider(thickness: 2,),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -136,7 +157,15 @@ class _AddNotesState extends State<AddNotes> {
                             children: [
                               Expanded(
                                 flex: 7,
-                                child: DropdownButtonFormField(
+                                child: _isViewNote?
+                                    //if view only then just show text
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(10.0, 0, 0, 0),
+                                  child: Text(TextHelper.getCategoryText(TextHelper.getEnumFromString(widget.currentNote!.category)),
+                                  style: Theme.of(context).textTheme.bodyLarge,),
+                                ):
+                                    //else show dropdown
+                                DropdownButtonFormField(
                                   decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(width: 3, color: Theme.of(context).focusColor),
@@ -185,20 +214,19 @@ class _AddNotesState extends State<AddNotes> {
                                 style: Theme.of(context).textTheme.bodyLarge,),
                             ),
                           ),
-
-
                           _isViewNote? const SizedBox(height: 0,): Row(
                             children: [
-                              //Increase temperature button
-                              IconButton(onPressed: (){setState(() {
-                                widget.temperature = increaseTemp(widget.temperature);
-                              });
-                              }, icon: const Icon(Icons.add_circle_outline)),
+
                               //Decrease temperature button
                               IconButton(onPressed: (){setState(() {
                                 widget.temperature = decreaseTemp(widget.temperature);
                               });
                               }, icon: const Icon(Icons.remove_circle_outline)),
+                              //Increase temperature button
+                              IconButton(onPressed: (){setState(() {
+                                widget.temperature = increaseTemp(widget.temperature);
+                              });
+                              }, icon: const Icon(Icons.add_circle_outline)),
                             ],
                           ),
 
@@ -228,18 +256,19 @@ class _AddNotesState extends State<AddNotes> {
                             ),
                           ),
 
-                          //Increase time button
+
                           _isViewNote? const SizedBox(height: 0,) :Row(
                             children: [
-                              IconButton(onPressed: (){setState(() {
-                                         widget.time = increaseTime(widget.time);
-                                          });
-                                          }, icon: const Icon(Icons.add_circle_outline)),
                               //Decrease time button
                               IconButton(onPressed: (){setState(() {
                                 widget.time = decreaseTime(widget.time);
                               });
                               }, icon: const Icon(Icons.remove_circle_outline)),
+                              //Increase time button
+                              IconButton(onPressed: (){setState(() {
+                                widget.time = increaseTime(widget.time);
+                              });
+                              }, icon: const Icon(Icons.add_circle_outline)),
                             ],
                           ),
 
@@ -264,17 +293,12 @@ class _AddNotesState extends State<AddNotes> {
                         maxLines: 20,
                         controller: notesFieldController,
                         textCapitalization: TextCapitalization.sentences,),
-                      const Divider(thickness: 2,),
+                      _isViewNote? const SizedBox(height: 0,): const Divider(thickness: 2,),
                       !_isViewNote?Center(
                         child: ElevatedButton(
                             onPressed: () async {
                               //Check that fields are valid
                               if(_formKey.currentState!.validate()) {
-                            print("Title: ${titleFieldController.text}");
-                            print("Category: ${_selectedCategory}");
-                            print("Temperature: ${widget.temperature}");
-                            print("Time: ${widget.time}");
-                            print("Notes: ${notesFieldController.text}");
                             //Add a new object to the database, notify user and close the window
                             await DataBaseHelper.addNote(titleFieldController.text, _selectedCategory, widget.temperature, widget.time, notesFieldController.text, widget.fryerController.tempIsCelcius.value);
                             Get.back();
