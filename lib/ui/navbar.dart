@@ -51,8 +51,8 @@ class _NavBarState extends State<NavBar> {
                     print(clickCounter);
                     if (clickCounter > 5) {
                       Get.defaultDialog(
-                          title: "Open Count",
-                          middleText: "nothing to show yet"
+                          title: "Developer Stats",
+                          middleText: "Open Count: ${FryerPreferences.getOpenCount()}"
                       );
                     }
                   },
