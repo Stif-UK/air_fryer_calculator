@@ -7,10 +7,12 @@ class VersionHistoryCopy{
     return const Padding(
       padding: EdgeInsets.all(12.0),
       child: Markdown(
-          data: "**Latest Version: v1.0.0**\n\n"
+          data: "**Latest Version:**\n\n"
+              " **v1.0.0**\n\n"
               "* Calculate reduced cooking temperature & time for Air Frying\n"
               "* Switch preference between Celsius and Fahrenheit\n"
               "* Save notes for future reference\n\n"
+              "* Edit saved notes"
 
 
       ),
