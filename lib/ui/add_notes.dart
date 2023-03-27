@@ -29,7 +29,8 @@ class AddNotes extends StatefulWidget {
   double time;
   double temperature;
   Notes? currentNote;
-  bool canEdit = false;
+  //bool to confirm if note has been marked for editing
+  bool inEditState = false;
 
   @override
   State<AddNotes> createState() => _AddNotesState();
@@ -89,25 +90,30 @@ class _AddNotesState extends State<AddNotes> {
 
   @override
   Widget build(BuildContext context) {
-    NoteEnum noteState = NoteHelper.getNoteViewState(widget.currentNote, widget.canEdit);
+    NoteEnum noteState = NoteHelper.getNoteViewState(widget.currentNote, widget.inEditState);
     if(noteState!= NoteEnum.add){
       title = widget.currentNote!.title;
       _selectedCategory = TextHelper.getEnumFromString(widget.currentNote!.category);
-      titleFieldController.value = TextEditingValue(text: widget.currentNote!.title);
-      notesFieldController.value = TextEditingValue(text: widget.currentNote!.notes??"");
+      //Load note content, only if note is not being edited
+      if(!widget.inEditState) {
+        titleFieldController.value =
+            TextEditingValue(text: widget.currentNote!.title);
+        notesFieldController.value =
+            TextEditingValue(text: widget.currentNote!.notes ?? "");
+      }
     }
     return Scaffold(
       appBar: AppBar(
         title: NoteHelper.getTitle(noteState, title),
         //title: _isViewNote? Text(widget.currentNote!.title): const Text("Save Note"),
       //Show edit button if a note object is loaded
-        actions: NoteHelper.getNoteViewState(widget.currentNote, widget.canEdit) == NoteEnum.view? [Padding(
+        actions: NoteHelper.getNoteViewState(widget.currentNote, widget.inEditState) == NoteEnum.view? [Padding(
           padding: const EdgeInsets.all(8.0),
           child: IconButton(
               icon: const Icon(FontAwesomeIcons.edit),
               onPressed: (){
                 setState(() {
-                  widget.canEdit = true;
+                  widget.inEditState = true;
                 });
               },
 
@@ -164,7 +170,6 @@ class _AddNotesState extends State<AddNotes> {
                                   style: Theme.of(context).textTheme.bodyLarge,),
                                 ):
                                     //else show dropdown
-                                //TODO: Bug when editing note - changing category resets other fields - potentially refactor to use Controller rather than setState?
                                 DropdownButtonFormField(
                                   decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
@@ -344,7 +349,7 @@ class _AddNotesState extends State<AddNotes> {
                                 widget.currentNote!.save();
                                 title = titleFieldController.text;
                                 setState(() {
-                                  widget.canEdit = false;
+                                  widget.inEditState = false;
                                 });
                                 Get.snackbar(
                                     "$title has been edited",
