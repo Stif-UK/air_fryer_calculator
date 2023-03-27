@@ -3,6 +3,7 @@ import 'package:air_fryer_calculator/ui/sidebar_links/about_app.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/attributions.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/deleted_notes.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/version_history.dart';
+import 'package:air_fryer_calculator/util/text_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -52,7 +53,9 @@ class _NavBarState extends State<NavBar> {
                     if (clickCounter > 5) {
                       Get.defaultDialog(
                           title: "Developer Stats",
-                          middleText: "Open Count: ${FryerPreferences.getOpenCount()}"
+                          middleText: "Open Count: ${FryerPreferences.getOpenCount()}\n\n"
+                              "First Used: ${TextHelper.formatDate(FryerPreferences.getFirstUseDate()!)}"
+                              //"First Used: ${FryerPreferences.getFirstUseDate()}"
                       );
                     }
                   },

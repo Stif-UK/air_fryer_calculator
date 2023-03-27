@@ -45,6 +45,7 @@ void main() async {
   int openCount = FryerPreferences.getOpenCount() ?? 0;
   FryerPreferences.setOpenCount(openCount +1);
 
+
   runApp(
        Provider.value(
          value: adState,

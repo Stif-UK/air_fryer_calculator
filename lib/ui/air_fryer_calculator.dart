@@ -23,6 +23,8 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
   BannerAd? banner;
   bool purchaseStatus = FryerPreferences.getAppPurchasedStatus() ?? false;
 
+
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -52,6 +54,11 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
 
   @override
   Widget build(BuildContext context) {
+    //Set first opened date on first app open
+    if(FryerPreferences.getFirstUseDate() == null){
+      FryerPreferences.setFirstUseDate(DateTime.now());
+    }
+
     return Obx(() =>
       Column(
         children: [

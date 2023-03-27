@@ -1,6 +1,7 @@
 import 'package:air_fryer_calculator/model/enums/category_enums.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class TextHelper{
   static getCategoryText(CategoryEnum category){
@@ -104,4 +105,11 @@ class TextHelper{
     return returnEnum;
 
   }
+
+  static String formatDate(DateTime date){
+    final DateFormat formatter = DateFormat('yMMMd');
+    String returnString = formatter.format(date);
+    return returnString;
+  }
+
 }
