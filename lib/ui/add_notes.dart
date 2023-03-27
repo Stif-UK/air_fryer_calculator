@@ -65,7 +65,7 @@ class _AddNotesState extends State<AddNotes> {
 
   //Instance Variables
   double maximumTemp = 450;
-  double minimumTemp = 130;
+  double minimumTemp = 0;
   double maximumTime = 180;
   double minimumTime = 0;
   CategoryEnum _selectedCategory = CategoryEnum.meat;
@@ -252,7 +252,7 @@ class _AddNotesState extends State<AddNotes> {
                           setState(()
                           => widget.temperature = value);
                         },
-                        divisions: 64,
+                        divisions: 90,
                         label: "${widget.temperature.toInt()} ${TextHelper.getTempSuffix(widget.fryerController.tempIsCelcius.value)}",),
                       const Divider(thickness: 2,),
                       Row(

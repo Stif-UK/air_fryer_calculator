@@ -68,13 +68,13 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
                   ),
                   Slider(
                     value: temperature,
-                    min: 150,
+                    min: 0,
                     max: 450,
                     onChanged: (double value) {
                       setState(()
                         => temperature = value);
                       },
-                  divisions: 30,
+                  divisions: 90,
                   label: "${temperature.toInt()}${TextHelper.getTempSuffix(widget.fryerController.tempIsCelcius.value)}",),
                   //Text("${temperature.toInt()}°C"),
                   Padding(
@@ -138,7 +138,8 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
 
 int calculateAFTemp(bool? isCelcius, double temperature){
   isCelcius ??= true;
-  return isCelcius? temperature.toInt() - 20 : temperature.toInt() - 35;
+  int returnValue = isCelcius? temperature.toInt() - 20 : temperature.toInt() - 35;
+  return returnValue > 0? returnValue : 0;
 
 }
 
