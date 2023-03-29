@@ -344,11 +344,24 @@ class _AddNotesState extends State<AddNotes> {
                             onPressed: () async {
                               //Check that fields are valid
                               if(_formKey.currentState!.validate()) {
-                                widget.currentNote!.title = titleFieldController.text;
-                                widget.currentNote!.notes = notesFieldController.text;
-                                widget.currentNote!.temperature = widget.temperature;
-                                widget.currentNote!.time = widget.time;
-                                widget.currentNote!.save();
+                                //Check if fields are changed before doing a DB write - this give a mess of ifs!
+                                if(widget.currentNote!.title != titleFieldController.text) {
+                                  widget.currentNote!.title =
+                                      titleFieldController.text;
+                                }
+                                if(widget.currentNote!.notes != notesFieldController.text) {
+                                    widget.currentNote!.notes =
+                                        notesFieldController.text;
+                                  }
+                                  if(widget.currentNote!.temperature != widget.temperature) {
+                                    widget.currentNote!.temperature =
+                                        widget.temperature;
+                                  }
+                                  if(widget.currentNote!.time != widget.time) {
+                                    widget.currentNote!.time = widget.time;
+                                  }
+                                  //Save any changes
+                                  widget.currentNote!.save();
                                 title = titleFieldController.text;
                                 setState(() {
                                   widget.inEditState = false;
