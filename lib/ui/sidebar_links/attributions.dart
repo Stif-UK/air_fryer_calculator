@@ -33,6 +33,10 @@ class Attributions extends StatelessWidget {
               children: [
                 AttributionsCopy.getAttributionGetX(),
               ],),
+            ExpansionTile(title: const Text("Flutter Launcher Icons"),
+            children: [
+              AttributionsCopy.getAttributionFlutterIcons()
+            ],),
           ],
         ),
       ),
