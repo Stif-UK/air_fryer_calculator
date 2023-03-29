@@ -18,7 +18,7 @@ class Attributions extends StatelessWidget {
           children:  [
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: Text("This app makes use of the following libraries to make it go!",
+              child: Text("This app makes use of the following libraries and tools to make it go!",
               style: Theme.of(context).textTheme.bodyLarge,),
             ),
             ExpansionTile(title: const Text("FontAwesome"),
@@ -33,7 +33,7 @@ class Attributions extends StatelessWidget {
               children: [
                 AttributionsCopy.getAttributionGetX(),
               ],),
-            ExpansionTile(title: const Text("Flutter Launcher Icons"),
+            ExpansionTile(title: const Text("App Icons"),
             children: [
               AttributionsCopy.getAttributionFlutterIcons()
             ],),
