@@ -30,7 +30,7 @@ class _AirFryerHomeState extends State<AirFryerHome> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AirFry Calc'),
+        title: const Text('Air Fryr', style: TextStyle(fontStyle: FontStyle.italic),),
         //backgroundColor: Colors.transparent,
         elevation: 0,
       ),
