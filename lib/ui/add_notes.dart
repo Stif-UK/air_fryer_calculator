@@ -346,6 +346,8 @@ class _AddNotesState extends State<AddNotes> {
                               if(_formKey.currentState!.validate()) {
                                 widget.currentNote!.title = titleFieldController.text;
                                 widget.currentNote!.notes = notesFieldController.text;
+                                widget.currentNote!.temperature = widget.temperature;
+                                widget.currentNote!.time = widget.time;
                                 widget.currentNote!.save();
                                 title = titleFieldController.text;
                                 setState(() {
