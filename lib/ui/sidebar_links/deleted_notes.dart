@@ -1,3 +1,4 @@
+import 'package:air_fryer_calculator/copy/dialogs.dart';
 import 'package:air_fryer_calculator/model/adUnits.dart';
 import 'package:air_fryer_calculator/model/notesmodel.dart';
 import 'package:air_fryer_calculator/provider/adstate.dart';
@@ -55,7 +56,7 @@ class _DeletedNotesState extends State<DeletedNotes> {
           IconButton(
               icon: const Icon(Icons.help_outline),
               onPressed: (){
-                //WristCheckDialogs.getArchivedHelpDialog();
+                Dialogs.getHelpDialog(context);
               } )
         ],
 
