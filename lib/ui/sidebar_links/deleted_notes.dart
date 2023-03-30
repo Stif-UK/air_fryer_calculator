@@ -92,20 +92,46 @@ class _DeletedNotesState extends State<DeletedNotes> {
 
                       return Dismissible(
                         key: Key(item),
-                        direction: DismissDirection.endToStart,
+                        direction: DismissDirection.horizontal,
 
                         onDismissed: (direction) {
-                          setState(() {
-                            //Remove from the view and remove from the database
-                            archiveList.removeAt(index);
-                            notebook.delete(note.key);
-                            // Then show a snackbar to confirm permanent deletion
+                          //if swipe left
+                          if (direction == DismissDirection.endToStart) {
+                            setState(() {
+                              //Remove from the view and remove from the database
+                              archiveList.removeAt(index);
+                              notebook.delete(note.key);
+                            });
+                          }
+                          if(direction == DismissDirection.startToEnd){
+                            var currentNote = notebook.getAt(note.key);
+                            setState(() {
+                              archiveList.removeAt(index);
+                              currentNote!.isArchived = false;
+                              currentNote.save();
 
-                          });
+                            });
+                          }
 
                         },
 
                         background: Container(
+                          alignment: Alignment.center,color: Colors.green,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(15.0, 0, 15.0, 0),
+                                child: Text("Restoring Note",
+                                  style: Theme.of(context).textTheme.bodyLarge,),
+                              ),
+                              const Padding(
+                                padding: EdgeInsets.fromLTRB(0.0, 0.0, 20.0, 0.0),
+                                child: Icon(Icons.restore),
+                              )
+                            ],
+                          ),),
+                        secondaryBackground: Container(
                           alignment: Alignment.center,color: Colors.red,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
