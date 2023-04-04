@@ -4,6 +4,7 @@ import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 class ReviewHelper{
 
   static shouldPromptReview() async {
+    //Summary of logic: Opened more than 10 times, first used over a week ago, not prompted within last 60 days
 
     int openCount = FryerPreferences.getOpenCount() ?? 0;
     //first ensure the app has been opened at least 10 times
