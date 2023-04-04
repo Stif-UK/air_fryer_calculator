@@ -2,6 +2,7 @@ import 'package:air_fryer_calculator/copy/dialogs.dart';
 import 'package:air_fryer_calculator/model/adUnits.dart';
 import 'package:air_fryer_calculator/model/notesmodel.dart';
 import 'package:air_fryer_calculator/provider/adstate.dart';
+import 'package:air_fryer_calculator/ui/note_listtile.dart';
 import 'package:air_fryer_calculator/util/ad_widget_helper.dart';
 import 'package:air_fryer_calculator/util/database_helper.dart';
 import 'package:air_fryer_calculator/util/text_helper.dart';
@@ -147,18 +148,9 @@ class _DeletedNotesState extends State<DeletedNotes> {
                               )
                             ],
                           ),),
-
-                        child: ListTile(
-                          leading: TextHelper.getCategoryIcon(TextHelper.getEnumFromString(note.category)),
-                          title: Text(_title),
-                          onLongPress: (){
-                            setState(() {
-                              note.isArchived == false;
-                            });
-                          },
-
-                          //onTap: () => Get.to(() => ViewWatch(currentWatch: watch,)),
-                        ),
+                        
+                        child: NoteListtile(currentNote: note)
+                          
                       );
                     },
                     separatorBuilder: (context, index){
