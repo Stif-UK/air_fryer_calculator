@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:air_fryer_calculator/ui/add_notes.dart';
+import 'package:air_fryer_calculator/ui/search/search.dart';
 import 'package:get/get.dart';
 import 'package:air_fryer_calculator/ui/air_fryer_calculator.dart';
 import 'package:air_fryer_calculator/ui/air_fryer_notes.dart';
@@ -33,6 +34,16 @@ class _AirFryerHomeState extends State<AirFryerHome> {
         title: const Text('Air Fryr', style: TextStyle(fontStyle: FontStyle.italic),),
         //backgroundColor: Colors.transparent,
         elevation: 0,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: (){
+              showSearch(
+                  context: context,
+                  delegate: SearchWidget());
+            },
+          )
+        ],
       ),
       floatingActionButton: _selectedIndex == 0? null : FloatingActionButton(
         backgroundColor: Colors.red,
