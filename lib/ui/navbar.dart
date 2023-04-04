@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/privacy_policy.dart';
+import 'package:in_app_review/in_app_review.dart';
 
 class NavBar extends StatefulWidget {
   NavBar({Key? key}) : super(key: key);
@@ -20,6 +21,7 @@ class NavBar extends StatefulWidget {
 
 class _NavBarState extends State<NavBar> {
 
+  final InAppReview inAppReview = InAppReview.instance;
   String _buildVersion = "Not Determined";
   bool _celcius = FryerPreferences.getTemperaturePreference() ?? false;
 
@@ -104,6 +106,16 @@ class _NavBarState extends State<NavBar> {
                   },
                 ),
                 const SizedBox(height: 100,),
+                ListTile(
+                  title: const Text("Leave an App Review"),
+                  trailing: const Icon(Icons.reviews_outlined),
+                  onTap: (){
+                    inAppReview.openStoreListing(
+                      appStoreId: "6446950736"
+                    );
+
+                  },
+                )
 
               ],
             ),
