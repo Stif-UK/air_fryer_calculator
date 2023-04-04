@@ -77,6 +77,7 @@ class _NavBarState extends State<NavBar> {
                   },
 
                 ),
+                const Divider(thickness: 2,),
                 ListTile(
                   title: const Text("Privacy Policy"),
                   trailing: const Icon(Icons.privacy_tip_outlined),
@@ -105,6 +106,7 @@ class _NavBarState extends State<NavBar> {
                     Get.to(() => const VersionHistory());
                   },
                 ),
+                const Divider(thickness: 2,),
                 const SizedBox(height: 100,),
                 ListTile(
                   title: const Text("Leave an App Review"),
@@ -120,6 +122,7 @@ class _NavBarState extends State<NavBar> {
               ],
             ),
           ),
+              const Divider(thickness: 2,),
               ListTile(
                 title: const Text("Deleted Notes"),
                 trailing: const Icon(Icons.delete_outline),
