@@ -8,6 +8,7 @@ import 'package:air_fryer_calculator/ui/custom_form_field.dart';
 import 'package:air_fryer_calculator/util/ad_widget_helper.dart';
 import 'package:air_fryer_calculator/util/database_helper.dart';
 import 'package:air_fryer_calculator/util/note_helper.dart';
+import 'package:air_fryer_calculator/util/review_helper.dart';
 import 'package:air_fryer_calculator/util/text_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -321,6 +322,9 @@ class _AddNotesState extends State<AddNotes> {
                             snackPosition: SnackPosition.BOTTOM,
                             icon: TextHelper.getCategoryIcon(_selectedCategory));
 
+                            //Check if user should be prompted to review app
+                            ReviewHelper.shouldPromptReview();
+
 
                               }
                         },
@@ -371,6 +375,9 @@ class _AddNotesState extends State<AddNotes> {
                                     "Your notebook has been updated",
                                     snackPosition: SnackPosition.BOTTOM,
                                     icon: TextHelper.getCategoryIcon(_selectedCategory));
+
+                                //Check if user should be prompted to review app
+                                ReviewHelper.shouldPromptReview();
 
 
                               }
