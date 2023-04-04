@@ -15,6 +15,7 @@ class FryerPreferences {
   static const _keyLatestVersion = 'latestAppVersion';
   static const _keyTempPreference = 'temperaturePreference';
   static const _keyFirstUseDate = 'firstUseDate';
+  static const _keyLastReviewPrompt = 'lastReviewPrompt';
 
 
   //Getters and setters
@@ -57,6 +58,16 @@ class FryerPreferences {
 
   static Future setFirstUseDate(DateTime firstUsed) async{
     await _preferences.setString(_keyFirstUseDate, firstUsed.toString());
+  }
+
+  //Getter and Setter for last review prompt date
+  static DateTime? getLastReviewPromptDate() {
+    String? returnString = _preferences.getString(_keyLastReviewPrompt);
+    return returnString == null? null : DateTime.parse(returnString);
+  }
+
+  static Future setLastReviewPromptDate(DateTime lastReviewDate) async{
+    await _preferences.setString(_keyLastReviewPrompt, lastReviewDate.toString());
   }
 
 }
