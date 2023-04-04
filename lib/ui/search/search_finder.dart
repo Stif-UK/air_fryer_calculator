@@ -59,8 +59,8 @@ class _SearchFinderState extends State<SearchFinder> {
               builder:
                   (context, Box<Notes> noteBook,_){
                 var results = widget.query.isEmpty
-                    ? noteBook.values.toList() //whole list
-                    : noteBook.values.where((note) => note.title.toLowerCase().contains(widget.query)).toList();
+                    ? noteBook.values.where((note) => note.isArchived == false).toList() //whole list
+                    : noteBook.values.where((note) => note.title.toLowerCase().contains(widget.query) && note.isArchived == false).toList();
 
                 return results.isEmpty
                 //if there are no results, return 'no results' page

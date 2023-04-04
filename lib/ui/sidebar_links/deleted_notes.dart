@@ -150,7 +150,7 @@ class _DeletedNotesState extends State<DeletedNotes> {
                           ),),
                         
                         child: NoteListtile(currentNote: note)
-                          
+
                       );
                     },
                     separatorBuilder: (context, index){
