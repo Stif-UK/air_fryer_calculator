@@ -11,6 +11,8 @@ class VersionHistoryCopy{
               "### v1.1.0\n"
               "* Added ability to search notebook\n"
               "* Added options to leave app reviews\n"
+              "* Updated validation on note fields\n"
+              "* Additional performance enhancements\n"
               " --- \n"
               "## Previous Releases:\n"
               "### v1.0.0\n"
