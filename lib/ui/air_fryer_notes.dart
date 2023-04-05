@@ -92,9 +92,9 @@ class _AirFryerNotesState extends State<AirFryerNotes> {
                       key: Key(key),
                       direction: DismissDirection.endToStart,
                       onDismissed: (direction){
-                        setState(() {
+                        setState(() async {
                           note.isArchived = true;
-                          note.save();
+                          await note.save();
                           // Then show a snackbar?
 
                         });
@@ -118,14 +118,7 @@ class _AirFryerNotesState extends State<AirFryerNotes> {
                     ),),
                       child: NoteListtile(currentNote: note)
                       
-                      // child: ListTile(
-                      //   leading: TextHelper.getCategoryIcon(TextHelper.getEnumFromString(_category)),
-                      //   title: Text(_title),
-                      //   subtitle: Text("${_temp.toInt()}${TextHelper.getTempSuffix(_isCelcius)} for ${_time.toInt()} minutes"),
-                      //   onTap: (){
-                      //     Get.to(() => AddNotes(time: _time, temperature: _temp, currentNote: note,));
-                      //   },
-                      // ),
+
                     );
                   },
                   separatorBuilder: (context, index){
