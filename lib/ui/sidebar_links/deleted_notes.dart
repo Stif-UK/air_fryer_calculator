@@ -98,18 +98,18 @@ class _DeletedNotesState extends State<DeletedNotes> {
                         onDismissed: (direction) {
                           //if swipe left
                           if (direction == DismissDirection.endToStart) {
-                            setState(() {
+                            setState(() async {
                               //Remove from the view and remove from the database
-                              archiveList.removeAt(index);
+                              await archiveList.removeAt(index);
                               notebook.delete(note.key);
                             });
                           }
                           if(direction == DismissDirection.startToEnd){
                             var currentNote = notebook.getAt(note.key);
-                            setState(() {
+                            setState(() async {
                               archiveList.removeAt(index);
                               currentNote!.isArchived = false;
-                              currentNote.save();
+                              await currentNote.save();
 
                             });
                           }
