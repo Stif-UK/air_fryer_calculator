@@ -2,6 +2,7 @@ import 'package:air_fryer_calculator/controller/FryerController.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/about_app.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/attributions.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/deleted_notes.dart';
+import 'package:air_fryer_calculator/ui/sidebar_links/remove_ads.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/version_history.dart';
 import 'package:air_fryer_calculator/util/text_helper.dart';
 import 'package:flutter/material.dart';
@@ -107,7 +108,15 @@ class _NavBarState extends State<NavBar> {
                   },
                 ),
                 const Divider(thickness: 2,),
-                const SizedBox(height: 100,),
+                ListTile(
+                  title: const Text("Remove Ads"),
+                  trailing: const Icon(Icons.money_off),
+                  onTap: (){
+                    Get.to(() => const RemoveAds());
+                  },
+                ),
+                const Divider(thickness: 2,),
+                //const SizedBox(height: 100,),
                 ListTile(
                   title: const Text("Leave an App Review"),
                   trailing: const Icon(Icons.reviews_outlined),
@@ -117,7 +126,8 @@ class _NavBarState extends State<NavBar> {
                     );
 
                   },
-                )
+                ),
+                const Divider(thickness: 2,)
 
               ],
             ),
