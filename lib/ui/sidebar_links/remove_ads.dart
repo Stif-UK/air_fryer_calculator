@@ -18,26 +18,33 @@ class _RemoveAdsState extends State<RemoveAds> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Center(child: RemoveAdsCopy.getRemoveAdsMainCopy(context)),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Center(child: RemoveAdsCopy.getRemoveAdsMainCopy(context)),
+                ),
+                const Divider(thickness: 2,),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(8.0, 40, 8, 40),
+                  child: OutlinedButton(
+                      onPressed: (){
+                        showModalBottomSheet(
+                            context: context,
+                            builder: (BuildContext context){
+                             return RemoveAdsSheet.getRemoveAdsSheet(context);
+                              // return SizedBox(height: 500,) ;
+                            });
+                      },
+                      child: RemoveAdsCopy.getButtonLabel()),
+                )
+
+              ],
             ),
             const Divider(thickness: 2,),
-            OutlinedButton(
-                onPressed: (){
-                  showModalBottomSheet(
-                      context: context,
-                      builder: (BuildContext context){
-                       return RemoveAdsSheet.getRemoveAdsSheet(context);
-                        // return SizedBox(height: 500,) ;
-                      });
-                },
-                child: RemoveAdsCopy.getButtonLabel())
-
-
-
+            TextButton(onPressed: (){}, child: Text("Restore Purchase Status"))
           ],
         ),
       )
