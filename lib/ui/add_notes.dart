@@ -304,7 +304,10 @@ class _AddNotesState extends State<AddNotes> {
                         maxLines: 20,
                         controller: notesFieldController,
                         textCapitalization: TextCapitalization.sentences,),
-                      noteState == NoteEnum.view? const SizedBox(height: 0,): const Divider(thickness: 2,),
+                      //noteState == NoteEnum.view? const SizedBox(height: 0,): const Divider(thickness: 2,),
+                      noteState == NoteEnum.view? showTagline(): const Divider(thickness: 2,),
+
+
 
                       //If page is to save a new note, show the save button
                       noteState == NoteEnum.add?Center(
@@ -433,6 +436,19 @@ double increaseTemp(double currentTemp){
     double minTime = minimumTime;
     double returnTime = currentTime - 1;
     return returnTime > minTime? returnTime : minTime;
+  }
+
+  Widget showTagline(){
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Center(
+        child: Text(
+          'This note saved in Air Fryr',
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic,),
+        ),
+      ),
+    );
   }
 
 }
