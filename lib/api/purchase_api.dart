@@ -26,4 +26,13 @@ class PurchaseApi{
       return [];
     }
   }
+
+  static Future<bool> purchasePackage(Package package) async {
+    try {
+      await Purchases.purchasePackage(package);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
 }

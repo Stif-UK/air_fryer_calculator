@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
 class PaywallWidget extends StatefulWidget {
@@ -64,7 +65,7 @@ class _PaywallWidgetState extends State<PaywallWidget> {
     final product = package.storeProduct;
 
     return Card(
-      color: Theme.of(context).cardColor,
+      color: Theme.of(context).splashColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
@@ -74,18 +75,19 @@ class _PaywallWidgetState extends State<PaywallWidget> {
           contentPadding: EdgeInsets.all(8),
           title: Text(
             product.title,
-            style: TextStyle(fontSize: 18),
+            style: TextStyle(fontSize: 18, color: Get.isDarkMode? Colors.white : Colors.black),
           ),
-          subtitle: Text(product.description),
+          subtitle: Text(product.description,
+              style: TextStyle(color: Get.isDarkMode? Colors.white : Colors.black)),
           trailing: Text(
             product.priceString,
             style: TextStyle(
-              fontSize: 16, fontWeight: FontWeight.bold
+              fontSize: 16, fontWeight: FontWeight.bold, color: Get.isDarkMode? Colors.white : Colors.black
             ),
           ),
           onTap: () => widget.onClickedPackage(package),
         ),
       ),
-    )
+    );
   }
 }

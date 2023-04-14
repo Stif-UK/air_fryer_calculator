@@ -79,7 +79,7 @@ class _RemoveAdsState extends State<RemoveAds> {
 
         }
       )
-      )
+      );
 
       // final offer = offerings.first;
       // print('Offer: $offer');
