@@ -1,3 +1,4 @@
+import 'package:air_fryer_calculator/api/purchase_api.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 import 'package:air_fryer_calculator/model/notesmodel.dart';
 import 'package:air_fryer_calculator/provider/adstate.dart';
@@ -18,6 +19,8 @@ void main() async {
   //Initialise Ads
   final initFuture = MobileAds.instance.initialize();
   final adState = AdState(initFuture);
+  //Initialise RevenueCat
+  await PurchaseApi.init();
 
   //Load the theme from assets
   final themeStrLight = await rootBundle.loadString('assets/theme/appainter_theme.json');

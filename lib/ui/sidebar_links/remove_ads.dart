@@ -1,4 +1,6 @@
+import 'package:air_fryer_calculator/api/purchase_api.dart';
 import 'package:air_fryer_calculator/copy/remove_ads_copy.dart';
+import 'package:air_fryer_calculator/ui/widgets/paywall_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:air_fryer_calculator/ui/widgets/remove_ads_bottomsheet.dart';
 
@@ -30,14 +32,17 @@ class _RemoveAdsState extends State<RemoveAds> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(8.0, 40, 8, 40),
                   child: OutlinedButton(
-                      onPressed: (){
-                        showModalBottomSheet(
-                            context: context,
-                            builder: (BuildContext context){
-                             return RemoveAdsSheet.getRemoveAdsSheet(context);
-                              // return SizedBox(height: 500,) ;
-                            });
+                      onPressed:(){
+                        fetchOffers();
                       },
+                      // onPressed: (){
+                      //   showModalBottomSheet(
+                      //       context: context,
+                      //       builder: (BuildContext context){
+                      //        return RemoveAdsSheet.getRemoveAdsSheet(context);
+                      //         // return SizedBox(height: 500,) ;
+                      //       });
+                      // },
                       child: RemoveAdsCopy.getButtonLabel()),
                 )
 
@@ -50,4 +55,37 @@ class _RemoveAdsState extends State<RemoveAds> {
       )
     );
   }
+
+  Future fetchOffers() async {
+    final offerings = await PurchaseApi.fetchOffers();
+
+    if(offerings.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("No Options Found")));
+    } else {
+      final packages = offerings
+          .map((offer) => offer.availablePackages)
+          .expand((pair) => pair)
+          .toList();
+
+      showModalBottomSheet(
+          context: context,
+          builder: (context) => PaywallWidget(
+        packages: packages,
+        title: "Support Air Fryr",
+        description: "Pay what you like! Choose any option to remove ads",
+        onClickedPackage: (package) async{
+          await PurchaseApi.purchasePackage(package);
+          Navigator.pop(context);
+
+        }
+      )
+      )
+
+      // final offer = offerings.first;
+      // print('Offer: $offer');
+    }
+
+
+  }
+
 }
