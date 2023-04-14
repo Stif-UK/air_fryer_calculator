@@ -46,3 +46,4 @@ app.*.map.json
 
 # Ignore lib files with sensitive information
 /lib/model/adUnits.dart
+/lib/api/keys.dart
