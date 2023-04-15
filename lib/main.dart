@@ -44,6 +44,11 @@ void main() async {
     FryerPreferences.setTemperaturePreference(true);
   }
 
+  //Ensure app purchase status is instantiated in preferences
+  if(FryerPreferences.getAppPurchasedStatus() == null){
+    FryerPreferences.setAppPurchasedStatus(false);
+  }
+
   //Track how many times the user has opened the app
   int openCount = FryerPreferences.getOpenCount() ?? 0;
   FryerPreferences.setOpenCount(openCount +1);
