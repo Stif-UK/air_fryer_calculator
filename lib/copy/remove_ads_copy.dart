@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 
 class RemoveAdsCopy{
+
+  static getPageTitle(){
+    return Text("Remove Ads");
+  }
+
+  static getPageTitleSupporter(){
+    return Text("Support Air Fryr");
+  }
+
   static getRemoveAdsMainCopy(BuildContext context){
     return Text(
       "I build little apps for fun, and provide them completely free, with ads displayed to help me cover the development fees."
@@ -11,16 +20,28 @@ class RemoveAdsCopy{
     style: Theme.of(context).textTheme.bodyLarge,);
   }
 
-  static getRemoveAdsSheetCopy(BuildContext context){
-    return Text("All options will remove ads, however options are available to allow you to choose how much you would like to pay to support!",
-    style: Theme.of(context).textTheme.bodyLarge,
-    textAlign: TextAlign.center,);
+  static getSupporterMainCopy(BuildContext context){
+    return Text(
+      "Thank you for supporting Air Fryr!\n\n"
+          "Your support means a lot and makes it possible for me to continue to develop Air Fryr and other apps like it.\n\n"
+          "If you're enjoying the app please consider telling your friends about it or leave a review to let me know what you like about the app and what else you'd like to see added to it!\n\n"
+          "",
+      style: Theme.of(context).textTheme.bodyLarge,);
   }
+
+
 
   static getButtonLabel(){
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Text("Show Payment Options"),
+    );
+  }
+
+  static getButtonLabelSupporter(){
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: Text("Donate Again"),
     );
   }
 }

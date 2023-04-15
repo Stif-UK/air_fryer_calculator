@@ -1,11 +1,13 @@
 import 'package:air_fryer_calculator/api/purchase_api.dart';
+import 'package:air_fryer_calculator/controller/FryerController.dart';
 import 'package:air_fryer_calculator/copy/remove_ads_copy.dart';
 import 'package:air_fryer_calculator/ui/widgets/paywall_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:air_fryer_calculator/ui/widgets/remove_ads_bottomsheet.dart';
+import 'package:get/get.dart';
 
 class RemoveAds extends StatefulWidget {
-  const RemoveAds({Key? key}) : super(key: key);
+  RemoveAds({Key? key}) : super(key: key);
+  final fryerController = Get.put(FryerController());
 
   @override
   State<RemoveAds> createState() => _RemoveAdsState();
@@ -14,45 +16,40 @@ class RemoveAds extends StatefulWidget {
 class _RemoveAdsState extends State<RemoveAds> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Remove Ads"),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Center(child: RemoveAdsCopy.getRemoveAdsMainCopy(context)),
-                ),
-                const Divider(thickness: 2,),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(8.0, 40, 8, 40),
-                  child: OutlinedButton(
-                      onPressed:(){
-                        fetchOffers();
-                      },
-                      // onPressed: (){
-                      //   showModalBottomSheet(
-                      //       context: context,
-                      //       builder: (BuildContext context){
-                      //        return RemoveAdsSheet.getRemoveAdsSheet(context);
-                      //         // return SizedBox(height: 500,) ;
-                      //       });
-                      // },
-                      child: RemoveAdsCopy.getButtonLabel()),
-                )
-
-              ],
-            ),
-            const Divider(thickness: 2,),
-            TextButton(onPressed: (){}, child: Text("Restore Purchase Status"))
-          ],
+    return Obx(
+        () => Scaffold(
+        appBar: AppBar(
+          title: widget.fryerController.isAppPro.value? RemoveAdsCopy.getPageTitleSupporter() :RemoveAdsCopy.getPageTitle(),
         ),
-      )
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Center(child: widget.fryerController.isAppPro.value? RemoveAdsCopy.getSupporterMainCopy(context) : RemoveAdsCopy.getRemoveAdsMainCopy(context)),
+                  ),
+                  const Divider(thickness: 2,),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(8.0, 40, 8, 40),
+                    child: OutlinedButton(
+                        onPressed:(){
+                          fetchOffers();
+                        },
+
+                        child: widget.fryerController.isAppPro.value? RemoveAdsCopy.getButtonLabelSupporter() : RemoveAdsCopy.getButtonLabel()),
+                  )
+
+                ],
+              ),
+              const Divider(thickness: 2,),
+              TextButton(onPressed: (){}, child: Text("Restore Purchase Status"))
+            ],
+          ),
+        )
+      ),
     );
   }
 
@@ -81,8 +78,7 @@ class _RemoveAdsState extends State<RemoveAds> {
       )
       );
 
-      // final offer = offerings.first;
-      // print('Offer: $offer');
+
     }
 
 
