@@ -49,17 +49,18 @@ class _RemoveAdsState extends State<RemoveAds> {
               widget.fryerController.isAppPro.value? SizedBox(height: 0,) :
               TextButton(onPressed: () async {
                 if(await PurchaseApi.restorePurchases()){
-                  //purchase is resstored
+                  //purchase is restored
                   widget.fryerController.updateAppPurchaseStatus();
-                  //TODO: Replace with dialog
-                  Get.snackbar("Purchase Restored",
-                    "You're now ad free!",
-                    icon: Icon(Icons.money_off, ),
-                    snackPosition: SnackPosition.BOTTOM,);
+                  Get.defaultDialog(
+                    title: "Purchase Restored",
+                    middleText: "You're now ad free!",
+                    );
                 } else {
                   //purchase restore failed
-                  //TODO: Replace with dialog
-                  print("Restore failed");
+                  Get.defaultDialog(
+                    title: "Restore Failed",
+                    middleText: "No previous purchase found for user",
+                  );
                 }
 
               }, child: Text("Restore Purchase Status"))
@@ -88,10 +89,13 @@ class _RemoveAdsState extends State<RemoveAds> {
         title: "Support Air Fryr",
         description: "Pay what you like! Choose any option to remove ads",
         onClickedPackage: (package) async{
-          await PurchaseApi.purchasePackage(package);
-          var fryerController = Get.put(FryerController());
-          fryerController.updateAppPurchaseStatus();
           Navigator.pop(context);
+          bool success = await PurchaseApi.purchasePackage(package);
+                    if (success) {
+            var fryerController = Get.put(FryerController());
+            fryerController.updateAppPurchaseStatus();
+          }
+
 
         }
       )

@@ -1,5 +1,6 @@
 import 'package:air_fryer_calculator/api/keys.dart';
 import 'package:air_fryer_calculator/controller/FryerController.dart';
+import 'package:air_fryer_calculator/errors/error_handling.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -36,6 +37,9 @@ class PurchaseApi{
       await Purchases.purchasePackage(package);
       return true;
     } catch (e) {
+      if(e is PlatformException) {
+        AirFryrErrorHandling.handlePurchaseError(e);
+      }
       return false;
     }
   }
@@ -47,7 +51,7 @@ class PurchaseApi{
         CustomerInfo customerInfo = await Purchases.getCustomerInfo();
         returnString = customerInfo.allPurchaseDates.values.first.toString();
       } on PlatformException catch (e) {
-        //TODO: Write some logging here
+        AirFryrErrorHandling.surfacePlatformError(e);
       }
     }
     return returnString;
@@ -59,7 +63,7 @@ class PurchaseApi{
       CustomerInfo customerInfo = await Purchases.restorePurchases();
       restoreSuccess = customerInfo.entitlements.all["AIr Fryr Pro"]?.isActive ;
     } on PlatformException catch (e) {
-      // Error restoring purchases
+      AirFryrErrorHandling.surfacePlatformError(e);
     }
     return restoreSuccess ?? false;
   }

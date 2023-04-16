@@ -1,3 +1,4 @@
+import 'package:air_fryer_calculator/errors/error_handling.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -26,7 +27,7 @@ class FryerController extends GetxController{
       isPro = customerInfo.entitlements.all["AIr Fryr Pro"]?.isActive ;
       print("Entitlement checked value: $isPro");
     } on PlatformException catch (e) {
-      //TODO: Add error handling
+      AirFryrErrorHandling.surfacePlatformError(e);
     }
     isAppPro(isPro);
     await FryerPreferences.setAppPurchasedStatus(isPro!);
