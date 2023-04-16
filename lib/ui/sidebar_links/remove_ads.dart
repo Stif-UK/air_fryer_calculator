@@ -45,7 +45,24 @@ class _RemoveAdsState extends State<RemoveAds> {
                 ],
               ),
               const Divider(thickness: 2,),
-              TextButton(onPressed: (){}, child: Text("Restore Purchase Status"))
+              //If the app is not pro, then show 'restore purchase' button.
+              widget.fryerController.isAppPro.value? SizedBox(height: 0,) :
+              TextButton(onPressed: () async {
+                if(await PurchaseApi.restorePurchases()){
+                  //purchase is resstored
+                  widget.fryerController.updateAppPurchaseStatus();
+                  //TODO: Replace with dialog
+                  Get.snackbar("Purchase Restored",
+                    "You're now ad free!",
+                    icon: Icon(Icons.money_off, ),
+                    snackPosition: SnackPosition.BOTTOM,);
+                } else {
+                  //purchase restore failed
+                  //TODO: Replace with dialog
+                  print("Restore failed");
+                }
+
+              }, child: Text("Restore Purchase Status"))
             ],
           ),
         )

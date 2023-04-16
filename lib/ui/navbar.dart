@@ -59,8 +59,8 @@ class _NavBarState extends State<NavBar> {
                           title: "Developer Stats",
                           middleText: "Open Count: ${FryerPreferences.getOpenCount()}\n\n"
                               "First Used: ${TextHelper.formatDate(FryerPreferences.getFirstUseDate()!)}\n\n"
-                              "App Purchased: ${FryerPreferences.getAppPurchasedStatus()}\n\n"
-                              "Purchase Date: ${TextHelper.formatDate(DateTime.parse(await PurchaseApi.getAppPurchaseDate()))}"
+                              "App Purchased: ${FryerPreferences.getAppPurchasedStatus() ?? false}\n\n"
+                              "Purchase Date: ${FryerPreferences.getAppPurchasedStatus() ?? false ? TextHelper.formatDate(DateTime.parse(await PurchaseApi.getAppPurchaseDate())): "N/A"}"
                       );
                     }
                   },

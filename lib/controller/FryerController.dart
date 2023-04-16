@@ -26,7 +26,7 @@ class FryerController extends GetxController{
       isPro = customerInfo.entitlements.all["AIr Fryr Pro"]?.isActive ;
       print("Entitlement checked value: $isPro");
     } on PlatformException catch (e) {
-      //TODO: Write some logging here
+      //TODO: Add error handling
     }
     isAppPro(isPro);
     await FryerPreferences.setAppPurchasedStatus(isPro!);
