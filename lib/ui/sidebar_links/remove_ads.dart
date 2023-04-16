@@ -57,7 +57,7 @@ class _RemoveAdsState extends State<RemoveAds> {
     final offerings = await PurchaseApi.fetchOffers();
 
     if(offerings.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("No Options Found")));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("No Options Found, try again later")));
     } else {
       final packages = offerings
           .map((offer) => offer.availablePackages)
@@ -72,6 +72,8 @@ class _RemoveAdsState extends State<RemoveAds> {
         description: "Pay what you like! Choose any option to remove ads",
         onClickedPackage: (package) async{
           await PurchaseApi.purchasePackage(package);
+          var fryerController = Get.put(FryerController());
+          fryerController.updateAppPurchaseStatus();
           Navigator.pop(context);
 
         }

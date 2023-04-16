@@ -1,3 +1,4 @@
+import 'package:air_fryer_calculator/api/purchase_api.dart';
 import 'package:air_fryer_calculator/controller/FryerController.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/about_app.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/attributions.dart';
@@ -49,7 +50,7 @@ class _NavBarState extends State<NavBar> {
                 DrawerHeader(child: IconButton(
                   splashColor: Colors.transparent,
                   icon: const Icon(Icons.fastfood, size: 40.0),
-                  onPressed: (){
+                  onPressed: () async {
                     print(clickCounter);
                     clickCounter++;
                     print(clickCounter);
@@ -57,8 +58,9 @@ class _NavBarState extends State<NavBar> {
                       Get.defaultDialog(
                           title: "Developer Stats",
                           middleText: "Open Count: ${FryerPreferences.getOpenCount()}\n\n"
-                              "First Used: ${TextHelper.formatDate(FryerPreferences.getFirstUseDate()!)}"
-                              //"First Used: ${FryerPreferences.getFirstUseDate()}"
+                              "First Used: ${TextHelper.formatDate(FryerPreferences.getFirstUseDate()!)}\n\n"
+                              "App Purchased: ${FryerPreferences.getAppPurchasedStatus()}\n\n"
+                              "Purchase Date: ${TextHelper.formatDate(DateTime.parse(await PurchaseApi.getAppPurchaseDate()))}"
                       );
                     }
                   },
@@ -112,7 +114,7 @@ class _NavBarState extends State<NavBar> {
                   title: const Text("Remove Ads"),
                   trailing: const Icon(Icons.money_off),
                   onTap: (){
-                    Get.to(() => const RemoveAds());
+                    Get.to(() => RemoveAds());
                   },
                 ),
                 const Divider(thickness: 2,),

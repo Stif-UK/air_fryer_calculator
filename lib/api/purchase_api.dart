@@ -35,4 +35,15 @@ class PurchaseApi{
       return false;
     }
   }
+
+  static Future<String> getAppPurchaseDate() async {
+    String returnString = "Not Found";
+    try {
+      CustomerInfo customerInfo = await Purchases.getCustomerInfo();
+      returnString = customerInfo.allPurchaseDates.values.first.toString();
+    } on PlatformException catch (e) {
+      //TODO: Write some logging here
+    }
+    return returnString;
+  }
 }
