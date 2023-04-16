@@ -25,7 +25,7 @@ class RemoveAdsCopy{
       "Thank you for supporting Air Fryr!\n\n"
           "Your support means a lot and makes it possible for me to continue to develop Air Fryr and other apps like it.\n\n"
           "If you're enjoying the app please consider telling your friends about it or leave a review to let me know what you like about the app and what else you'd like to see added to it!\n\n"
-          "",
+          "If you'd like to continue to support Air Fryr additional donations can be made at any time.",
       style: Theme.of(context).textTheme.bodyLarge,);
   }
 

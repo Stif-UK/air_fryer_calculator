@@ -1,5 +1,6 @@
 import 'package:air_fryer_calculator/api/purchase_api.dart';
 import 'package:air_fryer_calculator/controller/FryerController.dart';
+import 'package:air_fryer_calculator/copy/remove_ads_copy.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/about_app.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/attributions.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/deleted_notes.dart';
@@ -111,7 +112,7 @@ class _NavBarState extends State<NavBar> {
                 ),
                 const Divider(thickness: 2,),
                 ListTile(
-                  title: const Text("Remove Ads"),
+                  title: widget.fryerController.isAppPro.value? RemoveAdsCopy.getPageTitleSupporter():  RemoveAdsCopy.getPageTitle(),
                   trailing: const Icon(Icons.money_off),
                   onTap: (){
                     Get.to(() => RemoveAds());
