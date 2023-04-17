@@ -45,12 +45,12 @@ class PurchaseApi{
     }
   }
 
-  static Future<String> getAppPurchaseDate() async {
+  static Future<String> getAppPurchaseDate(bool first) async {
     String returnString = "Not Found";
     if (FryerPreferences.getAppPurchasedStatus() ?? false) {
       try {
         CustomerInfo customerInfo = await Purchases.getCustomerInfo();
-        returnString = customerInfo.allPurchaseDates.values.first.toString();
+        returnString = first? customerInfo.allPurchaseDates.values.last.toString(): customerInfo.allPurchaseDates.values.first.toString() ;
       } on PlatformException catch (e) {
         AirFryrErrorHandling.surfacePlatformError(e);
       }
