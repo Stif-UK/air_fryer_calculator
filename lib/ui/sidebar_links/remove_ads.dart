@@ -59,7 +59,7 @@ class _RemoveAdsState extends State<RemoveAds> {
                   //purchase restore failed
                   Get.defaultDialog(
                     title: "Restore Failed",
-                    middleText: "No previous purchase found for user",
+                    middleText: "No previous or active purchase found for user",
                   );
                 }
 

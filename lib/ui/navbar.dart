@@ -62,7 +62,8 @@ class _NavBarState extends State<NavBar> {
                               "First Used: ${TextHelper.formatDate(FryerPreferences.getFirstUseDate()!)}\n\n"
                               "App Purchased: ${FryerPreferences.getAppPurchasedStatus() ?? false}\n\n"
                               "First Purchase Date: ${FryerPreferences.getAppPurchasedStatus() ?? false ? TextHelper.formatDate(DateTime.parse(await PurchaseApi.getAppPurchaseDate(true))): "N/A"}\n\n"
-                              "Last Donation Date: ${FryerPreferences.getAppPurchasedStatus() ?? false ? TextHelper.formatDate(DateTime.parse(await PurchaseApi.getAppPurchaseDate(false))): "N/A"}"
+                              "Last Donation Date: ${FryerPreferences.getAppPurchasedStatus() ?? false ? TextHelper.formatDate(DateTime.parse(await PurchaseApi.getAppPurchaseDate(false))): "N/A"}\n\n"
+                              "Last Entitlement Check: ${FryerPreferences.getLastEntitlementCheckDate() != null ? TextHelper.formatDate(await FryerPreferences.getLastEntitlementCheckDate()!): "N/A"}\n\n"
                       );
                     }
                   },

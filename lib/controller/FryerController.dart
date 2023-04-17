@@ -32,4 +32,10 @@ class FryerController extends GetxController{
     isAppPro(isPro);
     await FryerPreferences.setAppPurchasedStatus(isPro!);
   }
+
+  revertPurchaseStatus() async{
+    isAppPro(false);
+    await FryerPreferences.setAppPurchasedStatus(false);
+
+  }
 }

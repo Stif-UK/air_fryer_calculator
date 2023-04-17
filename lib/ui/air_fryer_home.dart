@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:air_fryer_calculator/api/purchase_api.dart';
+import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 import 'package:air_fryer_calculator/ui/add_notes.dart';
 import 'package:air_fryer_calculator/ui/search/search.dart';
 import 'package:get/get.dart';
@@ -27,6 +29,21 @@ class _AirFryerHomeState extends State<AirFryerHome> {
     //If platform is iOS, request tracking permission for ads
     if(Platform.isIOS) {
       AppTrackingTransparency.requestTrackingAuthorization();
+    }
+
+    //If app is pro, check entitlement is still valid - check once per week
+    if(FryerPreferences.getAppPurchasedStatus() == true){
+      final lastChecked = FryerPreferences.getLastEntitlementCheckDate();
+      if(lastChecked == null){
+        PurchaseApi.checkEntitlements();
+      } else {
+        final date2 = DateTime.now();
+        final difference = date2.difference(lastChecked).inDays;
+        if(difference > 6){
+          PurchaseApi.checkEntitlements();
+        }
+      }
+      
     }
 
     return Scaffold(

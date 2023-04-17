@@ -69,6 +69,28 @@ class PurchaseApi{
     return restoreSuccess ?? false;
   }
 
+  //checkEntitlements should only be called for a user that holds a pro app - its purpose is to validate that the pro sub is still valid
+  static checkEntitlements() async {
+    bool? entitlementValid = true;
+
+    try {
+      print("Getting customer info");
+      CustomerInfo customerInfo = await Purchases.getCustomerInfo();
+      print("Checking entitlement is valid");
+      entitlementValid = customerInfo.entitlements.all["AIr Fryr Pro"]?.isActive ;
+      print("Status: $entitlementValid");
+      FryerPreferences.setLastEntitlementCheckDate(DateTime.now());
+    } on PlatformException catch (e) {
+      //AirFryrErrorHandling.handlePurchaseError(e);
+    }
+    //If the entitlement check shows the entitlement is not valid, remove pro status
+    if(!(entitlementValid ?? true)){
+      final fryerController = Get.put(FryerController());
+      fryerController.revertPurchaseStatus();
+
+    }
+  }
+
   static showSuccessDialog(){
     Get.defaultDialog(
         title: "Payment Successful",
