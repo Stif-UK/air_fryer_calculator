@@ -77,7 +77,7 @@ class AirFryrErrorHandling{
           break;
         case PurchasesErrorCode.paymentPendingError:
           errorTitle = "Additional action required";
-          errorText = Platform.isAndroid? "Please follow instructions from Google to continue":"Please follow instructions from Apple to continue.";
+          errorText = Platform.isAndroid? "Please follow instructions from Google to continue. \nConfirm no payment has been taken before trying again, this can be caused by slow payment processing.":"Please follow instructions from Apple to continue.\nConfirm no payment has been taken before trying again, this can be caused by slow payment processing.";
           break;
         case PurchasesErrorCode.configurationError:
           errorTitle = "Configuration Error";
@@ -101,7 +101,6 @@ class AirFryrErrorHandling{
           break;
 
       }
-      //TODO: Dialog won't show over a modal sheet!
       Get.defaultDialog(
           title: "Something's gone wrong",
           middleText: "$errorTitle\n\n"

@@ -89,6 +89,7 @@ class _RemoveAdsState extends State<RemoveAds> {
         title: "Support Air Fryr",
         description: "Pay what you like! Choose any option to remove ads",
         onClickedPackage: (package) async{
+          //Pop context first - this will allow any exception dialog to show without being blocked by the bottom sheet.
           Navigator.pop(context);
           bool success = await PurchaseApi.purchasePackage(package);
                     if (success) {

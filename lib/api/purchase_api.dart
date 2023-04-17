@@ -35,6 +35,7 @@ class PurchaseApi{
   static Future<bool> purchasePackage(Package package) async {
     try {
       await Purchases.purchasePackage(package);
+      showSuccessDialog();
       return true;
     } catch (e) {
       if(e is PlatformException) {
@@ -63,8 +64,18 @@ class PurchaseApi{
       CustomerInfo customerInfo = await Purchases.restorePurchases();
       restoreSuccess = customerInfo.entitlements.all["AIr Fryr Pro"]?.isActive ;
     } on PlatformException catch (e) {
-      AirFryrErrorHandling.surfacePlatformError(e);
+      AirFryrErrorHandling.handlePurchaseError(e);
     }
     return restoreSuccess ?? false;
+  }
+
+  static showSuccessDialog(){
+    Get.defaultDialog(
+        title: "Payment Successful",
+        middleText: "Thank you for supporting Air Fryr!\n"
+            "Your contribution helps me to keep the app going and is really appreciated.\n\n"
+            "Got any feedback or ideas for improvement? Please leave an app review or drop me an email!"
+
+    );
   }
 }
