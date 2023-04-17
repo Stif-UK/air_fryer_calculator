@@ -1,3 +1,4 @@
+import 'package:air_fryer_calculator/controller/FryerController.dart';
 import 'package:air_fryer_calculator/model/adUnits.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 import 'package:air_fryer_calculator/model/notesmodel.dart';
@@ -16,7 +17,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 
 class AirFryerNotes extends StatefulWidget {
-  const AirFryerNotes({Key? key}) : super(key: key);
+  AirFryerNotes({Key? key}) : super(key: key);
+  final fryerController = Get.put(FryerController());
 
   @override
   State<AirFryerNotes> createState() => _AirFryerNotesState();
@@ -57,7 +59,7 @@ class _AirFryerNotesState extends State<AirFryerNotes> {
     return  Column(
       children: [
         //Insert Ad into Widget Tree
-        purchaseStatus? const SizedBox(height: 0,) : AdWidgetHelper.buildSmallAdSpace(banner, context),
+        widget.fryerController.isAppPro.value? const SizedBox(height: 0,) : AdWidgetHelper.buildSmallAdSpace(banner, context),
 
         Expanded(
           child: ValueListenableBuilder<Box<Notes>>(
