@@ -43,7 +43,7 @@ class _AirFryerHomeState extends State<AirFryerHome> {
           PurchaseApi.checkEntitlements();
         }
       }
-      
+
     }
 
     return Scaffold(
