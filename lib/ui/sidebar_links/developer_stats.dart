@@ -2,6 +2,8 @@ import 'package:air_fryer_calculator/api/purchase_api.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 import 'package:air_fryer_calculator/util/text_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 
 class DeveloperStats extends StatefulWidget {
@@ -24,22 +26,22 @@ class _DeveloperStatsState extends State<DeveloperStats> {
         child: ListView(
           shrinkWrap: true,
           children: [
-            Divider(thickness: 2,),
+            const Divider(thickness: 2,),
             ListTile(
               title: const Text("Open Count"),
               subtitle: Text("App Opened: ${FryerPreferences.getOpenCount()} times"),
             ),
-            Divider(thickness: 2,),
+            const Divider(thickness: 2,),
             ListTile(
               title: const Text("First Used"),
                 subtitle: Text("${TextHelper.formatDate(FryerPreferences.getFirstUseDate()!)}"),
             ),
-            Divider(thickness: 2,),
+            const Divider(thickness: 2,),
             ListTile(
               title: const Text("App Purchased"),
               subtitle: Text("${FryerPreferences.getAppPurchasedStatus() ?? false}"),
             ),
-            Divider(thickness: 2,),
+            const Divider(thickness: 2,),
             FutureBuilder(
                 builder: (context, snapshot){
                   if (snapshot.connectionState == ConnectionState.done) {
@@ -71,7 +73,7 @@ class _DeveloperStatsState extends State<DeveloperStats> {
               future: getPurchaseDate(),
 
             ),
-            Divider(thickness: 2,),
+            const Divider(thickness: 2,),
             FutureBuilder(
               builder: (context, snapshot){
                 if (snapshot.connectionState == ConnectionState.done) {
@@ -103,7 +105,7 @@ class _DeveloperStatsState extends State<DeveloperStats> {
               future: getLastDonationDate(),
 
             ),
-            Divider(thickness: 2,),
+            const Divider(thickness: 2,),
             FutureBuilder(
               builder: (context, snapshot){
                 if (snapshot.connectionState == ConnectionState.done) {
@@ -135,6 +137,53 @@ class _DeveloperStatsState extends State<DeveloperStats> {
               future: getLastEntilementCheck(),
 
             ),
+            const Divider(thickness: 2,),
+            FutureBuilder(
+              builder: (context, snapshot){
+                if (snapshot.connectionState == ConnectionState.done) {
+                  // If we got an error
+                  if (snapshot.hasError) {
+                    return ListTile(
+                      title: Text('${snapshot.error} occurred'),
+                    );
+
+                    // if we got our data
+                  } else if (snapshot.hasData) {
+                    // Extracting data from snapshot object
+                    final data = snapshot.data as String;
+                    return ListTile(
+                      title: const Text("App User ID"),
+                      subtitle: Text(
+                        '$data',
+
+                      ),
+                      trailing: IconButton(
+                        icon: Icon(Icons.copy),
+                        onPressed: (){
+                          //Copy the appUserID to the clipboard
+                          Clipboard.setData(ClipboardData(text:'$data'));
+                          Get.snackbar(
+                            "Copied",
+                             "appUserID saved to clipboard",
+                            icon: Icon(Icons.copy),
+                            snackPosition: SnackPosition.BOTTOM
+                          );
+
+                        },
+                      ),
+                    );
+                  }
+                }
+                return ListTile(
+                  title: const Text("App User ID"),
+                  trailing: CircularProgressIndicator(),
+                );
+
+              },
+              future: PurchaseApi.getAppUserID(),
+
+            ),
+            const Divider(thickness: 2,)
 
           ],
         ),
@@ -153,6 +202,8 @@ class _DeveloperStatsState extends State<DeveloperStats> {
   Future<String> getLastEntilementCheck() async{
     return FryerPreferences.getLastEntitlementCheckDate() != null ? TextHelper.formatDate(await FryerPreferences.getLastEntitlementCheckDate()!): "N/A";
   }
+
+
 }
 
 

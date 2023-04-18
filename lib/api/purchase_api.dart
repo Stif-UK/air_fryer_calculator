@@ -91,6 +91,20 @@ class PurchaseApi{
     }
   }
 
+  static getAppUserID() async{
+    String returnString = "N/A";
+    try {
+      CustomerInfo customerInfo = await Purchases.getCustomerInfo();
+      if(customerInfo != null){
+        returnString = customerInfo.originalAppUserId;
+      }
+
+    } on PlatformException catch (e) {
+      //AirFryrErrorHandling.handlePurchaseError(e);
+    }
+    return returnString;
+  }
+
   static showSuccessDialog(){
     Get.defaultDialog(
         title: "Payment Successful",
