@@ -4,6 +4,7 @@ import 'package:air_fryer_calculator/copy/remove_ads_copy.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/about_app.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/attributions.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/deleted_notes.dart';
+import 'package:air_fryer_calculator/ui/sidebar_links/developer_stats.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/remove_ads.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/version_history.dart';
 import 'package:air_fryer_calculator/util/text_helper.dart';
@@ -56,15 +57,7 @@ class _NavBarState extends State<NavBar> {
                     clickCounter++;
                     print(clickCounter);
                     if (clickCounter > 5) {
-                      Get.defaultDialog(
-                          title: "Developer Stats",
-                          middleText: "Open Count: ${FryerPreferences.getOpenCount()}\n\n"
-                              "First Used: ${TextHelper.formatDate(FryerPreferences.getFirstUseDate()!)}\n\n"
-                              "App Purchased: ${FryerPreferences.getAppPurchasedStatus() ?? false}\n\n"
-                              "First Purchase Date: ${FryerPreferences.getAppPurchasedStatus() ?? false ? TextHelper.formatDate(DateTime.parse(await PurchaseApi.getAppPurchaseDate(true))): "N/A"}\n\n"
-                              "Last Donation Date: ${FryerPreferences.getAppPurchasedStatus() ?? false ? TextHelper.formatDate(DateTime.parse(await PurchaseApi.getAppPurchaseDate(false))): "N/A"}\n\n"
-                              "Last Entitlement Check: ${FryerPreferences.getLastEntitlementCheckDate() != null ? TextHelper.formatDate(await FryerPreferences.getLastEntitlementCheckDate()!): "N/A"}\n\n"
-                      );
+                      Get.to(() => DeveloperStats());
                     }
                   },
 
