@@ -32,6 +32,9 @@ class TextHelper{
       case CategoryEnum.vegan:
         returnText = "Vegan";
         break;
+      case CategoryEnum.all:
+        returnText = "Show All";
+        break;
     }
     return returnText;
   }
@@ -63,6 +66,9 @@ class TextHelper{
         break;
       case CategoryEnum.vegan:
         returnIcon = const Icon(FontAwesomeIcons.plateWheat);
+        break;
+      case CategoryEnum.all:
+        returnIcon = const Icon(FontAwesomeIcons.filterCircleXmark);
         break;
     }
     return returnIcon;

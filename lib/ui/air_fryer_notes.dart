@@ -1,5 +1,6 @@
 import 'package:air_fryer_calculator/controller/FryerController.dart';
 import 'package:air_fryer_calculator/model/adUnits.dart';
+import 'package:air_fryer_calculator/model/enums/category_enums.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 import 'package:air_fryer_calculator/model/notesmodel.dart';
 import 'package:air_fryer_calculator/provider/adstate.dart';
@@ -25,6 +26,9 @@ class AirFryerNotes extends StatefulWidget {
 }
 
 class _AirFryerNotesState extends State<AirFryerNotes> {
+  final items = CategoryEnum.values;
+  CategoryEnum? value;
+
   BannerAd? banner;
   bool purchaseStatus = FryerPreferences.getAppPurchasedStatus() ?? false;
 
@@ -78,55 +82,93 @@ class _AirFryerNotesState extends State<AirFryerNotes> {
                       ),
                     ):
                   //If the notebook is not empty, we build the listview
-              ListView.separated(
-                itemCount: filteredList.length,
-                  itemBuilder: (BuildContext context, int index){
-                    var note = filteredList.elementAt(index);
-                    String key = note.toString();
-                    String _title = note!.title;
-                    String _category = note!.category;
-                    double _temp = note!.temperature;
-                    double _time = note!.time;
-                    bool _isCelcius = note!.isCelcius;
-                    bool _isArchived = note!.isArchived ?? false;
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                      border:  Border.all(
+                        width: 3.0,
+                          color: Theme.of(context).focusColor),
+                      borderRadius: BorderRadius.circular(20.0),
 
-                    return Dismissible(
-                      key: Key(key),
-                      direction: DismissDirection.endToStart,
-                      onDismissed: (direction){
-                        setState(() async {
-                          note.isArchived = true;
-                          await note.save();
-                          // Then show a snackbar?
+              ),
+                      child: Row(
 
-                        });
-                      },
-                    // Show a red background as the item is swiped away.
-                    background: Container(
-                    alignment: Alignment.center,color: Colors.red,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(15.0, 0, 15.0, 0),
-                          child: Text("Deleting",
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text("Category Filter",
                           style: Theme.of(context).textTheme.bodyLarge,),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.fromLTRB(0.0, 0.0, 20.0, 0.0),
-                          child: Icon(Icons.delete_outline),
-                        )
-                      ],
-                    ),),
-                      child: NoteListtile(currentNote: note)
-                      
+                          DropdownButton<CategoryEnum>(
+                              items: items.map(buildMenuItem).toList(),
+                              value: value,
+                              onChanged: (value){
+                                setState(() {
+                                  this.value = value;
+                                });
+                              },),
+                          TextHelper.getCategoryIcon(value!)
 
-                    );
-                  },
-                  separatorBuilder: (context, index){
-                    return const Divider(thickness: 2,);
-                  },
-                  );
+                        ]
+
+                      ),
+                    ),
+                  ),
+                  const Divider(thickness: 2,),
+                  Expanded(
+                    child: ListView.separated(
+                      itemCount: filteredList.length,
+                        itemBuilder: (BuildContext context, int index){
+                          var note = filteredList.elementAt(index);
+                          String key = note.toString();
+                          String _title = note!.title;
+                          String _category = note!.category;
+                          double _temp = note!.temperature;
+                          double _time = note!.time;
+                          bool _isCelcius = note!.isCelcius;
+                          bool _isArchived = note!.isArchived ?? false;
+
+                          return Dismissible(
+                            key: Key(key),
+                            direction: DismissDirection.endToStart,
+                            onDismissed: (direction){
+                              setState(() async {
+                                note.isArchived = true;
+                                await note.save();
+                                // Then show a snackbar?
+
+                              });
+                            },
+                          // Show a red background as the item is swiped away.
+                          background: Container(
+                          alignment: Alignment.center,color: Colors.red,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(15.0, 0, 15.0, 0),
+                                child: Text("Deleting",
+                                style: Theme.of(context).textTheme.bodyLarge,),
+                              ),
+                              const Padding(
+                                padding: EdgeInsets.fromLTRB(0.0, 0.0, 20.0, 0.0),
+                                child: Icon(Icons.delete_outline),
+                              )
+                            ],
+                          ),),
+                            child: NoteListtile(currentNote: note)
+
+
+                          );
+                        },
+                        separatorBuilder: (context, index){
+                          return const Divider(thickness: 2,);
+                        },
+                        ),
+                  ),
+                ],
+              );
 
             },
           ),
@@ -134,4 +176,14 @@ class _AirFryerNotesState extends State<AirFryerNotes> {
       ],
     );
   }
+
+  DropdownMenuItem<CategoryEnum> buildMenuItem(CategoryEnum item) => DropdownMenuItem(
+    value: item,
+    child: Text(
+      TextHelper.getCategoryText(item)
+    )
+
+  );
+
+
 }
