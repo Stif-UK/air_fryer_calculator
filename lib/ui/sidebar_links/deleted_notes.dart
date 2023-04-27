@@ -77,7 +77,7 @@ class _DeletedNotesState extends State<DeletedNotes> {
                     child: const Padding(
                       padding: EdgeInsets.all(12.0),
                       child: Text("When you delete a note from the main notebook it will appear here.\n\n"
-                          "You can then choose to fully delete by swiping away or restore to the notebook by selecting the note.",
+                          "You can then choose to fully delete by swiping left or restore to the notebook by swiping to the right.",
                         textAlign: TextAlign.center,),
                     ),
                   ):
