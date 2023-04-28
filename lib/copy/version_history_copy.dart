@@ -3,6 +3,18 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 
 class VersionHistoryCopy{
 
+  static Widget getLatestVersionCopy(){
+    return Markdown(
+      physics: ScrollPhysics(),
+        data: "### v1.3.0\n"
+        "* Added ability to filter the notebook by category\n"
+        "* Implemented 'what's new' pop-up when updated\n\n"
+        " --- \n\n"
+            "Enjoying Air Fryr? If you find the app useful please consider supporting it's continued development. \n\n"
+            "See 'Remove Ads' in the sidebar menu for more information"
+        );
+  }
+
   static Widget getFullVersionHistory(){
     return const Padding(
       padding: EdgeInsets.all(12.0),

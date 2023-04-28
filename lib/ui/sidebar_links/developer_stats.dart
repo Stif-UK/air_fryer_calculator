@@ -1,5 +1,7 @@
 import 'package:air_fryer_calculator/api/purchase_api.dart';
+import 'package:air_fryer_calculator/controller/FryerController.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
+import 'package:air_fryer_calculator/util/startup_helper.dart';
 import 'package:air_fryer_calculator/util/text_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,7 +18,7 @@ class DeveloperStats extends StatefulWidget {
 class _DeveloperStatsState extends State<DeveloperStats> {
   @override
   Widget build(BuildContext context) {
-    //String purchaseDate = await getPurchaseDate();
+    final fryerController = Get.put(FryerController());
 
     return Scaffold(
       appBar: AppBar(
@@ -138,6 +140,20 @@ class _DeveloperStatsState extends State<DeveloperStats> {
 
             ),
             const Divider(thickness: 2,),
+            ListTile(
+              title: const Text("Revert Purchase Status"),
+              subtitle: const Text("Remove pro option and show ads by clicking here. If done in error purchases can be restored on the 'remove ads' page"),
+              onTap: (){
+                fryerController.revertPurchaseStatus();
+                Get.snackbar(
+                    "Reverted",
+                    "User is no longer Pro on this app",
+                    icon: const Icon(Icons.no_accounts),
+                    snackPosition: SnackPosition.BOTTOM
+                );
+              },
+            ),
+            const Divider(thickness: 2,),
             FutureBuilder(
               builder: (context, snapshot){
                 if (snapshot.connectionState == ConnectionState.done) {
@@ -183,7 +199,15 @@ class _DeveloperStatsState extends State<DeveloperStats> {
               future: PurchaseApi.getAppUserID(),
 
             ),
-            const Divider(thickness: 2,)
+            const Divider(thickness: 2,),
+            ListTile(
+              title: Text("Show what's new dialog"),
+              subtitle: Text("Trigger the what's new pop-up for testing purposes"),
+              onTap: (){
+                StartupChecksUtil.showWhatsNewDialog();
+              },
+            ),
+
 
           ],
         ),
