@@ -3,6 +3,7 @@ import 'package:air_fryer_calculator/api/purchase_api.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 import 'package:air_fryer_calculator/ui/add_notes.dart';
 import 'package:air_fryer_calculator/ui/search/search.dart';
+import 'package:air_fryer_calculator/util/startup_helper.dart';
 import 'package:get/get.dart';
 import 'package:air_fryer_calculator/ui/air_fryer_calculator.dart';
 import 'package:air_fryer_calculator/ui/air_fryer_notes.dart';
@@ -45,6 +46,8 @@ class _AirFryerHomeState extends State<AirFryerHome> {
       }
 
     }
+
+    StartupChecksUtil.runStartupChecks();
 
     return Scaffold(
       appBar: AppBar(
