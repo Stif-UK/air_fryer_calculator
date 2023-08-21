@@ -24,193 +24,191 @@ class _DeveloperStatsState extends State<DeveloperStats> {
       appBar: AppBar(
         title: const Text("Developer Stats"),
       ),
-      body: SingleChildScrollView(
-        child: ListView(
-          shrinkWrap: true,
-          children: [
-            const Divider(thickness: 2,),
-            ListTile(
-              title: const Text("Open Count"),
-              subtitle: Text("App Opened: ${FryerPreferences.getOpenCount()} times"),
-            ),
-            const Divider(thickness: 2,),
-            ListTile(
-              title: const Text("First Used"),
-                subtitle: Text("${TextHelper.formatDate(FryerPreferences.getFirstUseDate()!)}"),
-            ),
-            const Divider(thickness: 2,),
-            ListTile(
-              title: const Text("App Purchased"),
-              subtitle: Text("${FryerPreferences.getAppPurchasedStatus() ?? false}"),
-            ),
-            const Divider(thickness: 2,),
-            FutureBuilder(
-                builder: (context, snapshot){
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    // If we got an error
-                    if (snapshot.hasError) {
-                      return ListTile(
-                        title: Text('${snapshot.error} occurred'),
-                      );
+      body: ListView(
+        shrinkWrap: true,
+        children: [
+          const Divider(thickness: 2,),
+          ListTile(
+            title: const Text("Open Count"),
+            subtitle: Text("App Opened: ${FryerPreferences.getOpenCount()} times"),
+          ),
+          const Divider(thickness: 2,),
+          ListTile(
+            title: const Text("First Used"),
+              subtitle: Text("${TextHelper.formatDate(FryerPreferences.getFirstUseDate()!)}"),
+          ),
+          const Divider(thickness: 2,),
+          ListTile(
+            title: const Text("App Purchased"),
+            subtitle: Text("${FryerPreferences.getAppPurchasedStatus() ?? false}"),
+          ),
+          const Divider(thickness: 2,),
+          FutureBuilder(
+              builder: (context, snapshot){
+                if (snapshot.connectionState == ConnectionState.done) {
+                  // If we got an error
+                  if (snapshot.hasError) {
+                    return ListTile(
+                      title: Text('${snapshot.error} occurred'),
+                    );
 
-                      // if we got our data
-                    } else if (snapshot.hasData) {
-                      // Extracting data from snapshot object
-                      final data = snapshot.data as String;
-                      return ListTile(
-                        title: const Text("Purchase Date"),
-                        subtitle: Text(
-                          '$data',
+                    // if we got our data
+                  } else if (snapshot.hasData) {
+                    // Extracting data from snapshot object
+                    final data = snapshot.data as String;
+                    return ListTile(
+                      title: const Text("Purchase Date"),
+                      subtitle: Text(
+                        '$data',
 
-                        ),
-                      );
-                    }
+                      ),
+                    );
                   }
+                }
+            return ListTile(
+              title: const Text("Purchase Date"),
+              trailing: CircularProgressIndicator(),
+            );
+
+          },
+            future: getPurchaseDate(),
+
+          ),
+          const Divider(thickness: 2,),
+          FutureBuilder(
+            builder: (context, snapshot){
+              if (snapshot.connectionState == ConnectionState.done) {
+                // If we got an error
+                if (snapshot.hasError) {
+                  return ListTile(
+                    title: Text('${snapshot.error} occurred'),
+                  );
+
+                  // if we got our data
+                } else if (snapshot.hasData) {
+                  // Extracting data from snapshot object
+                  final data = snapshot.data as String;
+                  return ListTile(
+                    title: const Text("Last Donation Date"),
+                    subtitle: Text(
+                      '$data',
+
+                    ),
+                  );
+                }
+              }
               return ListTile(
-                title: const Text("Purchase Date"),
+                title: const Text("Last Donation Date"),
                 trailing: CircularProgressIndicator(),
               );
 
             },
-              future: getPurchaseDate(),
+            future: getLastDonationDate(),
 
-            ),
-            const Divider(thickness: 2,),
-            FutureBuilder(
-              builder: (context, snapshot){
-                if (snapshot.connectionState == ConnectionState.done) {
-                  // If we got an error
-                  if (snapshot.hasError) {
-                    return ListTile(
-                      title: Text('${snapshot.error} occurred'),
-                    );
+          ),
+          const Divider(thickness: 2,),
+          FutureBuilder(
+            builder: (context, snapshot){
+              if (snapshot.connectionState == ConnectionState.done) {
+                // If we got an error
+                if (snapshot.hasError) {
+                  return ListTile(
+                    title: Text('${snapshot.error} occurred'),
+                  );
 
-                    // if we got our data
-                  } else if (snapshot.hasData) {
-                    // Extracting data from snapshot object
-                    final data = snapshot.data as String;
-                    return ListTile(
-                      title: const Text("Last Donation Date"),
-                      subtitle: Text(
-                        '$data',
+                  // if we got our data
+                } else if (snapshot.hasData) {
+                  // Extracting data from snapshot object
+                  final data = snapshot.data as String;
+                  return ListTile(
+                    title: const Text("Last Entitlement Check"),
+                    subtitle: Text(
+                      '$data',
 
-                      ),
-                    );
-                  }
+                    ),
+                  );
                 }
-                return ListTile(
-                  title: const Text("Last Donation Date"),
-                  trailing: CircularProgressIndicator(),
-                );
+              }
+              return ListTile(
+                title: const Text("Last Entitlement Check"),
+                trailing: CircularProgressIndicator(),
+              );
 
-              },
-              future: getLastDonationDate(),
+            },
+            future: getLastEntilementCheck(),
 
-            ),
-            const Divider(thickness: 2,),
-            FutureBuilder(
-              builder: (context, snapshot){
-                if (snapshot.connectionState == ConnectionState.done) {
-                  // If we got an error
-                  if (snapshot.hasError) {
-                    return ListTile(
-                      title: Text('${snapshot.error} occurred'),
-                    );
+          ),
+          const Divider(thickness: 2,),
+          ListTile(
+            title: const Text("Revert Purchase Status"),
+            subtitle: const Text("Remove pro option and show ads by clicking here. If done in error purchases can be restored on the 'remove ads' page"),
+            onTap: (){
+              fryerController.revertPurchaseStatus();
+              Get.snackbar(
+                  "Reverted",
+                  "User is no longer Pro on this app",
+                  icon: const Icon(Icons.no_accounts),
+                  snackPosition: SnackPosition.BOTTOM
+              );
+            },
+          ),
+          const Divider(thickness: 2,),
+          FutureBuilder(
+            builder: (context, snapshot){
+              if (snapshot.connectionState == ConnectionState.done) {
+                // If we got an error
+                if (snapshot.hasError) {
+                  return ListTile(
+                    title: Text('${snapshot.error} occurred'),
+                  );
 
-                    // if we got our data
-                  } else if (snapshot.hasData) {
-                    // Extracting data from snapshot object
-                    final data = snapshot.data as String;
-                    return ListTile(
-                      title: const Text("Last Entitlement Check"),
-                      subtitle: Text(
-                        '$data',
+                  // if we got our data
+                } else if (snapshot.hasData) {
+                  // Extracting data from snapshot object
+                  final data = snapshot.data as String;
+                  return ListTile(
+                    title: const Text("App User ID"),
+                    subtitle: Text(
+                      '$data',
 
-                      ),
-                    );
-                  }
+                    ),
+                    trailing: IconButton(
+                      icon: Icon(Icons.copy),
+                      onPressed: (){
+                        //Copy the appUserID to the clipboard
+                        Clipboard.setData(ClipboardData(text:'$data'));
+                        Get.snackbar(
+                          "Copied",
+                           "appUserID saved to clipboard",
+                          icon: Icon(Icons.copy),
+                          snackPosition: SnackPosition.BOTTOM
+                        );
+
+                      },
+                    ),
+                  );
                 }
-                return ListTile(
-                  title: const Text("Last Entitlement Check"),
-                  trailing: CircularProgressIndicator(),
-                );
+              }
+              return ListTile(
+                title: const Text("App User ID"),
+                trailing: CircularProgressIndicator(),
+              );
 
-              },
-              future: getLastEntilementCheck(),
+            },
+            future: PurchaseApi.getAppUserID(),
 
-            ),
-            const Divider(thickness: 2,),
-            ListTile(
-              title: const Text("Revert Purchase Status"),
-              subtitle: const Text("Remove pro option and show ads by clicking here. If done in error purchases can be restored on the 'remove ads' page"),
-              onTap: (){
-                fryerController.revertPurchaseStatus();
-                Get.snackbar(
-                    "Reverted",
-                    "User is no longer Pro on this app",
-                    icon: const Icon(Icons.no_accounts),
-                    snackPosition: SnackPosition.BOTTOM
-                );
-              },
-            ),
-            const Divider(thickness: 2,),
-            FutureBuilder(
-              builder: (context, snapshot){
-                if (snapshot.connectionState == ConnectionState.done) {
-                  // If we got an error
-                  if (snapshot.hasError) {
-                    return ListTile(
-                      title: Text('${snapshot.error} occurred'),
-                    );
-
-                    // if we got our data
-                  } else if (snapshot.hasData) {
-                    // Extracting data from snapshot object
-                    final data = snapshot.data as String;
-                    return ListTile(
-                      title: const Text("App User ID"),
-                      subtitle: Text(
-                        '$data',
-
-                      ),
-                      trailing: IconButton(
-                        icon: Icon(Icons.copy),
-                        onPressed: (){
-                          //Copy the appUserID to the clipboard
-                          Clipboard.setData(ClipboardData(text:'$data'));
-                          Get.snackbar(
-                            "Copied",
-                             "appUserID saved to clipboard",
-                            icon: Icon(Icons.copy),
-                            snackPosition: SnackPosition.BOTTOM
-                          );
-
-                        },
-                      ),
-                    );
-                  }
-                }
-                return ListTile(
-                  title: const Text("App User ID"),
-                  trailing: CircularProgressIndicator(),
-                );
-
-              },
-              future: PurchaseApi.getAppUserID(),
-
-            ),
-            const Divider(thickness: 2,),
-            ListTile(
-              title: Text("Show what's new dialog"),
-              subtitle: Text("Trigger the what's new pop-up for testing purposes"),
-              onTap: (){
-                StartupChecksUtil.showWhatsNewDialog();
-              },
-            ),
+          ),
+          const Divider(thickness: 2,),
+          ListTile(
+            title: Text("Show what's new dialog"),
+            subtitle: Text("Trigger the what's new pop-up for testing purposes"),
+            onTap: (){
+              StartupChecksUtil.showWhatsNewDialog();
+            },
+          ),
 
 
-          ],
-        ),
+        ],
       ),
     );
   }
