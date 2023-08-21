@@ -148,6 +148,30 @@ class _AddNotesState extends State<AddNotes> {
                         },
                       ),
 
+                      //Favourite toggle
+                      noteState == NoteEnum.view || noteState == NoteEnum.edit? Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Text("Favourite:",
+                                textAlign: TextAlign.start,
+                                style: Theme.of(context).textTheme.bodyLarge,),
+                            ),
+                            Switch(
+                              value: widget.currentNote?.isFavourite ?? false,
+                              onChanged: (value){
+                                setState(() {
+                                  DataBaseHelper.setFavouriteState(widget.currentNote!, value);
+                                });
+                              },
+                            ),
+                            widget.currentNote?.isFavourite?? false? Icon(Icons.star): Icon(Icons.star_border_outlined)
+                          ],
+                        ),
+                      ): SizedBox(height: 0,),
+
 
                       noteState == NoteEnum.view? const SizedBox(height: 0,): const Divider(thickness: 2,),
                       Column(

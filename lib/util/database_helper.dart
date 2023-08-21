@@ -67,6 +67,11 @@ class DataBaseHelper {
     return box.add(note);
   }
 
+  static setFavouriteState(Notes currentNote, bool favourite){
+    currentNote.isFavourite = favourite;
+    currentNote.save();
+  }
+
 
 
   static noteAddedSnackbar(String title){
