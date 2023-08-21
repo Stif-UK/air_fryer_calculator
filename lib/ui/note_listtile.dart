@@ -1,4 +1,5 @@
 import 'package:air_fryer_calculator/model/notesmodel.dart';
+import 'package:air_fryer_calculator/util/database_helper.dart';
 import 'package:air_fryer_calculator/util/text_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,7 +18,12 @@ class NoteListtile extends StatelessWidget{
     bool favourite = currentNote.isFavourite ?? false;
     return ListTile(
       leading: TextHelper.getCategoryIcon(TextHelper.getEnumFromString(currentNote.category)),
-      trailing: favourite? Icon(Icons.star): Icon(Icons.star_border),
+      trailing: IconButton(
+        icon: favourite? Icon(Icons.star): Icon(Icons.star_border),
+        onPressed: (){
+          DataBaseHelper.setFavouriteState(currentNote, !favourite);
+        },
+      ),
       title: Text(currentNote.title),
       subtitle: Text("${currentNote.temperature.toInt()}${TextHelper.getTempSuffix(currentNote.isCelcius)} for ${currentNote.time.toInt()} minutes"),
       onTap: (){
