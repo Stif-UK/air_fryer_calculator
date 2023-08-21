@@ -97,7 +97,7 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
                       setState(()
                       => time = value);
                     },
-                    divisions: 36,
+                    divisions: 180,
                     label: "${time.toInt()} mins",),
                   //Text("${time.toInt()} minutes")
                   const Divider(thickness: 2,),
