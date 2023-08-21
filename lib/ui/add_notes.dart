@@ -316,7 +316,7 @@ class _AddNotesState extends State<AddNotes> {
                               //Check that fields are valid
                               if(_formKey.currentState!.validate()) {
                             //Add a new object to the database, notify user and close the window
-                            await DataBaseHelper.addNote(titleFieldController.text, _selectedCategory, widget.temperature, widget.time, notesFieldController.text, widget.fryerController.tempIsCelcius.value);
+                            await DataBaseHelper.addNote(titleFieldController.text, _selectedCategory, widget.temperature, widget.time, notesFieldController.text, widget.fryerController.tempIsCelcius.value, false); //TODO: Update value of 'favourite'
                             Get.back();
                             title = titleFieldController.text;
                             Get.snackbar(

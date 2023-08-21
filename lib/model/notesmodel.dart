@@ -27,6 +27,9 @@ class Notes extends HiveObject{
   @HiveField(6)
   late bool? isArchived;
 
+  @HiveField(7)
+  late bool? isFavourite;
+
 
 
 

@@ -52,7 +52,7 @@ class DataBaseHelper {
     return notebook.values.where((note) => note.isArchived == true).toList();
   }
 
-  static Future addNote(String title, CategoryEnum category, double temperature, double time, String? notes, bool isCelcius){
+  static Future addNote(String title, CategoryEnum category, double temperature, double time, String? notes, bool isCelcius, bool isFavourite){
     final note = Notes()
         ..title = title
         ..category = category.toString()
@@ -60,7 +60,8 @@ class DataBaseHelper {
         ..time = time
         ..notes = notes
         ..isCelcius = isCelcius
-        ..isArchived = false;
+        ..isArchived = false
+        ..isFavourite = isFavourite;
 
     final Box<Notes> box = getNotes();
     return box.add(note);
