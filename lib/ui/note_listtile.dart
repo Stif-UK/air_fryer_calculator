@@ -14,8 +14,10 @@ class NoteListtile extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    bool favourite = currentNote.isFavourite ?? false;
     return ListTile(
       leading: TextHelper.getCategoryIcon(TextHelper.getEnumFromString(currentNote.category)),
+      trailing: favourite? Icon(Icons.star): Icon(Icons.star_border),
       title: Text(currentNote.title),
       subtitle: Text("${currentNote.temperature.toInt()}${TextHelper.getTempSuffix(currentNote.isCelcius)} for ${currentNote.time.toInt()} minutes"),
       onTap: (){
