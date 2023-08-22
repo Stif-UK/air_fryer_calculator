@@ -23,6 +23,7 @@ class VersionHistoryCopy{
     String latestVersion = "### v1.4.0\n"
         "* Added the ability to mark notes as favourites\n"
         "* Implemented ability to filter notes by favourites\n"
+        "* Made temperature selector on calculator more granular\n"
         "* Additional bug fixes and performance improvements\n"
         " --- \n\n";
 
@@ -45,9 +46,11 @@ class VersionHistoryCopy{
               "### v1.4.0\n"
               "* Added the ability to mark notes as favourites\n"
               "* Implemented ability to filter notes by favourites\n"
+              "* Made temperature selector on calculator more granular\n"
               "* Updated Google Admob SDK to latest version\n"
               "* Updated Revenuecat SDK to latest version\n"
               "* Updated target operating system versions\n"
+
               " --- \n\n"
           "## Previous Releases:\n"
               "### v1.3.0\n"
