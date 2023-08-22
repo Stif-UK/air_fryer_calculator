@@ -55,13 +55,16 @@ class _AirFryerHomeState extends State<AirFryerHome> {
         //backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: (){
-              showSearch(
-                  context: context,
-                  delegate: SearchWidget());
-            },
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+              icon: Icon(Icons.search),
+              onPressed: (){
+                showSearch(
+                    context: context,
+                    delegate: SearchWidget());
+              },
+            ),
           )
         ],
       ),

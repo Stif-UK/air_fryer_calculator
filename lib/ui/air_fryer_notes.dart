@@ -114,7 +114,7 @@ class _AirFryerNotesState extends State<AirFryerNotes> {
                     children: [
                       Expanded(child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text("Favourites:"),
+                        child: Text("Favourites:",style: Theme.of(context).textTheme.bodyLarge,),
                       )),
                       showFavourites? Text("Showing favourites"): Text("Showing all"),
                       Switch(value: showFavourites, onChanged: (fav){
