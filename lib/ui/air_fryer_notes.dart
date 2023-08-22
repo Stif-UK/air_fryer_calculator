@@ -28,6 +28,7 @@ class AirFryerNotes extends StatefulWidget {
 class _AirFryerNotesState extends State<AirFryerNotes> {
   final items = CategoryEnum.values;
   CategoryEnum? value = CategoryEnum.all;
+  bool showFavourites = false;
 
   BannerAd? banner;
   bool purchaseStatus = FryerPreferences.getAppPurchasedStatus() ?? false;
@@ -72,7 +73,7 @@ class _AirFryerNotesState extends State<AirFryerNotes> {
             valueListenable: notebook.listenable(),
             builder: (context, box, _){
               //List to display
-              List<Notes> filteredList = DataBaseHelper.getNotesByCategory(value!);
+              List<Notes> filteredList = DataBaseHelper.getNotesByCategory(value!, showFavourites);
               // List<Notes> filteredList = notebook.values.where((note) => note.isArchived != true).toList();
 
               return Column(
@@ -108,6 +109,22 @@ class _AirFryerNotesState extends State<AirFryerNotes> {
                       ),
                     ),
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Expanded(child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text("Favourites:"),
+                      )),
+                      showFavourites? Text("Showing favourites"): Text("Showing all"),
+                      Switch(value: showFavourites, onChanged: (fav){
+                        setState(() {
+                          showFavourites = fav;
+                        });
+                      })
+                    ],
+                  ),
+                  Divider(thickness: 2,),
                   filteredList.isEmpty?
                         Expanded(
                           child: Center(

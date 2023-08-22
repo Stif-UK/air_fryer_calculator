@@ -9,7 +9,7 @@ class DataBaseHelper {
     return Hive.box<Notes>("NoteBook");
   }
 
-  static getNotesByCategory(CategoryEnum category){
+  static getNotesByCategory(CategoryEnum category, bool showFavourites){
 
     Box<Notes> notebook = DataBaseHelper.getNotes();
     List <Notes>returnList = notebook.values.where((note) => note.isArchived != true).toList();
@@ -44,7 +44,8 @@ class DataBaseHelper {
             returnList = notebook.values.where((note) => note.isArchived != true).toList();
         break;
     }
-    return returnList;
+    //Either return the filtered list, or further filter to only show favourites
+    return showFavourites? returnList.where((note) => note.isFavourite == true).toList(): returnList;
   }
 
   static List<Notes> getArchivedNotes(){
