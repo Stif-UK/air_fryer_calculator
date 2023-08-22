@@ -20,9 +20,10 @@ class VersionHistoryCopy{
 
   static String _composeVersionCopy(){
     bool isPro = FryerPreferences.getAppPurchasedStatus() ?? false;
-    String latestVersion = "### v1.3.0\n"
-        "* Added ability to filter the notebook by category\n"
-        "* Implemented 'what's new' pop-up when updated\n\n"
+    String latestVersion = "### v1.4.0\n"
+        "* Added the ability to mark notes as favourites\n"
+        "* Implemented ability to filter notes by favourites\n"
+        "* Additional bug fixes and performance improvements\n"
         " --- \n\n";
 
     String proFooter = "Thank you for Supporting Air Fryr - your donation helps keep the app alive!";
@@ -41,11 +42,24 @@ class VersionHistoryCopy{
       padding: EdgeInsets.all(12.0),
       child: Markdown(
           data: "## Latest Version:\n"
+              "### v1.4.0\n"
+              "* Added the ability to mark notes as favourites\n"
+              "* Implemented ability to filter notes by favourites\n"
+              "* Updated Google Admob SDK to latest version\n"
+              "* Updated Revenuecat SDK to latest version\n"
+              "* Updated target operating system versions\n"
+              " --- \n\n"
+          "## Previous Releases:\n"
+              "### v1.3.0\n"
+              "* Added ability to filter the notebook by category\n"
+              "* Implemented 'what's new' pop-up when updated\n\n"
+              " --- \n"
+
               "### v1.2.0\n"
               "* Added the ability to support the app and remove ads via in-app purchase\n"
               "* Updates to sidebar menu\n"
               " --- \n"
-              "## Previous Releases:\n"
+
               "### v1.1.0\n"
               "* Added ability to search notebook\n"
               "* Added options to leave app reviews\n"
