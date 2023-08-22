@@ -47,6 +47,7 @@ class VersionHistoryCopy{
               "* Added the ability to mark notes as favourites\n"
               "* Implemented ability to filter notes by favourites\n"
               "* Made temperature selector on calculator more granular\n"
+              "* Increased maximum length of note that can be displayed\n"
               "* Updated Google Admob SDK to latest version\n"
               "* Updated Revenuecat SDK to latest version\n"
               "* Updated target operating system versions\n"
