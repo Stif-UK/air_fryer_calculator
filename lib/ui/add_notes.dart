@@ -325,7 +325,7 @@ class _AddNotesState extends State<AddNotes> {
                         fieldTitle: "Notes:",
                         hintText: "Enter Notes",
                         minLines: 4,
-                        maxLines: 20,
+                        maxLines: 150,
                         controller: notesFieldController,
                         textCapitalization: TextCapitalization.sentences,),
                       //noteState == NoteEnum.view? const SizedBox(height: 0,): const Divider(thickness: 2,),
