@@ -1,8 +1,12 @@
+import 'package:air_fryer_calculator/controller/FryerController.dart';
+import 'package:air_fryer_calculator/util/text_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 
 class AirFryerTemperature extends StatelessWidget {
-  const AirFryerTemperature({Key? key}) : super(key: key);
+  AirFryerTemperature({Key? key}) : super(key: key);
+  final fryerController = Get.put(FryerController());
 
   @override
   Widget build(BuildContext context) {
@@ -22,15 +26,15 @@ class AirFryerTemperature extends StatelessWidget {
             Expanded(flex: 5, child: Center(child: Icon(FontAwesomeIcons.cow, size: 50,))),
             Expanded(
               flex: 5,
-              child: Column(
+              child: Obx(() => Column(
                 children: [
                   Text("Beef", style: Theme.of(context).textTheme.headlineSmall,),
-                  Text("rare: 120F"),
-                  Text("medium: 111F"),
-                  Text("well done: 150F")
+                  Text("rare: ${fryerController.tempIsCelcius.value == true? "60": "140"}${TextHelper.getTempSuffix(fryerController.tempIsCelcius.value)}"),
+                  Text("medium: ${fryerController.tempIsCelcius.value == true? "71": "160"}${TextHelper.getTempSuffix(fryerController.tempIsCelcius.value)}"),
+                  Text("well done: ${fryerController.tempIsCelcius.value == true? "77": "170"}${TextHelper.getTempSuffix(fryerController.tempIsCelcius.value)}")
                 ],
 
-              ),
+              )),
             )
           ],
         ),
@@ -40,13 +44,14 @@ class AirFryerTemperature extends StatelessWidget {
             children: [
               Expanded(
                 flex: 5,
-                child: Column(
-                  children: [
-                    Text("Pork", style: Theme.of(context).textTheme.headlineSmall,),
-                    Text(""),
-                    Text("temp: 145F"),
-                    Text(""),
-                  ],
+                child: Obx(() => Column(
+                    children: [
+                      Text("Pork", style: Theme.of(context).textTheme.headlineSmall,),
+                      Text(""),
+                      Text("temp: ${fryerController.tempIsCelcius.value == true? "71": "160"}${TextHelper.getTempSuffix(fryerController.tempIsCelcius.value)}"),
+                      Text(""),
+                    ],
+                  ),
                 ),
               ),
               Expanded(flex: 5, child: Center(child: Icon(FontAwesomeIcons.bacon, size: 50,))),
@@ -59,14 +64,15 @@ class AirFryerTemperature extends StatelessWidget {
               Expanded(flex: 5, child: Center(child: Icon(FontAwesomeIcons.drumstickBite, size: 50,))),
               Expanded(
                 flex: 5,
-                child: Column(
-                  children: [
-                    Text("Poultry", style: Theme.of(context).textTheme.headlineSmall,),
-                    Text("breast: 165F"),
-                    Text("thigh: 170F"),
-                    Text(""),
-                  ],
+                child: Obx(()=> Column(
+                    children: [
+                      Text("Poultry", style: Theme.of(context).textTheme.headlineSmall,),
+                      Text("pieces: ${fryerController.tempIsCelcius.value == true? "74": "165"}${TextHelper.getTempSuffix(fryerController.tempIsCelcius.value)}"),
+                      Text("whole: ${fryerController.tempIsCelcius.value == true? "85": "185"}${TextHelper.getTempSuffix(fryerController.tempIsCelcius.value)}"),
+                      Text(""),
+                    ],
 
+                  ),
                 ),
               ),
             ],
@@ -77,13 +83,14 @@ class AirFryerTemperature extends StatelessWidget {
             children: [
               Expanded(
                 flex: 5,
-                child: Column(
-                  children: [
-                    Text("Fish", style: Theme.of(context).textTheme.headlineSmall,),
-                    Text(""),
-                    Text("temp: 137"),
-                    Text(""),
-                  ],
+                child: Obx(() => Column(
+                    children: [
+                      Text("Fish", style: Theme.of(context).textTheme.headlineSmall,),
+                      Text(""),
+                      Text("temp: ${fryerController.tempIsCelcius.value == true? "58": "137"}${TextHelper.getTempSuffix(fryerController.tempIsCelcius.value)}"),
+                      Text(""),
+                    ],
+                  ),
                 ),
               ),
               Expanded(flex: 5, child: Center(child: Icon(FontAwesomeIcons.fish, size: 50,))),
@@ -96,14 +103,15 @@ class AirFryerTemperature extends StatelessWidget {
               Expanded(flex: 5, child: Center(child: Icon(FontAwesomeIcons.cakeCandles, size: 50,))),
               Expanded(
                 flex: 5,
-                child: Column(
-                  children: [
-                    Text("Baking", style: Theme.of(context).textTheme.headlineSmall,),
-                    Text("cake: 210F"),
-                    Text("bread: 210F"),
-                    Text("brownies: 190F"),
-                  ],
+                child: Obx(() => Column(
+                    children: [
+                      Text("Baking", style: Theme.of(context).textTheme.headlineSmall,),
+                      Text("cake: ${fryerController.tempIsCelcius.value == true? "98": "210"}${TextHelper.getTempSuffix(fryerController.tempIsCelcius.value)}"),
+                      Text("bread: ${fryerController.tempIsCelcius.value == true? "98": "210"}${TextHelper.getTempSuffix(fryerController.tempIsCelcius.value)}"),
+                      Text("brownies: ${fryerController.tempIsCelcius.value == true? "88": "190"}${TextHelper.getTempSuffix(fryerController.tempIsCelcius.value)}"),
+                    ],
 
+                  ),
                 ),
               ),
             ],
