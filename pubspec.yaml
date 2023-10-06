@@ -88,6 +88,7 @@ flutter:
   assets:
     - assets/theme/appainter_theme.json
     - assets/theme/appainter_theme_dark.json
+    - assets/demo/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
