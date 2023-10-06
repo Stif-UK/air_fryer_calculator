@@ -70,14 +70,14 @@ class _AirFryerHomeState extends State<AirFryerHome> {
           )
         ],
       ),
-      floatingActionButton: _selectedIndex == 0? null : FloatingActionButton(
+      floatingActionButton: _selectedIndex == 1? FloatingActionButton(
         backgroundColor: Colors.red,
         //foregroundColor: Colors.white,
         onPressed: () {
           Get.to(() => AddNotes(time: 30.0, temperature: 200.0));
         },
         child: const Icon(Icons.add),
-      ),
+      ) : null,
       drawer: NavBar(),
       body: _children[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
