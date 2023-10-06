@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:air_fryer_calculator/api/purchase_api.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 import 'package:air_fryer_calculator/ui/add_notes.dart';
+import 'package:air_fryer_calculator/ui/air_fryer_temperatures.dart';
 import 'package:air_fryer_calculator/ui/search/search.dart';
 import 'package:air_fryer_calculator/util/startup_helper.dart';
 import 'package:get/get.dart';
@@ -23,6 +24,7 @@ class _AirFryerHomeState extends State<AirFryerHome> {
   final List<Widget> _children =[
     AirFryerCalculator(),
     AirFryerNotes(),
+    AirFryerTemperature()
   ];
 
   @override
@@ -87,6 +89,10 @@ class _AirFryerHomeState extends State<AirFryerHome> {
           BottomNavigationBarItem(
             icon: Icon(Icons.note_alt_outlined),
             label: 'Notes'
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.thermostat),
+              label: 'Temp Guide'
           )
         ],
         currentIndex: _selectedIndex,
