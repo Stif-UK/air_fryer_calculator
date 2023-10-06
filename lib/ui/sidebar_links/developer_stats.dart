@@ -1,6 +1,7 @@
 import 'package:air_fryer_calculator/api/purchase_api.dart';
 import 'package:air_fryer_calculator/controller/FryerController.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
+import 'package:air_fryer_calculator/ui/first_use_demo/onboarding.dart';
 import 'package:air_fryer_calculator/util/startup_helper.dart';
 import 'package:air_fryer_calculator/util/text_helper.dart';
 import 'package:flutter/material.dart';
@@ -206,6 +207,14 @@ class _DeveloperStatsState extends State<DeveloperStats> {
               StartupChecksUtil.showWhatsNewDialog();
             },
           ),
+          const Divider(thickness: 2,),
+          ListTile(
+            title: Text("Show onboarding demo"),
+            subtitle: Text("Trigger the first use demo slideshow"),
+            onTap: (){
+              Get.to(() => AirFryrOnboarding());
+            },
+          )
 
 
         ],
