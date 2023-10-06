@@ -14,10 +14,17 @@ class AirFryerTemperature extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Text("Temperature Guide",
-            style: Theme.of(context).textTheme.headlineMedium,),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Text("Temperature Guide",
+                style: Theme.of(context).textTheme.headlineMedium,),
+              ),
+              IconButton(
+                icon: Icon(FontAwesomeIcons.circleQuestion),
+                  onPressed: (){})
+            ],
           ),
         const Divider(thickness: 2,),
         Row(
