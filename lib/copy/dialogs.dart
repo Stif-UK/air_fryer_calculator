@@ -9,4 +9,12 @@ class Dialogs{
       middleText: HelpCopy.getDeletedNotesHelp()
     );
   }
+
+  static getTemperatureHelpDialog(){
+    return Get.defaultDialog(
+      title: "Temperature Reference",
+      middleText: HelpCopy.getTemperatureHelpDialog()
+    );
+  }
+
 }

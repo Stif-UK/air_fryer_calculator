@@ -1,4 +1,5 @@
 import 'package:air_fryer_calculator/controller/FryerController.dart';
+import 'package:air_fryer_calculator/copy/dialogs.dart';
 import 'package:air_fryer_calculator/util/text_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -23,7 +24,9 @@ class AirFryerTemperature extends StatelessWidget {
               ),
               IconButton(
                 icon: Icon(FontAwesomeIcons.circleQuestion),
-                  onPressed: (){})
+                  onPressed: (){
+                    Dialogs.getTemperatureHelpDialog();
+                  })
             ],
           ),
         const Divider(thickness: 2,),
