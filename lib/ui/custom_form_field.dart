@@ -37,6 +37,7 @@ class CustomFormField extends StatelessWidget {
           textAlign: TextAlign.start,
           style: Theme.of(context).textTheme.bodyLarge,),
           TextFormField(
+            style: Theme.of(context).textTheme.bodyLarge,
             enabled: enabled,
             textCapitalization: textCapitalization,
             controller: controller,
