@@ -38,17 +38,17 @@ class _AirFryrOnboardingState extends State<AirFryrOnboarding> {
                 subtitle: "Get the most from your air fryer!\nSwipe to learn what Air Fryr can do..."),
             buildPage(
                 colour: Theme.of(context).canvasColor,
-                urlImage: Get.isDarkMode? 'assets/demo/page1_logo.png':'assets/demo/page1_logo.png',
+                urlImage: Get.isDarkMode? 'assets/demo/calculator_dark.png':'assets/demo/calculator_light.png',
                 title: "Calculator",
                 subtitle: "Convert fan oven cooking times to air fryer equivalents"),
             buildPage(
                 colour: Theme.of(context).canvasColor,
-                urlImage: Get.isDarkMode? 'assets/demo/page1_logo.png': 'assets/demo/page1_logo.png',
+                urlImage: Get.isDarkMode? 'assets/demo/notes_dark.png': 'assets/demo/notes_light.png',
                 title: "Notebook",
                 subtitle: "Save calculations and recipes. \nUse real-time search to quickly access them"),
             buildPage(
                 colour: Theme.of(context).canvasColor,
-                urlImage: Get.isDarkMode? 'assets/demo/page1_logo.png':'assets/demo/page1_logo.png',
+                urlImage: Get.isDarkMode? 'assets/demo/temperature_dark.png':'assets/demo/temperature_light.png',
                 title: "Reference",
                 subtitle: "Handy temperature reference to check your food is fully cooked"),
           ],
