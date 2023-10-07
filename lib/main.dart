@@ -3,6 +3,7 @@ import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 import 'package:air_fryer_calculator/model/notesmodel.dart';
 import 'package:air_fryer_calculator/provider/adstate.dart';
 import 'package:air_fryer_calculator/ui/air_fryer_home.dart';
+import 'package:air_fryer_calculator/ui/first_use_demo/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:air_fryer_calculator/theme/theme_constants.dart';
@@ -53,6 +54,9 @@ void main() async {
   int openCount = FryerPreferences.getOpenCount() ?? 0;
   FryerPreferences.setOpenCount(openCount +1);
 
+  //Check if user has seen the first use demo
+  final hasSeenDemo = FryerPreferences.getHasSeenDemo() ?? false;
+
 
   runApp(
        Provider.value(
@@ -63,7 +67,7 @@ void main() async {
             theme: themeLight,
             darkTheme: themeDark,
             themeMode: ThemeMode.system,
-            home: const AirFryerHome(),
+            home: hasSeenDemo? const AirFryerHome() : AirFryrOnboarding(),
           ),
        ),
 

@@ -1,3 +1,4 @@
+import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 import 'package:air_fryer_calculator/ui/air_fryer_home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -68,7 +69,7 @@ class _AirFryrOnboardingState extends State<AirFryrOnboarding> {
           child: const Text("Let's go!",
             style: TextStyle(fontSize: 22),),
           onPressed: () async {
-            //await WristCheckPreferences.setHasSeenDemo(true);
+            await FryerPreferences.setHasSeenDemo(true);
             Get.off(()=> AirFryerHome());
           },
         ),

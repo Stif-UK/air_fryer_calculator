@@ -17,6 +17,8 @@ class FryerPreferences {
   static const _keyFirstUseDate = 'firstUseDate';
   static const _keyLastReviewPrompt = 'lastReviewPrompt';
   static const _keyLastEntitlementCheck = 'lastEntitlementCheck';
+  //First Use Demo
+  static const _keyFirstDemo = 'firstUseDemo';
 
 
   //Getters and setters
@@ -26,6 +28,12 @@ class FryerPreferences {
 
   static Future setOpenCount(int openCount) async =>
       await _preferences.setInt(_keyOpenCount, openCount);
+
+  //Getter and setter for first use demo
+  static Future setHasSeenDemo(bool hasSeenDemo) async =>
+      await _preferences.setBool(_keyFirstDemo, hasSeenDemo);
+
+  static bool? getHasSeenDemo() => _preferences.getBool(_keyFirstDemo);
 
   //Getter and setter for purchased bool
   static bool? getAppPurchasedStatus() => _preferences.getBool(_keyAppPurchased);
