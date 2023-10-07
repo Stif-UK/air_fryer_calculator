@@ -45,7 +45,7 @@ class _AirFryrOnboardingState extends State<AirFryrOnboarding> {
                 colour: Theme.of(context).canvasColor,
                 urlImage: Get.isDarkMode? 'assets/demo/page1_logo.png': 'assets/demo/page1_logo.png',
                 title: "Notebook",
-                subtitle: "Capture calculations and add recipes. \nSearch to quickly find the note you're looking for..."),
+                subtitle: "Save calculations and recipes. \nUse real-time search to quickly access them"),
             buildPage(
                 colour: Theme.of(context).canvasColor,
                 urlImage: Get.isDarkMode? 'assets/demo/page1_logo.png':'assets/demo/page1_logo.png',
