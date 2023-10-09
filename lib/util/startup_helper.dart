@@ -29,7 +29,10 @@ class StartupChecksUtil{
     }
     //2. If not showing a what's new dialog, check if a sale dialog should show
     else{
-      checkForSale();
+      //Check the app isn't already pro
+      if(FryerPreferences.getAppPurchasedStatus() ?? false == false) {
+        checkForSale();
+      }
     }
       }
 
