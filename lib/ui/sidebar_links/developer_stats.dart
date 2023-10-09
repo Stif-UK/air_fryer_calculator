@@ -214,6 +214,11 @@ class _DeveloperStatsState extends State<DeveloperStats> {
             onTap: (){
               Get.to(() => AirFryrOnboarding());
             },
+          ),
+          const Divider(thickness: 2,),
+          ListTile(
+            title: Text("Last Sale Prompt Dismissed"),
+            subtitle: FryerPreferences.getLastSalePrompt() != null? Text(TextHelper.formatDate(FryerPreferences.getLastSalePrompt()!)) : Text("Not Recorded"),
           )
 
 

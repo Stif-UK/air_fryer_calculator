@@ -17,6 +17,7 @@ class FryerPreferences {
   static const _keyFirstUseDate = 'firstUseDate';
   static const _keyLastReviewPrompt = 'lastReviewPrompt';
   static const _keyLastEntitlementCheck = 'lastEntitlementCheck';
+  static const _keyLastSalePromptDismissed = 'lastSalePromptDismissed';
   //First Use Demo
   static const _keyFirstDemo = 'firstUseDemo';
 
@@ -87,6 +88,16 @@ class FryerPreferences {
 
   static Future setLastEntitlementCheckDate(DateTime lastEntitlementCheck) async{
     await _preferences.setString(_keyLastEntitlementCheck, lastEntitlementCheck.toString());
+  }
+
+  //Getter and Setter for last sale prompt acknowledged
+  static DateTime? getLastSalePrompt() {
+    String? returnString = _preferences.getString(_keyLastSalePromptDismissed);
+    return returnString == null? null : DateTime.parse(returnString);
+  }
+
+  static Future setLastSalePrompt(DateTime lastSalePrompt) async{
+    await _preferences.setString(_keyLastSalePromptDismissed, lastSalePrompt.toString());
   }
 
 }

@@ -29,8 +29,8 @@ class StartupChecksUtil{
     }
     //2. If not showing a what's new dialog, check if a sale dialog should show
     else{
-      //Check the app isn't already pro
-      if(FryerPreferences.getAppPurchasedStatus() ?? false == false) {
+      //Check the app isn't already pro and hasn't recently dismissed a prompt
+      if(FryerPreferences.getAppPurchasedStatus() ?? false == false && canShowSale()) {
         checkForSale();
       }
     }
@@ -82,7 +82,8 @@ class StartupChecksUtil{
           ),
           textConfirm: "Show me",
           textCancel: "No Thanks",
-          onConfirm: () => Get.to(() => RemoveAds())
+          onConfirm: () => Get.to(() => RemoveAds()),
+          onCancel: () => FryerPreferences.setLastSalePrompt(DateTime.now())
         );
       }
     } on Error catch (e) {
@@ -90,6 +91,25 @@ class StartupChecksUtil{
     }
 
     print(offerings.map((e) => e.serverDescription));
+  }
+
+  /*
+  canShowSale() checks if a user has been prompted with a sale and dismissed it within the last 30 days.
+  If they have they should not be prompted again.
+  Based on this, sales should last under 30 days.
+   */
+  static bool canShowSale(){
+    var canShow = true;
+    DateTime now = DateTime.now();
+    DateTime? lastDismissed = FryerPreferences.getLastSalePrompt();
+    if(lastDismissed != null){
+      Duration timeDiff = now.difference(lastDismissed);
+      if(timeDiff.inDays < 30){
+        canShow = false;
+      }
+    }
+
+    return canShow;
   }
 
   static showWhatsNewDialog(){
