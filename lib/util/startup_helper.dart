@@ -78,7 +78,11 @@ class StartupChecksUtil{
         Get.defaultDialog(
           title: title,
           content: Container(
-            child: Text(description),
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text(description,
+               textAlign: TextAlign.center,),
+            ),
           ),
           textConfirm: "Show me",
           textCancel: "No Thanks",
