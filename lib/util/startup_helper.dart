@@ -25,17 +25,14 @@ class StartupChecksUtil{
     print("Running startup checks");
     if(_showWhatsNew){
       showWhatsNewDialog();
-      print("Showing whats new");
 
       StartupChecksUtil.updateLatestVersion();
     }
     //2. If not showing a what's new dialog, check if a sale dialog should show
     else{
       //Check the app isn't already pro and hasn't recently dismissed a prompt
-      print("Should we check for a sale?");
       bool isAppPro = FryerPreferences.getAppPurchasedStatus() ?? false;
       if(isAppPro == false && canShowSale()) {
-        print("Checking for sale");
         checkForSale();
       }
     }
@@ -74,13 +71,11 @@ class StartupChecksUtil{
     final offerings = await PurchaseApi.fetchOffers();
     String? title;
     String? description;
-    print("Got the offerings");
     try {
       //Try to access the title and description of the offer - if more than one entry has been returned this will throw an error
       title = offerings.map((offer) => offer.identifier).single;
       description = offerings.map((offer) => offer.serverDescription).single;
       //if we successfully get the offer, check if the title includes the word 'sale' then display a dialog
-      print("Does $title contain Sale? ${title.containsSale}");
       if(title.containsSale){
         Get.defaultDialog(
           title: title,
