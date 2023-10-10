@@ -219,6 +219,17 @@ class _DeveloperStatsState extends State<DeveloperStats> {
           ListTile(
             title: Text("Last Sale Prompt Dismissed"),
             subtitle: FryerPreferences.getLastSalePrompt() != null? Text(TextHelper.formatDate(FryerPreferences.getLastSalePrompt()!)) : Text("Not Recorded"),
+            onLongPress: () async {
+              //When long pressed, push a date > 30 day sin the past
+              DateTime newDate = DateTime.now().subtract(Duration(days: 31));
+              await FryerPreferences.setLastSalePrompt(newDate);
+              Get.snackbar(
+                  "Date Amended",
+                  "Last Prompted date moved 30+ days into the past",
+                  icon: const Icon(Icons.date_range),
+              snackPosition: SnackPosition.BOTTOM
+              );
+            },
           )
 
 
