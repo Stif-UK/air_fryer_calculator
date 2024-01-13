@@ -1,6 +1,7 @@
 import 'package:air_fryer_calculator/api/purchase_api.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 import 'package:air_fryer_calculator/model/notesmodel.dart';
+import 'package:air_fryer_calculator/privacy/initialise_screen.dart';
 import 'package:air_fryer_calculator/provider/adstate.dart';
 import 'package:air_fryer_calculator/ui/air_fryer_home.dart';
 import 'package:air_fryer_calculator/ui/first_use_demo/onboarding.dart';
@@ -67,7 +68,7 @@ void main() async {
             theme: themeLight,
             darkTheme: themeDark,
             themeMode: ThemeMode.system,
-            home: hasSeenDemo? const AirFryerHome() : AirFryrOnboarding(),
+            home: hasSeenDemo? const InitialiseScreen(targetWidget: const AirFryerHome()) : AirFryrOnboarding(),
           ),
        ),
 

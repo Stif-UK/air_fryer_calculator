@@ -1,4 +1,5 @@
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
+import 'package:air_fryer_calculator/privacy/initialise_screen.dart';
 import 'package:air_fryer_calculator/ui/air_fryer_home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -70,7 +71,7 @@ class _AirFryrOnboardingState extends State<AirFryrOnboarding> {
             style: TextStyle(fontSize: 22),),
           onPressed: () async {
             await FryerPreferences.setHasSeenDemo(true);
-            Get.off(()=> AirFryerHome());
+            Get.off(()=> InitialiseScreen(targetWidget: AirFryerHome()));
           },
         ),
       ) :Container(
