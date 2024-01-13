@@ -5,6 +5,7 @@ import 'package:air_fryer_calculator/ui/sidebar_links/about_app.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/attributions.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/deleted_notes.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/developer_stats.dart';
+import 'package:air_fryer_calculator/ui/sidebar_links/privacy_landing.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/remove_ads.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/version_history.dart';
 import 'package:air_fryer_calculator/util/text_helper.dart';
@@ -78,10 +79,10 @@ class _NavBarState extends State<NavBar> {
                 ),
                 const Divider(thickness: 2,),
                 ListTile(
-                  title: const Text("Privacy Policy"),
+                  title: const Text("Privacy"),
                   trailing: const Icon(Icons.privacy_tip_outlined),
                   onTap: (){
-                    Get.to(() => PrivacyPolicy());
+                    Get.to(() => PrivacyLanding());
                   },
                 ),
                 ListTile(
