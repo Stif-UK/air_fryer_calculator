@@ -14,6 +14,13 @@ class FryerController extends GetxController{
     await FryerPreferences.setTemperaturePreference(tempPref);
   }
 
+  //Status of navigation drawer
+  final isDrawerOpen = false.obs;
+
+  updateIsDrawerOpen(bool isOpen) {
+    isDrawerOpen(isOpen);
+  }
+
   //Manage app purchase status
   final isAppPro = FryerPreferences.getAppPurchasedStatus()!.obs;
 

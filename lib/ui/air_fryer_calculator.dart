@@ -63,7 +63,7 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
       Column(
         children: [
           //insert ad into Widget Tree
-          widget.fryerController.isAppPro.value? const SizedBox(height: 0,) : AdWidgetHelper.buildSmallAdSpace(banner, context),
+          widget.fryerController.isAppPro.value || widget.fryerController.isDrawerOpen.value? const SizedBox(height: 0,) : AdWidgetHelper.buildSmallAdSpace(banner, context),
           Expanded(
             child: SingleChildScrollView(
               child: Column(

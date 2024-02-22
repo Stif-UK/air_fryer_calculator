@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:air_fryer_calculator/api/purchase_api.dart';
+import 'package:air_fryer_calculator/controller/FryerController.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 import 'package:air_fryer_calculator/ui/add_notes.dart';
 import 'package:air_fryer_calculator/ui/air_fryer_temperatures.dart';
@@ -20,6 +21,7 @@ class AirFryerHome extends StatefulWidget {
 }
 
 class _AirFryerHomeState extends State<AirFryerHome> {
+  final fryerController = Get.put(FryerController());
   int _selectedIndex = 0;
   final List<Widget> _children =[
     AirFryerCalculator(),
@@ -79,6 +81,9 @@ class _AirFryerHomeState extends State<AirFryerHome> {
         child: const Icon(Icons.add),
       ) : null,
       drawer: NavBar(),
+      onDrawerChanged: (isOpen){
+        fryerController.updateIsDrawerOpen(isOpen);
+      },
       body: _children[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
