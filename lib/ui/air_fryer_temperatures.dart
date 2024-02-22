@@ -49,7 +49,7 @@ class _AirFryerTemperatureState extends State<AirFryerTemperature> {
       child: Obx( () => Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            fryerController.isAppPro.value? const SizedBox(height: 0,) : AdWidgetHelper.buildSmallAdSpace(banner, context),
+            fryerController.isAppPro.value || fryerController.isDrawerOpen.value? const SizedBox(height: 0,) : AdWidgetHelper.buildSmallAdSpace(banner, context),
             Row(
               children: [
                 Padding(

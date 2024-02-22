@@ -66,7 +66,7 @@ class _AirFryerNotesState extends State<AirFryerNotes> {
     return  Column(
       children: [
         //Insert Ad into Widget Tree
-        widget.fryerController.isAppPro.value? const SizedBox(height: 0,) : AdWidgetHelper.buildSmallAdSpace(banner, context),
+        widget.fryerController.isAppPro.value || widget.fryerController.isDrawerOpen.value? const SizedBox(height: 0,) : AdWidgetHelper.buildSmallAdSpace(banner, context),
 
         Expanded(
           child: ValueListenableBuilder<Box<Notes>>(
