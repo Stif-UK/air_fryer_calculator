@@ -208,8 +208,10 @@ class _AddNotesState extends State<AddNotes> {
 
                                   ),
                                   value: _selectedCategory,
-                                    items: <CategoryEnum>[CategoryEnum.sides, CategoryEnum.meat, CategoryEnum.poultry, CategoryEnum.seafood, CategoryEnum.vegetarian, CategoryEnum.vegan, CategoryEnum.dessert, CategoryEnum.other]
+                                    items: CategoryEnum.values
                                         .map<DropdownMenuItem<CategoryEnum>>((CategoryEnum value) {
+                                    // items: <CategoryEnum>[CategoryEnum.sides, CategoryEnum.meat, CategoryEnum.poultry, CategoryEnum.seafood, CategoryEnum.vegetarian, CategoryEnum.vegan, CategoryEnum.dessert, CategoryEnum.baking, CategoryEnum.other]
+                                    //     .map<DropdownMenuItem<CategoryEnum>>((CategoryEnum value) {
                                       return DropdownMenuItem<CategoryEnum>(
                                         value: value,
                                         child: Text(

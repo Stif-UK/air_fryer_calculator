@@ -32,9 +32,13 @@ class TextHelper{
       case CategoryEnum.vegan:
         returnText = "Vegan";
         break;
+      case CategoryEnum.baking:
+        returnText = "Baking";
+        break;
       case CategoryEnum.all:
         returnText = "Show All";
         break;
+
     }
     return returnText;
   }
@@ -67,9 +71,13 @@ class TextHelper{
       case CategoryEnum.vegan:
         returnIcon = const Icon(FontAwesomeIcons.plateWheat);
         break;
+      case CategoryEnum.baking:
+        returnIcon = const Icon(FontAwesomeIcons.breadSlice);
+        break;
       case CategoryEnum.all:
         returnIcon = const Icon(FontAwesomeIcons.filterCircleXmark);
         break;
+
     }
     return returnIcon;
   }
@@ -100,6 +108,9 @@ class TextHelper{
         break;
       case "CategoryEnum.dessert":
         returnEnum = CategoryEnum.dessert;
+        break;
+      case "CategoryEnum.baking":
+        returnEnum = CategoryEnum.baking;
         break;
       case "CategoryEnum.other":
         returnEnum = CategoryEnum.other;

@@ -37,12 +37,16 @@ class DataBaseHelper {
       case CategoryEnum.dessert:
         returnList = returnList.where((note) => note.category == CategoryEnum.dessert.toString()).toList();
         break;
+      case CategoryEnum.baking:
+        returnList = returnList.where((note) => note.category == CategoryEnum.baking.toString()).toList();
+        break;
       case CategoryEnum.other:
         returnList = returnList.where((note) => note.category == CategoryEnum.other.toString()).toList();
         break;
       case CategoryEnum.all:
             returnList = notebook.values.where((note) => note.isArchived != true).toList();
         break;
+
     }
     //Either return the filtered list, or further filter to only show favourites
     return showFavourites? returnList.where((note) => note.isFavourite == true).toList(): returnList;
