@@ -81,6 +81,7 @@ class _AddNotesState extends State<AddNotes> {
   final titleFieldController = TextEditingController();
   final notesFieldController = TextEditingController();
 
+
   @override
   void dispose(){
     //clean up the controller when the widget is disposed
@@ -91,6 +92,11 @@ class _AddNotesState extends State<AddNotes> {
 
   @override
   Widget build(BuildContext context) {
+    //Category List
+    List<CategoryEnum> displayCategories = CategoryEnum.values.toList();
+    //Remove 'all' from displayCategories list
+    displayCategories.remove(CategoryEnum.all);
+
     NoteEnum noteState = NoteHelper.getNoteViewState(widget.currentNote, widget.inEditState);
     if(noteState!= NoteEnum.add){
       title = widget.currentNote!.title;
@@ -208,7 +214,7 @@ class _AddNotesState extends State<AddNotes> {
 
                                   ),
                                   value: _selectedCategory,
-                                    items: CategoryEnum.values
+                                    items: displayCategories
                                         .map<DropdownMenuItem<CategoryEnum>>((CategoryEnum value) {
                                     // items: <CategoryEnum>[CategoryEnum.sides, CategoryEnum.meat, CategoryEnum.poultry, CategoryEnum.seafood, CategoryEnum.vegetarian, CategoryEnum.vegan, CategoryEnum.dessert, CategoryEnum.baking, CategoryEnum.other]
                                     //     .map<DropdownMenuItem<CategoryEnum>>((CategoryEnum value) {
