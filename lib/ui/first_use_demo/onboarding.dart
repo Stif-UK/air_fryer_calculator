@@ -28,9 +28,13 @@ class _AirFryrOnboardingState extends State<AirFryrOnboarding> {
   @override
   Widget build(BuildContext context) {
     //If platform is iOS, request tracking permission for ads
-    if(Platform.isIOS) {
-      AppTrackingTransparency.requestTrackingAuthorization();
-    }
+    checkATT();
+
+    // if(Platform.isIOS) {
+    //   AppTrackingTransparency.requestTrackingAuthorization();
+    // }
+
+
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.only(bottom: 80),
@@ -161,5 +165,19 @@ class _AirFryrOnboardingState extends State<AirFryrOnboarding> {
 
   Color getAFColour(){
     return const Color(0xffD50000);
+  }
+
+  Future<int> checkATT() async {
+    if(Platform.isIOS) {
+      while(WidgetsBinding.instance.lifecycleState != AppLifecycleState.resumed){
+        Future.delayed(const Duration(milliseconds: 400));
+      }
+      if(await AppTrackingTransparency.trackingAuthorizationStatus == TrackingStatus.notDetermined){
+        AppTrackingTransparency.requestTrackingAuthorization();
+        await Future.delayed(const Duration(milliseconds: 4000));
+      }
+
+    }
+    return 1;
   }
 }
