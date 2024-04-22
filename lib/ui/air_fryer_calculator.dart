@@ -47,13 +47,7 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
     }
   }
 
-  //Set the default slider values
-  //double temperature = 200;
-
-  double time = 40;
-
-
-
+  
   @override
   Widget build(BuildContext context) {
     //Set first opened date on first app open
@@ -61,7 +55,9 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
       FryerPreferences.setFirstUseDate(DateTime.now());
     }
 
-    double temperature = widget.fryerController.temperature.value;
+    //Set default values on build
+    //double temperature = widget.fryerController.updateTemperature(200);
+    double time = 40;
 
     return Obx(() =>
       Column(
@@ -73,7 +69,7 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(12.0),
+                    padding: const EdgeInsets.fromLTRB(12.0, 24.0, 12.0, 12.0),
                     child: ElevatedButton(
                       onPressed: () {
                         Get.defaultDialog(
@@ -82,7 +78,7 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
                         );
                       },
                       child: Text("Oven Temperature: ${widget.fryerController.temperature.value.toInt()}${TextHelper.getTempSuffix(widget.fryerController.tempIsCelcius.value)}",
-                      style: Theme.of(context).textTheme.bodyMedium,),
+                      style: TextStyle(fontWeight: FontWeight.bold),),
                     ),
                   ),
                   Obx(() => Slider(
