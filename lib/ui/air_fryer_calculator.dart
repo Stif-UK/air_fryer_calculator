@@ -1,6 +1,7 @@
 import 'package:air_fryer_calculator/controller/FryerController.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 import 'package:air_fryer_calculator/ui/add_notes.dart';
+import 'package:air_fryer_calculator/ui/widgets/oven_settings.dart';
 import 'package:air_fryer_calculator/util/ad_widget_helper.dart';
 import 'package:air_fryer_calculator/util/text_helper.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +48,8 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
   }
 
   //Set the default slider values
-  double temperature = 200;
+  //double temperature = 200;
+
   double time = 40;
 
 
@@ -58,6 +60,8 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
     if(FryerPreferences.getFirstUseDate() == null){
       FryerPreferences.setFirstUseDate(DateTime.now());
     }
+
+    double temperature = widget.fryerController.temperature.value;
 
     return Obx(() =>
       Column(
@@ -70,19 +74,26 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(12.0),
-                    child: Text("Oven Temperature: ${temperature.toInt()}${TextHelper.getTempSuffix(widget.fryerController.tempIsCelcius.value)}",
-                    style: Theme.of(context).textTheme.bodyMedium,),
-                  ),
-                  Slider(
-                    value: temperature,
-                    min: 0,
-                    max: 450,
-                    onChanged: (double value) {
-                      setState(()
-                        => temperature = value);
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Get.defaultDialog(
+                          title: "Oven Temperature",
+                          content: OvenSettings(isTemp: true,),
+                        );
                       },
-                  divisions: 90,
-                  label: "${temperature.toInt()}${TextHelper.getTempSuffix(widget.fryerController.tempIsCelcius.value)}",),
+                      child: Text("Oven Temperature: ${widget.fryerController.temperature.value.toInt()}${TextHelper.getTempSuffix(widget.fryerController.tempIsCelcius.value)}",
+                      style: Theme.of(context).textTheme.bodyMedium,),
+                    ),
+                  ),
+                  Obx(() => Slider(
+                      value: widget.fryerController.temperature.value,
+                      max: 450,
+                      onChanged: (double value) {
+                        widget.fryerController.updateTemperature(value);
+                        },
+                    divisions: 90,
+                    label: "${widget.fryerController.temperature.value.toInt()}${TextHelper.getTempSuffix(widget.fryerController.tempIsCelcius.value)}",),
+                  ),
                   //Text("${temperature.toInt()}°C"),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0,10,0,25),
@@ -108,7 +119,7 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: Text("Temperature: ${calculateAFTemp(widget.fryerController.tempIsCelcius.value, temperature)}${TextHelper.getTempSuffix(widget.fryerController.tempIsCelcius.value)}",
+                    child: Text("Temperature: ${calculateAFTemp(widget.fryerController.tempIsCelcius.value, widget.fryerController.temperature.value)}${TextHelper.getTempSuffix(widget.fryerController.tempIsCelcius.value)}",
                     style: Theme.of(context).textTheme.displaySmall,
                     textAlign: TextAlign.center,),
                   ),
@@ -125,7 +136,7 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
                       onPressed: (){
                         Get.to(() => AddNotes(
                           time: calculateTime(time),
-                        temperature: calculateAFTemp(widget.fryerController.tempIsCelcius.value, temperature).toDouble()
+                        temperature: calculateAFTemp(widget.fryerController.tempIsCelcius.value, widget.fryerController.temperature.value).toDouble()
                           ,));
                       },
                     ),

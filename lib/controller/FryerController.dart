@@ -14,6 +14,11 @@ class FryerController extends GetxController{
     await FryerPreferences.setTemperaturePreference(tempPref);
   }
 
+  final temperature = 200.0.obs;
+  updateTemperature(double temp){
+    temperature(temp);
+  }
+
   //Status of navigation drawer
   final isDrawerOpen = false.obs;
 
