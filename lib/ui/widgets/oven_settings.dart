@@ -1,4 +1,5 @@
 import 'package:air_fryer_calculator/controller/FryerController.dart';
+import 'package:air_fryer_calculator/util/string_extention.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,14 +19,12 @@ class _OvenSettingsState extends State<OvenSettings> {
   final _formKey = GlobalKey<FormState>();
 
   //Text Controller
-  final tempFieldController = TextEditingController();
-  final timeFieldController = TextEditingController();
+  final settingsFieldController = TextEditingController();
 
   @override
   void dispose(){
     //clean up the controller when the widget is disposed
-    tempFieldController.dispose();
-    timeFieldController.dispose();
+    settingsFieldController.dispose();
     super.dispose();
   }
 
@@ -33,20 +32,30 @@ class _OvenSettingsState extends State<OvenSettings> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        widget.isTemp? Text("Oven Temperature"): Text("Oven Time"),
+        widget.isTemp? Text("Input oven temperature"): Text("Input oven time"),
         Padding(
           padding: const EdgeInsets.all(20.0),
           child: Form(
               key:_formKey,
               child: TextFormField(
-                controller: widget.isTemp? tempFieldController: timeFieldController,
+                controller: settingsFieldController,
                 keyboardType: TextInputType.number,
-                //initialValue: "Temp: ${widget.fryerController.temperature.value} C",
+                validator: (String? val) {
+                  if(!val!.isValidTemp) {
+                    return 'Must be a number between 0 & 450';
+                  }
+                  },
               )),
         ),
         ElevatedButton(
             child: Text("Update"),
-        onPressed: (){},)
+        onPressed: (){
+              if(_formKey.currentState!.validate()){
+                widget.fryerController.updateTemperature(double.parse(settingsFieldController.text));
+                Get.back();
+              }
+
+        },)
 
       ]
     );
