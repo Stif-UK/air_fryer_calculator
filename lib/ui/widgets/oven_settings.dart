@@ -41,17 +41,24 @@ class _OvenSettingsState extends State<OvenSettings> {
                 controller: settingsFieldController,
                 keyboardType: TextInputType.number,
                 validator: (String? val) {
-                  if(!val!.isValidTemp) {
+                  if(widget.isTemp) {
+                  if (!val!.isValidTemp) {
                     return 'Must be a number between 0 & 450';
                   }
-                  },
+                } else {
+                    if (!val!.isValidTime) {
+                      return 'Must be a number between 0 & 180';
+                    }
+                  }
+              },
               )),
         ),
         ElevatedButton(
             child: Text("Update"),
         onPressed: (){
               if(_formKey.currentState!.validate()){
-                widget.fryerController.updateTemperature(double.parse(settingsFieldController.text));
+                widget.isTemp? widget.fryerController.updateTemperature(double.parse(settingsFieldController.text)):
+                    widget.fryerController.updateTime(double.parse(settingsFieldController.text));
                 Get.back();
               }
 

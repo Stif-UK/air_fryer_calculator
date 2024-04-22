@@ -24,4 +24,19 @@ extension extString on String{
     return result;
   }
 
+  bool get isValidTime{
+    bool result = false;
+    //first check that the value is a number
+    final titleRegExp = RegExp(r"^\d+$");
+    bool isNumber =  titleRegExp.hasMatch(this);
+    //then confirm the number is in the expected range
+    if(isNumber){
+      int number = int.parse(this);
+      if(number >= 0 && number <= 180){
+        result = true;
+      }
+    }
+    return result;
+  }
+
 }

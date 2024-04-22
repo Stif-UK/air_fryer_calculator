@@ -92,8 +92,16 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
                   //Text("${temperature.toInt()}°C"),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0,10,0,25),
-                    child: Text("Oven Time: ${widget.fryerController.cooktime.toInt()} minutes",
-                    style: Theme.of(context).textTheme.bodyMedium,),
+                    child: ElevatedButton(
+                      child: Text("Oven Time: ${widget.fryerController.cooktime.toInt()} minutes",
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                      onPressed: () {
+                        Get.defaultDialog(
+                          title: "Oven Time",
+                          content: OvenSettings(isTemp: false,),
+                        );
+                      },
+                    ),
                   ),
                   Slider(
                     value: widget.fryerController.cooktime.value,
