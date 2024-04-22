@@ -14,9 +14,17 @@ class FryerController extends GetxController{
     await FryerPreferences.setTemperaturePreference(tempPref);
   }
 
+  //calculation temperature and time
   final temperature = 200.0.obs;
+
   updateTemperature(double temp){
     temperature(temp);
+  }
+
+  final cooktime = 40.0.obs;
+
+  updateTime(double time){
+    cooktime(time);
   }
 
   //Status of navigation drawer
