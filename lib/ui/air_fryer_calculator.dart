@@ -55,9 +55,8 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
       FryerPreferences.setFirstUseDate(DateTime.now());
     }
 
-    //Set default values on build
-    //double temperature = widget.fryerController.updateTemperature(200);
-    double time = 40;
+    //Set default values on build??
+
 
     return Obx(() =>
       Column(
@@ -93,19 +92,18 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
                   //Text("${temperature.toInt()}°C"),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0,10,0,25),
-                    child: Text("Oven Time: ${time.toInt()} minutes",
+                    child: Text("Oven Time: ${widget.fryerController.cooktime.toInt()} minutes",
                     style: Theme.of(context).textTheme.bodyMedium,),
                   ),
                   Slider(
-                    value: time,
+                    value: widget.fryerController.cooktime.value,
                     min: 0,
                     max: 180,
                     onChanged: (double value) {
-                      setState(()
-                      => time = value);
+                      widget.fryerController.updateTime(value);
                     },
                     divisions: 180,
-                    label: "${time.toInt()} mins",),
+                    label: "${widget.fryerController.cooktime.value.toInt()} mins",),
                   //Text("${time.toInt()} minutes")
                   const Divider(thickness: 2,),
                   //Display the output
@@ -121,7 +119,7 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("Time:\n ${calculateTime(time).toInt()} minutes",
+                    child: Text("Time:\n ${calculateTime(widget.fryerController.cooktime.value).toInt()} minutes",
                     style: Theme.of(context).textTheme.displaySmall,
                     textAlign: TextAlign.center,),
                   ),
@@ -131,7 +129,7 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
                       child: const Text("Save to Notes"),
                       onPressed: (){
                         Get.to(() => AddNotes(
-                          time: calculateTime(time),
+                          time: calculateTime(widget.fryerController.cooktime.value),
                         temperature: calculateAFTemp(widget.fryerController.tempIsCelcius.value, widget.fryerController.temperature.value).toDouble()
                           ,));
                       },
