@@ -56,6 +56,8 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
     }
 
     //Set default values on build??
+    widget.fryerController.updateTemperature(200.0);
+    widget.fryerController.updateTime(40);
 
 
     return Obx(() =>
