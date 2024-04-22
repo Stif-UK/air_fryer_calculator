@@ -109,335 +109,339 @@ class _AddNotesState extends State<AddNotes> {
             TextEditingValue(text: widget.currentNote!.notes ?? "");
       }
     }
-    return Scaffold(
-      appBar: AppBar(
-        title: NoteHelper.getTitle(noteState, title),
-        //title: _isViewNote? Text(widget.currentNote!.title): const Text("Save Note"),
-      //Show edit button if a note object is loaded
-        actions: NoteHelper.getNoteViewState(widget.currentNote, widget.inEditState) == NoteEnum.view? [Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: IconButton(
-              icon: const Icon(FontAwesomeIcons.edit),
-              onPressed: (){
-                setState(() {
-                  widget.inEditState = true;
-                });
-              },
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: NoteHelper.getTitle(noteState, title),
+          //title: _isViewNote? Text(widget.currentNote!.title): const Text("Save Note"),
+        //Show edit button if a note object is loaded
+          actions: NoteHelper.getNoteViewState(widget.currentNote, widget.inEditState) == NoteEnum.view? [Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+                icon: const Icon(FontAwesomeIcons.edit),
+                onPressed: (){
+                  setState(() {
+                    widget.inEditState = true;
+                  });
+                },
 
-          ),
-        )] : null,
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          purchaseStatus? const SizedBox(height: 0,) : AdWidgetHelper.buildSmallAdSpace(banner, context),
-          Expanded(
-              child: SingleChildScrollView(
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children:  [
-                      //Title Row
-                      CustomFormField(
-                        enabled: noteState == NoteEnum.view? false: true,
-                        fieldTitle: "Title:",
-                        hintText: "Title",
-                        maxLines: 1,
-                        controller: titleFieldController,
-                        textCapitalization: TextCapitalization.words,
-                        validator: (String? val) {
-                          if(!val!.isAlphaNumericAndNotEmpty) {
-                            print(!val!.isAlphaNumericAndNotEmpty);
-                            return 'Title missing or invalid characters included';
-                          }
-                        },
-                      ),
+            ),
+          )] : null,
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            purchaseStatus? const SizedBox(height: 0,) : AdWidgetHelper.buildSmallAdSpace(banner, context),
+            Expanded(
+                child: SingleChildScrollView(
+                  keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children:  [
+                        //Title Row
+                        CustomFormField(
+                          enabled: noteState == NoteEnum.view? false: true,
+                          fieldTitle: "Title:",
+                          hintText: "Title",
+                          maxLines: 1,
+                          controller: titleFieldController,
+                          textCapitalization: TextCapitalization.words,
+                          validator: (String? val) {
+                            if(!val!.isAlphaNumericAndNotEmpty) {
+                              print(!val!.isAlphaNumericAndNotEmpty);
+                              return 'Title missing or invalid characters included';
+                            }
+                          },
+                        ),
 
-                      //Favourite toggle
-                      noteState == NoteEnum.view || noteState == NoteEnum.edit? Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                        //Favourite toggle
+                        noteState == NoteEnum.view || noteState == NoteEnum.edit? Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: Text("Favourite:",
+                                  textAlign: TextAlign.start,
+                                  style: Theme.of(context).textTheme.bodyLarge,),
+                              ),
+                              Switch(
+                                value: widget.currentNote?.isFavourite ?? false,
+                                onChanged: (value){
+                                  setState(() {
+                                    DataBaseHelper.setFavouriteState(widget.currentNote!, value);
+                                  });
+                                },
+                              ),
+                              widget.currentNote?.isFavourite?? false? Icon(Icons.star): Icon(Icons.star_border_outlined)
+                            ],
+                          ),
+                        ): SizedBox(height: 0,),
+
+
+                        noteState == NoteEnum.view? const SizedBox(height: 0,): const Divider(thickness: 2,),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Text("Category:",
+                                textAlign: TextAlign.start,
+                                style: Theme.of(context).textTheme.bodyLarge,),
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  flex: 7,
+                                  child: noteState == NoteEnum.view?
+                                      //if view only then just show text
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(10.0, 0, 0, 0),
+                                    child: Text(TextHelper.getCategoryText(TextHelper.getEnumFromString(widget.currentNote!.category)),
+                                    style: Theme.of(context).textTheme.bodyLarge,),
+                                  ):
+                                      //else show dropdown
+                                  DropdownButtonFormField(
+                                    decoration: InputDecoration(
+                                        enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(width: 3, color: Theme.of(context).focusColor),
+                                            borderRadius: BorderRadius.circular(20.0)
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(width: 3, color: Colors.lightBlue),
+                                            borderRadius: BorderRadius.circular(20.0)
+                                        )
+
+                                    ),
+                                    value: _selectedCategory,
+                                      items: displayCategories
+                                          .map<DropdownMenuItem<CategoryEnum>>((CategoryEnum value) {
+                                      // items: <CategoryEnum>[CategoryEnum.sides, CategoryEnum.meat, CategoryEnum.poultry, CategoryEnum.seafood, CategoryEnum.vegetarian, CategoryEnum.vegan, CategoryEnum.dessert, CategoryEnum.baking, CategoryEnum.other]
+                                      //     .map<DropdownMenuItem<CategoryEnum>>((CategoryEnum value) {
+                                        return DropdownMenuItem<CategoryEnum>(
+                                          value: value,
+                                          child: Text(
+                                            TextHelper.getCategoryText(value),
+                                            style: Theme.of(context).textTheme.bodyLarge,
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        );
+                                      }).toList(),
+                                      onChanged: (CategoryEnum? value){
+                                      noteState == NoteEnum.edit?
+                                      setState(() {
+                                        widget.currentNote!.category = value!.toString();
+                                        widget.currentNote!.save();
+                                      }):
+                                      setState(() {
+                                        _selectedCategory = value!;
+                                      });
+                }),
+                                ),
+                                Expanded(
+                                    flex: 2,
+                                    child: Center(
+                                        child: TextHelper.getCategoryIcon(_selectedCategory)))
+                              ],
+                            ),
+                          ],
+                        ),
+                        const Divider(thickness: 2,),
+                        Row(
                           children: [
                             Expanded(
-                              child: Text("Favourite:",
-                                textAlign: TextAlign.start,
-                                style: Theme.of(context).textTheme.bodyLarge,),
-                            ),
-                            Switch(
-                              value: widget.currentNote?.isFavourite ?? false,
-                              onChanged: (value){
-                                setState(() {
-                                  DataBaseHelper.setFavouriteState(widget.currentNote!, value);
-                                });
-                              },
-                            ),
-                            widget.currentNote?.isFavourite?? false? Icon(Icons.star): Icon(Icons.star_border_outlined)
-                          ],
-                        ),
-                      ): SizedBox(height: 0,),
-
-
-                      noteState == NoteEnum.view? const SizedBox(height: 0,): const Divider(thickness: 2,),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Text("Category:",
-                              textAlign: TextAlign.start,
-                              style: Theme.of(context).textTheme.bodyLarge,),
-                          ),
-                          Row(
-                            children: [
-                              Expanded(
-                                flex: 7,
-                                child: noteState == NoteEnum.view?
-                                    //if view only then just show text
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(10.0, 0, 0, 0),
-                                  child: Text(TextHelper.getCategoryText(TextHelper.getEnumFromString(widget.currentNote!.category)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Text("Temperature: ${widget.temperature.toInt()} ${TextHelper.getTempSuffix(widget.fryerController.tempIsCelcius.value)}",
+                                  textAlign: TextAlign.start,
                                   style: Theme.of(context).textTheme.bodyLarge,),
-                                ):
-                                    //else show dropdown
-                                DropdownButtonFormField(
-                                  decoration: InputDecoration(
-                                      enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(width: 3, color: Theme.of(context).focusColor),
-                                          borderRadius: BorderRadius.circular(20.0)
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(width: 3, color: Colors.lightBlue),
-                                          borderRadius: BorderRadius.circular(20.0)
-                                      )
-
-                                  ),
-                                  value: _selectedCategory,
-                                    items: displayCategories
-                                        .map<DropdownMenuItem<CategoryEnum>>((CategoryEnum value) {
-                                    // items: <CategoryEnum>[CategoryEnum.sides, CategoryEnum.meat, CategoryEnum.poultry, CategoryEnum.seafood, CategoryEnum.vegetarian, CategoryEnum.vegan, CategoryEnum.dessert, CategoryEnum.baking, CategoryEnum.other]
-                                    //     .map<DropdownMenuItem<CategoryEnum>>((CategoryEnum value) {
-                                      return DropdownMenuItem<CategoryEnum>(
-                                        value: value,
-                                        child: Text(
-                                          TextHelper.getCategoryText(value),
-                                          style: Theme.of(context).textTheme.bodyLarge,
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      );
-                                    }).toList(),
-                                    onChanged: (CategoryEnum? value){
-                                    noteState == NoteEnum.edit?
-                                    setState(() {
-                                      widget.currentNote!.category = value!.toString();
-                                      widget.currentNote!.save();
-                                    }):
-                                    setState(() {
-                                      _selectedCategory = value!;
-                                    });
-              }),
                               ),
-                              Expanded(
-                                  flex: 2,
-                                  child: Center(
-                                      child: TextHelper.getCategoryIcon(_selectedCategory)))
-                            ],
-                          ),
-                        ],
-                      ),
-                      const Divider(thickness: 2,),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Text("Temperature: ${widget.temperature.toInt()} ${TextHelper.getTempSuffix(widget.fryerController.tempIsCelcius.value)}",
-                                textAlign: TextAlign.start,
-                                style: Theme.of(context).textTheme.bodyLarge,),
                             ),
-                          ),
-                          noteState == NoteEnum.view? const SizedBox(height: 0,): Row(
-                            children: [
+                            noteState == NoteEnum.view? const SizedBox(height: 0,): Row(
+                              children: [
 
-                              //Decrease temperature button
-                              IconButton(onPressed: (){setState(() {
-                                widget.temperature = decreaseTemp(widget.temperature);
-                              });
-                              }, icon: const Icon(Icons.remove_circle_outline)),
-                              //Increase temperature button
-                              IconButton(onPressed: (){setState(() {
-                                widget.temperature = increaseTemp(widget.temperature);
-                              });
-                              }, icon: const Icon(Icons.add_circle_outline)),
-                            ],
-                          ),
-
-
-
-                        ],
-                      ),
-                      noteState == NoteEnum.view? const SizedBox(height: 0,):Slider(
-                        value: widget.temperature,
-                        min: minimumTemp,
-                        max: maximumTemp,
-                        onChanged: (double value) {
-                          setState(()
-                          => widget.temperature = value);
-                        },
-                        divisions: 90,
-                        label: "${widget.temperature.toInt()} ${TextHelper.getTempSuffix(widget.fryerController.tempIsCelcius.value)}",),
-                      const Divider(thickness: 2,),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Text("Time: ${widget.time.toInt()} minutes",
-                                textAlign: TextAlign.start,
-                                style: Theme.of(context).textTheme.bodyLarge,),
-                            ),
-                          ),
-
-
-                          noteState == NoteEnum.view? const SizedBox(height: 0,) :Row(
-                            children: [
-                              //Decrease time button
-                              IconButton(onPressed: (){setState(() {
-                                widget.time = decreaseTime(widget.time);
-                              });
-                              }, icon: const Icon(Icons.remove_circle_outline)),
-                              //Increase time button
-                              IconButton(onPressed: (){setState(() {
-                                widget.time = increaseTime(widget.time);
-                              });
-                              }, icon: const Icon(Icons.add_circle_outline)),
-                            ],
-                          ),
-
-
-                        ],
-                      ),
-                      noteState == NoteEnum.view? const SizedBox(height: 0,): Slider(
-                        value: widget.time,
-                        min: minimumTime,
-                        max: maximumTime,
-                        onChanged: (double value) {
-                          setState(()
-                          => widget.time = value);
-                        },
-                       label: "${widget.time.toInt()} mins",),
-                      const Divider(thickness: 2,),
-                      CustomFormField(
-                        enabled: noteState == NoteEnum.view? false: true,
-                        fieldTitle: "Notes:",
-                        hintText: "Enter Notes",
-                        minLines: 4,
-                        maxLines: 150,
-                        controller: notesFieldController,
-                        textCapitalization: TextCapitalization.sentences,),
-                      //noteState == NoteEnum.view? const SizedBox(height: 0,): const Divider(thickness: 2,),
-                      noteState == NoteEnum.view? showTagline(): const Divider(thickness: 2,),
-
-
-
-                      //If page is to save a new note, show the save button
-                      noteState == NoteEnum.add?Center(
-                        child: ElevatedButton(
-                            onPressed: () async {
-                              //Check that fields are valid
-                              if(_formKey.currentState!.validate()) {
-                            //Add a new object to the database, notify user and close the window
-                            await DataBaseHelper.addNote(titleFieldController.text, _selectedCategory, widget.temperature, widget.time, notesFieldController.text, widget.fryerController.tempIsCelcius.value, false); //TODO: Update value of 'favourite'
-                            Get.back();
-                            title = titleFieldController.text;
-                            Get.snackbar(
-                                "$title added to notebook",
-                                "Your notebook has been updated",
-                            snackPosition: SnackPosition.BOTTOM,
-                            icon: TextHelper.getCategoryIcon(_selectedCategory));
-
-                            //Check if user should be prompted to review app
-                            ReviewHelper.shouldPromptReview();
-
-
-                              }
-                        },
-                          child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.min,
-                          children: const [
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Icon(Icons.save),
-                            ),
-                            Text("Save Note"),
-                          ],
-                        )
-                        ),
-                      ): const SizedBox(height: 0,),
-
-                      //If page is to edit a note, show edit button
-                      noteState == NoteEnum.edit?Center(
-                        child: ElevatedButton(
-                            onPressed: () async {
-                              //Check that fields are valid
-                              if(_formKey.currentState!.validate()) {
-                                //Check if fields are changed before doing a DB write - this give a mess of ifs!
-                                if(widget.currentNote!.title != titleFieldController.text) {
-                                  widget.currentNote!.title =
-                                      titleFieldController.text;
-                                }
-                                if(widget.currentNote!.notes != notesFieldController.text) {
-                                    widget.currentNote!.notes =
-                                        notesFieldController.text;
-                                  }
-                                  if(widget.currentNote!.temperature != widget.temperature) {
-                                    widget.currentNote!.temperature =
-                                        widget.temperature;
-                                  }
-                                  if(widget.currentNote!.time != widget.time) {
-                                    widget.currentNote!.time = widget.time;
-                                  }
-                                  //Save any changes
-                                  widget.currentNote!.save();
-                                title = titleFieldController.text;
-                                setState(() {
-                                  widget.inEditState = false;
+                                //Decrease temperature button
+                                IconButton(onPressed: (){setState(() {
+                                  widget.temperature = decreaseTemp(widget.temperature);
                                 });
-                                Get.snackbar(
-                                    "$title has been edited",
-                                    "Your notebook has been updated",
-                                    snackPosition: SnackPosition.BOTTOM,
-                                    icon: TextHelper.getCategoryIcon(_selectedCategory));
-
-                                //Check if user should be prompted to review app
-                                ReviewHelper.shouldPromptReview();
-
-
-                              }
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: const [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Icon(Icons.save),
-                                ),
-                                Text("Update Note"),
+                                }, icon: const Icon(Icons.remove_circle_outline)),
+                                //Increase temperature button
+                                IconButton(onPressed: (){setState(() {
+                                  widget.temperature = increaseTemp(widget.temperature);
+                                });
+                                }, icon: const Icon(Icons.add_circle_outline)),
                               ],
-                            )
+                            ),
+
+
+
+                          ],
                         ),
-                      ): const SizedBox(height: 0,)
-                    ],
+                        noteState == NoteEnum.view? const SizedBox(height: 0,):Slider(
+                          value: widget.temperature,
+                          min: minimumTemp,
+                          max: maximumTemp,
+                          onChanged: (double value) {
+                            setState(()
+                            => widget.temperature = value);
+                          },
+                          divisions: 90,
+                          label: "${widget.temperature.toInt()} ${TextHelper.getTempSuffix(widget.fryerController.tempIsCelcius.value)}",),
+                        const Divider(thickness: 2,),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Text("Time: ${widget.time.toInt()} minutes",
+                                  textAlign: TextAlign.start,
+                                  style: Theme.of(context).textTheme.bodyLarge,),
+                              ),
+                            ),
+
+
+                            noteState == NoteEnum.view? const SizedBox(height: 0,) :Row(
+                              children: [
+                                //Decrease time button
+                                IconButton(onPressed: (){setState(() {
+                                  widget.time = decreaseTime(widget.time);
+                                });
+                                }, icon: const Icon(Icons.remove_circle_outline)),
+                                //Increase time button
+                                IconButton(onPressed: (){setState(() {
+                                  widget.time = increaseTime(widget.time);
+                                });
+                                }, icon: const Icon(Icons.add_circle_outline)),
+                              ],
+                            ),
+
+
+                          ],
+                        ),
+                        noteState == NoteEnum.view? const SizedBox(height: 0,): Slider(
+                          value: widget.time,
+                          min: minimumTime,
+                          max: maximumTime,
+                          onChanged: (double value) {
+                            setState(()
+                            => widget.time = value);
+                          },
+                         label: "${widget.time.toInt()} mins",),
+                        const Divider(thickness: 2,),
+                        CustomFormField(
+                          enabled: noteState == NoteEnum.view? false: true,
+                          fieldTitle: "Notes:",
+                          hintText: "Enter Notes",
+                          minLines: 4,
+                          maxLines: 150,
+                          controller: notesFieldController,
+                          textCapitalization: TextCapitalization.sentences,),
+                        //noteState == NoteEnum.view? const SizedBox(height: 0,): const Divider(thickness: 2,),
+                        noteState == NoteEnum.view? showTagline(): const Divider(thickness: 2,),
+
+
+
+                        //If page is to save a new note, show the save button
+                        noteState == NoteEnum.add?Center(
+                          child: ElevatedButton(
+                              onPressed: () async {
+                                //Check that fields are valid
+                                if(_formKey.currentState!.validate()) {
+                              //Add a new object to the database, notify user and close the window
+                              await DataBaseHelper.addNote(titleFieldController.text, _selectedCategory, widget.temperature, widget.time, notesFieldController.text, widget.fryerController.tempIsCelcius.value, false); //TODO: Update value of 'favourite'
+                              Get.back();
+                              title = titleFieldController.text;
+                              Get.snackbar(
+                                  "$title added to notebook",
+                                  "Your notebook has been updated",
+                              snackPosition: SnackPosition.BOTTOM,
+                              icon: TextHelper.getCategoryIcon(_selectedCategory));
+
+                              //Check if user should be prompted to review app
+                              ReviewHelper.shouldPromptReview();
+
+
+                                }
+                          },
+                            child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: const [
+                              Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Icon(Icons.save),
+                              ),
+                              Text("Save Note"),
+                            ],
+                          )
+                          ),
+                        ): const SizedBox(height: 0,),
+
+                        //If page is to edit a note, show edit button
+                        noteState == NoteEnum.edit?Center(
+                          child: ElevatedButton(
+                              onPressed: () async {
+                                //Check that fields are valid
+                                if(_formKey.currentState!.validate()) {
+                                  //Check if fields are changed before doing a DB write - this give a mess of ifs!
+                                  if(widget.currentNote!.title != titleFieldController.text) {
+                                    widget.currentNote!.title =
+                                        titleFieldController.text;
+                                  }
+                                  if(widget.currentNote!.notes != notesFieldController.text) {
+                                      widget.currentNote!.notes =
+                                          notesFieldController.text;
+                                    }
+                                    if(widget.currentNote!.temperature != widget.temperature) {
+                                      widget.currentNote!.temperature =
+                                          widget.temperature;
+                                    }
+                                    if(widget.currentNote!.time != widget.time) {
+                                      widget.currentNote!.time = widget.time;
+                                    }
+                                    //Save any changes
+                                    widget.currentNote!.save();
+                                  title = titleFieldController.text;
+                                  setState(() {
+                                    widget.inEditState = false;
+                                  });
+                                  Get.snackbar(
+                                      "$title has been edited",
+                                      "Your notebook has been updated",
+                                      snackPosition: SnackPosition.BOTTOM,
+                                      icon: TextHelper.getCategoryIcon(_selectedCategory));
+
+                                  //Check if user should be prompted to review app
+                                  ReviewHelper.shouldPromptReview();
+
+
+                                }
+                              },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: const [
+                                  Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Icon(Icons.save),
+                                  ),
+                                  Text("Update Note"),
+                                ],
+                              )
+                          ),
+                        ): const SizedBox(height: 0,)
+                      ],
+                    ),
                   ),
-                ),
-              )
-          ),
+                )
+            ),
 
 
-        ],
+          ],
+        ),
       ),
     );
   }
