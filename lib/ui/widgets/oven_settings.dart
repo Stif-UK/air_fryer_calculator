@@ -32,7 +32,7 @@ class _OvenSettingsState extends State<OvenSettings> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        widget.isTemp? Text("Input oven temperature"): Text("Input oven time"),
+        widget.isTemp? Text("Input oven temperature"): Text("Input oven time in minutes"),
         Padding(
           padding: const EdgeInsets.all(20.0),
           child: Form(
