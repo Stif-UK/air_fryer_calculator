@@ -488,7 +488,7 @@ double increaseTemp(double currentTemp){
 
   String _generateShareText() {
     return "${widget.currentNote!.title}\n\n"
-        "Temperature: ${widget.currentNote!.temperature.round()}\n" //TODO: Add units
+        "Temperature: ${widget.currentNote!.temperature.round()} ${TextHelper.getTempSuffix(widget.fryerController.tempIsCelcius.value)}\n" //TODO: Add units
         "Time: ${widget.currentNote!.time.round()} minutes.\n\n"
         "${widget.currentNote!.notes}\n\n"
         "www.getairfryr.com";
