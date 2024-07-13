@@ -116,15 +116,23 @@ class _AddNotesState extends State<AddNotes> {
           title: NoteHelper.getTitle(noteState, title),
           //title: _isViewNote? Text(widget.currentNote!.title): const Text("Save Note"),
         //Show edit button if a note object is loaded
-          actions: NoteHelper.getNoteViewState(widget.currentNote, widget.inEditState) == NoteEnum.view? [Padding(
+          actions: noteState == NoteEnum.view || noteState == NoteEnum.edit ?
+          [Padding(
             padding: const EdgeInsets.all(8.0),
             child: IconButton(
-                icon: const Icon(FontAwesomeIcons.edit),
+                icon: noteState == NoteEnum.view? const Icon(FontAwesomeIcons.penToSquare) : const Icon(FontAwesomeIcons.floppyDisk),
                 onPressed: (){
-                  setState(() {
-                    widget.inEditState = true;
-                  });
-                },
+                  if(noteState == NoteEnum.view) {
+                          setState(() {
+                            widget.inEditState = true;
+                          });
+                        } else if(noteState == NoteEnum.edit){
+                          setState(() {
+                            widget.inEditState = false;
+                            _saveNote();
+                          });
+                  }
+                      },
 
             ),
           )] : null,
@@ -384,41 +392,7 @@ class _AddNotesState extends State<AddNotes> {
                         noteState == NoteEnum.edit?Center(
                           child: ElevatedButton(
                               onPressed: () async {
-                                //Check that fields are valid
-                                if(_formKey.currentState!.validate()) {
-                                  //Check if fields are changed before doing a DB write - this give a mess of ifs!
-                                  if(widget.currentNote!.title != titleFieldController.text) {
-                                    widget.currentNote!.title =
-                                        titleFieldController.text;
-                                  }
-                                  if(widget.currentNote!.notes != notesFieldController.text) {
-                                      widget.currentNote!.notes =
-                                          notesFieldController.text;
-                                    }
-                                    if(widget.currentNote!.temperature != widget.temperature) {
-                                      widget.currentNote!.temperature =
-                                          widget.temperature;
-                                    }
-                                    if(widget.currentNote!.time != widget.time) {
-                                      widget.currentNote!.time = widget.time;
-                                    }
-                                    //Save any changes
-                                    widget.currentNote!.save();
-                                  title = titleFieldController.text;
-                                  setState(() {
-                                    widget.inEditState = false;
-                                  });
-                                  Get.snackbar(
-                                      "$title has been edited",
-                                      "Your notebook has been updated",
-                                      snackPosition: SnackPosition.BOTTOM,
-                                      icon: TextHelper.getCategoryIcon(_selectedCategory));
-
-                                  //Check if user should be prompted to review app
-                                  ReviewHelper.shouldPromptReview();
-
-
-                                }
+                                _saveNote();
                               },
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -485,6 +459,44 @@ double increaseTemp(double currentTemp){
         ),
       ),
     );
+  }
+
+  void _saveNote() {
+    //Check that fields are valid
+    if(_formKey.currentState!.validate()) {
+      //Check if fields are changed before doing a DB write - this give a mess of ifs!
+      if(widget.currentNote!.title != titleFieldController.text) {
+        widget.currentNote!.title =
+            titleFieldController.text;
+      }
+      if(widget.currentNote!.notes != notesFieldController.text) {
+        widget.currentNote!.notes =
+            notesFieldController.text;
+      }
+      if(widget.currentNote!.temperature != widget.temperature) {
+        widget.currentNote!.temperature =
+            widget.temperature;
+      }
+      if(widget.currentNote!.time != widget.time) {
+        widget.currentNote!.time = widget.time;
+      }
+      //Save any changes
+      widget.currentNote!.save();
+      title = titleFieldController.text;
+      setState(() {
+        widget.inEditState = false;
+      });
+      Get.snackbar(
+          "$title has been edited",
+          "Your notebook has been updated",
+          snackPosition: SnackPosition.BOTTOM,
+          icon: TextHelper.getCategoryIcon(_selectedCategory));
+
+      //Check if user should be prompted to review app
+      ReviewHelper.shouldPromptReview();
+
+
+    }
   }
 
 }
