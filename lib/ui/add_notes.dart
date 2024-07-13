@@ -460,13 +460,7 @@ double increaseTemp(double currentTemp){
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text("Share note:",style: Theme.of(context).textTheme.bodyLarge,),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: IconButton(
-                      icon: Icon(Icons.copy),
-                    iconSize: 35.0,
-                  onPressed: () => _copyNoteToClipboard(),),
-                ),
+                
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: IconButton(
@@ -487,10 +481,6 @@ double increaseTemp(double currentTemp){
     );
   }
 
-  void _copyNoteToClipboard() async {
-    await Clipboard.setData(ClipboardData(text: _generateShareText()));
-    Get.snackbar("Note Copied", "note '${widget.currentNote!.title}' has been saved to your clipboard");
-  }
 
   void _shareNote(){
     Share.share(_generateShareText());
