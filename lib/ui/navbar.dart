@@ -65,7 +65,7 @@ class _NavBarState extends State<NavBar> {
                 )),
 
                 SwitchListTile(
-                  title: _celcius? const Text("Temperature: Celcius"): const Text("Temperature: Fahrenheit"),
+                  title: _celcius? const Text("Temperature: Celsius"): const Text("Temperature: Fahrenheit"),
                   value: _celcius,
                   onChanged: (bool newValue) async{
                     await FryerPreferences.setTemperaturePreference(newValue);
