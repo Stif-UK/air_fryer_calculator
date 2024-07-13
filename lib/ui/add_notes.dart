@@ -18,6 +18,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../provider/adstate.dart';
 import 'package:get/get.dart';
 import 'package:air_fryer_calculator/util/string_extention.dart';
+import 'package:share_plus/share_plus.dart';
 
 class AddNotes extends StatefulWidget {
   AddNotes({
@@ -471,7 +472,7 @@ double increaseTemp(double currentTemp){
                   child: IconButton(
                     icon: Icon(Icons.share,),
                     iconSize: 35.0,
-                    onPressed: (){},),
+                    onPressed: () => _shareNote(),),
                 ),
               ],
             ),
@@ -487,12 +488,21 @@ double increaseTemp(double currentTemp){
   }
 
   void _copyNoteToClipboard() async {
-    await Clipboard.setData(ClipboardData(text: "${widget.currentNote!.title}\n\n"
+    await Clipboard.setData(ClipboardData(text: _generateShareText()));
+    Get.snackbar("Note Copied", "note '${widget.currentNote!.title}' has been saved to your clipboard");
+  }
+
+  void _shareNote(){
+    Share.share(_generateShareText());
+  }
+
+  String _generateShareText() {
+    return "${widget.currentNote!.title}\n\n"
         "Temperature: ${widget.currentNote!.temperature.round()}\n" //TODO: Add units
         "Time: ${widget.currentNote!.time.round()} minutes.\n\n"
         "${widget.currentNote!.notes}\n\n"
-        "www.getairfryr.com"));
-    Get.snackbar("Note Copied", "note '${widget.currentNote!.title}' has been saved to your clipboard");
+        "www.getairfryr.com";
+
   }
 
   void _saveNote() {
