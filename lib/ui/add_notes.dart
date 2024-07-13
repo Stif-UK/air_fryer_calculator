@@ -11,6 +11,7 @@ import 'package:air_fryer_calculator/util/note_helper.dart';
 import 'package:air_fryer_calculator/util/review_helper.dart';
 import 'package:air_fryer_calculator/util/text_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -348,7 +349,7 @@ class _AddNotesState extends State<AddNotes> {
                           controller: notesFieldController,
                           textCapitalization: TextCapitalization.sentences,),
                         //noteState == NoteEnum.view? const SizedBox(height: 0,): const Divider(thickness: 2,),
-                        noteState == NoteEnum.view? showTagline(): const Divider(thickness: 2,),
+                        noteState == NoteEnum.view? showNoteFooter(): const Divider(thickness: 2,),
 
 
 
@@ -448,17 +449,49 @@ double increaseTemp(double currentTemp){
     return returnTime > minTime? returnTime : minTime;
   }
 
-  Widget showTagline(){
+  Widget showNoteFooter(){
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Center(
-        child: Text(
-          'This note saved in Air Fryr',
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic,),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: IconButton(
+                      icon: Icon(Icons.copy),
+                    iconSize: 35.0,
+                  onPressed: () => _copyNoteToClipboard(),),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: IconButton(
+                    icon: Icon(Icons.share,),
+                    iconSize: 35.0,
+                    onPressed: (){},),
+                ),
+              ],
+            ),
+            Text(
+              'This note saved in Air Fryr',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic,),
+            ),
+          ],
         ),
       ),
     );
+  }
+
+  void _copyNoteToClipboard() async {
+    await Clipboard.setData(ClipboardData(text: "${widget.currentNote!.title}\n\n"
+        "Temperature: ${widget.currentNote!.temperature.round()}\n" //TODO: Add units
+        "Time: ${widget.currentNote!.time.round()} minutes.\n\n"
+        "${widget.currentNote!.notes}\n\n"
+        "www.getairfryr.com"));
+    Get.snackbar("Note Copied", "note '${widget.currentNote!.title}' has been saved to your clipboard");
   }
 
   void _saveNote() {
