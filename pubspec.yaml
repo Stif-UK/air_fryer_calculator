@@ -50,7 +50,7 @@ dependencies:
   hive_generator: ^2.0.0
   flutter_markdown: ^0.6.14
   flutter_launcher_icons: ^0.12.0
-  purchases_flutter: ^5.6.2
+  purchases_flutter: ^6.30.1
   in_app_review: ^2.0.6
   smooth_page_indicator: ^1.1.0
 
