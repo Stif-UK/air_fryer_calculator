@@ -460,7 +460,7 @@ double increaseTemp(double currentTemp){
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text("Share note:",style: Theme.of(context).textTheme.bodyLarge,),
-                
+
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: IconButton(

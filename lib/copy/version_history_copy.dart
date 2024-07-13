@@ -9,20 +9,16 @@ class VersionHistoryCopy{
       physics: ScrollPhysics(),
         data: _composeVersionCopy()
 
-        // "### v1.3.0\n"
-        // "* Added ability to filter the notebook by category\n"
-        // "* Implemented 'what's new' pop-up when updated\n\n"
-        // " --- \n\n"
-        //     "Enjoying Air Fryr? If you find the app useful please consider supporting it's continued development. \n\n"
-        //     "See 'Remove Ads' in the sidebar menu for more information"
         );
   }
 
   static String _composeVersionCopy(){
     bool isPro = FryerPreferences.getAppPurchasedStatus() ?? false;
-    String latestVersion = "### v1.6\n"
-        "* Added keyboard entry option to the calculator - press the button above the slider to add info quickly\n"
-        "* Made it easier to dismiss the keyboard when entering or editing notes\n"
+    String latestVersion = "### v1.7\n"
+        "* Added ability to quickly share notes.\n"
+        "* Added additional save button to notes page.\n"
+        "* Bugs: Corrected spelling of Celsius.\n"
+        "* Behind the scenes updates to remain platform compliant\n"
         " --- \n\n";
 
     String proFooter = "Thank you for Supporting Air Fryr - your donation helps keep the app alive!";
@@ -41,12 +37,20 @@ class VersionHistoryCopy{
       padding: EdgeInsets.all(12.0),
       child: Markdown(
           data: "## Latest Version:\n"
+              "### v1.7\n"
+              "* Added ability to quickly share notes.\n"
+              "* Added additional save button to notes page.\n"
+              "* Bugs: Corrected spelling of Celsius.\n"
+              "* Behind the scenes updates to remain platform compliant\n"
+              " --- \n\n"
+
+
+
+          "## Previous Releases:\n"
               "### v1.6\n"
               "* Added keyboard entry option to the calculator - press the button above the slider to add info quickly\n"
               "* Made it easier to dismiss the keyboard when entering or editing notes\n"
               " --- \n\n"
-
-          "## Previous Releases:\n"
           "### v1.5.2\n"
           "* Added 'baking' category\n"
           "* Compliance updates for admob\n"
