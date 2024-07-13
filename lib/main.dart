@@ -7,13 +7,11 @@ import 'package:air_fryer_calculator/ui/air_fryer_home.dart';
 import 'package:air_fryer_calculator/ui/first_use_demo/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:air_fryer_calculator/theme/theme_constants.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:json_theme/json_theme.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:provider/provider.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
