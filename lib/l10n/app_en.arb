@@ -1,5 +1,8 @@
 {
   "ovenTemp" : "Oven Temperature",
+  "@ovenTemp" : {
+    "description": "Oven Temperature label"
+  },
   "ovenTime" : "Oven Time",
   "suggestedSettings" : "Suggested Air Fryer Settings",
   "temperature" : "Temperature",

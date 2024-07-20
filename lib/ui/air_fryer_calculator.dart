@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../model/adUnits.dart';
 import '../provider/adstate.dart';
 
@@ -74,11 +74,11 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
                     child: ElevatedButton(
                       onPressed: () {
                         Get.defaultDialog(
-                          title: "Oven Temperature",
+                          title: AppLocalizations.of(context)!.ovenTemp,
                           content: OvenSettings(isTemp: true,),
                         );
                       },
-                      child: Text("Oven Temperature: ${widget.fryerController.temperature.value.toInt()}${TextHelper.getTempSuffix(widget.fryerController.tempIsCelsius.value)}",
+                      child: Text("${AppLocalizations.of(context)!.ovenTemp}: ${widget.fryerController.temperature.value.toInt()}${TextHelper.getTempSuffix(widget.fryerController.tempIsCelsius.value)}",
                       style: TextStyle(fontWeight: FontWeight.bold),),
                     ),
                   ),
@@ -95,11 +95,11 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0,10,0,25),
                     child: ElevatedButton(
-                      child: Text("Oven Time: ${widget.fryerController.cookTime.toInt()} minutes",
+                      child: Text("${AppLocalizations.of(context)!.ovenTime}: ${widget.fryerController.cookTime.toInt()} minutes",
                       style: TextStyle(fontWeight: FontWeight.bold)),
                       onPressed: () {
                         Get.defaultDialog(
-                          title: "Oven Time",
+                          title: AppLocalizations.of(context)!.ovenTime,
                           content: OvenSettings(isTemp: false,),
                         );
                       },
@@ -119,24 +119,24 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
                   //Display the output
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("Suggested Air Fryer Setting",style: Theme.of(context).textTheme.bodyLarge,),
+                    child: Text(AppLocalizations.of(context)!.settings,style: Theme.of(context).textTheme.bodyLarge,),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: Text("Temperature: ${calculateAFTemp(widget.fryerController.tempIsCelsius.value, widget.fryerController.temperature.value)}${TextHelper.getTempSuffix(widget.fryerController.tempIsCelsius.value)}",
+                    child: Text("${AppLocalizations.of(context)!.temperature}: ${calculateAFTemp(widget.fryerController.tempIsCelsius.value, widget.fryerController.temperature.value)}${TextHelper.getTempSuffix(widget.fryerController.tempIsCelsius.value)}",
                     style: Theme.of(context).textTheme.displaySmall,
                     textAlign: TextAlign.center,),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("Time:\n ${calculateTime(widget.fryerController.cookTime.value).toInt()} minutes",
+                    child: Text("${AppLocalizations.of(context)!.time}:\n ${calculateTime(widget.fryerController.cookTime.value).toInt()} minutes",
                     style: Theme.of(context).textTheme.displaySmall,
                     textAlign: TextAlign.center,),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: ElevatedButton(
-                      child: const Text("Save to Notes"),
+                      child: Text(AppLocalizations.of(context)!.saveToNotes),
                       onPressed: (){
                         Get.to(() => AddNotes(
                           time: calculateTime(widget.fryerController.cookTime.value),
