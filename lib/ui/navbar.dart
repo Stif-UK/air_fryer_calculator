@@ -7,6 +7,7 @@ import 'package:air_fryer_calculator/ui/sidebar_links/deleted_notes.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/developer_stats.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/privacy_landing.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/remove_ads.dart';
+import 'package:air_fryer_calculator/ui/sidebar_links/settings.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/version_history.dart';
 import 'package:air_fryer_calculator/util/text_helper.dart';
 import 'package:flutter/material.dart';
@@ -64,19 +65,26 @@ class _NavBarState extends State<NavBar> {
 
                 )),
 
-                SwitchListTile(
-                  title: _celcius? const Text("Temperature: Celsius"): const Text("Temperature: Fahrenheit"),
-                  value: _celcius,
-                  onChanged: (bool newValue) async{
-                    await FryerPreferences.setTemperaturePreference(newValue);
-                    widget.fryerController.tempIsCelcius(newValue);
-                    setState(() {
-                      _celcius = newValue;
-
-                    });
+                ListTile(
+                  title: const Text("Settings"),
+                  trailing: const Icon(Icons.settings),
+                  onTap: (){
+                    Get.to(() => Settings());
                   },
-
                 ),
+                // SwitchListTile(
+                //   title: _celcius? const Text("Temperature: Celsius"): const Text("Temperature: Fahrenheit"),
+                //   value: _celcius,
+                //   onChanged: (bool newValue) async{
+                //     await FryerPreferences.setTemperaturePreference(newValue);
+                //     widget.fryerController.tempIsCelcius(newValue);
+                //     setState(() {
+                //       _celcius = newValue;
+                //
+                //     });
+                //   },
+                //
+                // ),
                 const Divider(thickness: 2,),
                 ListTile(
                   title: const Text("Privacy"),
