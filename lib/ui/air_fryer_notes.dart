@@ -4,7 +4,6 @@ import 'package:air_fryer_calculator/model/enums/category_enums.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 import 'package:air_fryer_calculator/model/notesmodel.dart';
 import 'package:air_fryer_calculator/provider/adstate.dart';
-import 'package:air_fryer_calculator/ui/add_notes.dart';
 import 'package:air_fryer_calculator/ui/note_listtile.dart';
 import 'package:air_fryer_calculator/util/ad_widget_helper.dart';
 import 'package:air_fryer_calculator/util/text_helper.dart';
@@ -15,6 +14,8 @@ import 'package:provider/provider.dart';
 import 'package:air_fryer_calculator/util/database_helper.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 
 class AirFryerNotes extends StatefulWidget {
@@ -43,8 +44,6 @@ class _AirFryerNotesState extends State<AirFryerNotes> {
         setState(() {
           banner = BannerAd(
               adUnitId: AdUnits.notebookBannerAdUnitId,
-              //adUnitId: WristCheckConfig.prodBuild == false? adState.getTestAds : AdUnits.viewWatchBannerAdUnitId,
-              //If the device screen is large enough display a larger ad on this screen
               size: AdSize.banner,
               request: const AdRequest(),
               listener: adState.adListener)
@@ -93,7 +92,7 @@ class _AirFryerNotesState extends State<AirFryerNotes> {
 
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Text("Category Filter:",
+                              Text("${AppLocalizations.of(context)!.categoryFilter}:",
                                 style: Theme.of(context).textTheme.bodyLarge,),
                               DropdownButton<CategoryEnum>(
                                 items: items.map(buildMenuItem).toList(),
@@ -115,9 +114,9 @@ class _AirFryerNotesState extends State<AirFryerNotes> {
                       children: [
                         Expanded(child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text("Favourites:",style: Theme.of(context).textTheme.bodyLarge,),
+                          child: Text("${AppLocalizations.of(context)!.favourites}:",style: Theme.of(context).textTheme.bodyLarge,),
                         )),
-                        showFavourites? Text("Showing favourites"): Text("Showing all"),
+                        showFavourites? Text(AppLocalizations.of(context)!.showingFavourites): Text(AppLocalizations.of(context)!.showingAll),
                         Switch(value: showFavourites, onChanged: (fav){
                           setState(() {
                             showFavourites = fav;
@@ -133,7 +132,7 @@ class _AirFryerNotesState extends State<AirFryerNotes> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children:  [
                                   const Icon(Icons.note_alt_outlined),
-                                  nonArchivedNotesList.isEmpty? const Text("Your Notebook is currently empty"): const Text("Nothing to show for the current filter"),
+                                  nonArchivedNotesList.isEmpty? Text(AppLocalizations.of(context)!.emptyNotebook): Text(AppLocalizations.of(context)!.emptyFilter),
                                 ],
                               ),
                             ),
@@ -171,7 +170,7 @@ class _AirFryerNotesState extends State<AirFryerNotes> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(15.0, 0, 15.0, 0),
-                                child: Text("Deleting",
+                                child: Text(AppLocalizations.of(context)!.deleting,
                                 style: Theme.of(context).textTheme.bodyLarge,),
                               ),
                               const Padding(

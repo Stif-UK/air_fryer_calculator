@@ -58,5 +58,8 @@
   "english" : "English",
   "dutch" : "Dutch",
   "language" : "Language",
-  "translations" : "Translations"
+  "translations" : "Translations",
+  "emptyNotebook" : "Your Notebook is currently empty",
+  "emptyFilter" : "Nothing to show for the current filter",
+  "deleting" : "Deleting"
 }
