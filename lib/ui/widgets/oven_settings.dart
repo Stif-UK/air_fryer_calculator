@@ -2,6 +2,8 @@ import 'package:air_fryer_calculator/controller/FryerController.dart';
 import 'package:air_fryer_calculator/util/string_extention.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class OvenSettings extends StatefulWidget {
   OvenSettings({super.key,
@@ -32,7 +34,7 @@ class _OvenSettingsState extends State<OvenSettings> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        widget.isTemp? Text("Input oven temperature"): Text("Input oven time in minutes"),
+        widget.isTemp? Text(AppLocalizations.of(context)!.inputOvenTemp): Text(AppLocalizations.of(context)!.inputOvenTime),
         Padding(
           padding: const EdgeInsets.all(20.0),
           child: Form(
@@ -43,11 +45,11 @@ class _OvenSettingsState extends State<OvenSettings> {
                 validator: (String? val) {
                   if(widget.isTemp) {
                   if (!val!.isValidTemp) {
-                    return 'Must be a number between 0 & 450';
+                    return '${AppLocalizations.of(context)!.mustBeANumber} 0 & 450';
                   }
                 } else {
                     if (!val!.isValidTime) {
-                      return 'Must be a number between 0 & 180';
+                      return '${AppLocalizations.of(context)!.mustBeANumber} 0 & 180';
                     }
                   }
               },

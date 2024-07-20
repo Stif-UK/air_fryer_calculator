@@ -69,5 +69,9 @@
   "restorePurchase" : "Restore Purchase Status",
   "donateAgain" : "Donate Again",
   "paymentQuickSummary" : "Pay what you like! Choose any option to remove ads",
-  "noResultsFound" : "No Results Found"
+  "noResultsFound" : "No Results Found",
+  "mustBeANumber" : "Must be a number between",
+  "inputOvenTemp" : "Input Oven Temperature",
+  "inputOvenTime" : "Input oven time in minutes"
+
 }

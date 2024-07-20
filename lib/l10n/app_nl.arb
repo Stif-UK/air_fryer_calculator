@@ -66,6 +66,11 @@
   "restorePurchase" : "Aankoopstatus herstellen",
   "donateAgain" : "Doneer opnieuw",
   "paymentQuickSummary" : "Betaal wat je wilt! Kies een optie om advertenties te verwijderen",
-  "noResultsFound" : "geen resultaten gevonden"
+  "noResultsFound" : "geen resultaten gevonden",
+  "mustBeANumber" : "Moet een getal tussen zijn",
+  "inputOvenTemp" : "Oventemperatuur invoeren",
+  "inputOvenTime" : "Voer de oventijd in minuten in"
+
+
 
 }
