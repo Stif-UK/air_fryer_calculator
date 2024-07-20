@@ -19,7 +19,7 @@ class _RemoveAdsState extends State<RemoveAds> {
     return Obx(
         () => Scaffold(
         appBar: AppBar(
-          title: widget.fryerController.isAppPro.value? RemoveAdsCopy.getPageTitleSupporter() :RemoveAdsCopy.getPageTitle(),
+          title: widget.fryerController.isAppPro.value? RemoveAdsCopy.getPageTitleSupporter(context) :RemoveAdsCopy.getPageTitle(context),
         ),
         body: SingleChildScrollView(
           child: Column(

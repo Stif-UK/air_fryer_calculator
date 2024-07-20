@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class RemoveAdsCopy{
 
-  static getPageTitle(){
-    return Text("Remove Ads");
+  static getPageTitle(BuildContext context){
+    return Text(AppLocalizations.of(context)!.removeAds);
   }
 
-  static getPageTitleSupporter(){
-    return Text("Support Air Fryr");
+  static getPageTitleSupporter(BuildContext context){
+    return Text(AppLocalizations.of(context)!.supportAirFryr);
   }
 
   static getRemoveAdsMainCopy(BuildContext context){

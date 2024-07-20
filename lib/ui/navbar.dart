@@ -1,4 +1,3 @@
-import 'package:air_fryer_calculator/api/purchase_api.dart';
 import 'package:air_fryer_calculator/controller/FryerController.dart';
 import 'package:air_fryer_calculator/copy/remove_ads_copy.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/about_app.dart';
@@ -9,13 +8,11 @@ import 'package:air_fryer_calculator/ui/sidebar_links/privacy_landing.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/remove_ads.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/settings.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/version_history.dart';
-import 'package:air_fryer_calculator/util/text_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:air_fryer_calculator/model/fryer_preferences.dart';
-import 'package:air_fryer_calculator/ui/sidebar_links/privacy_policy.dart';
 import 'package:in_app_review/in_app_review.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NavBar extends StatefulWidget {
   NavBar({Key? key}) : super(key: key);
@@ -65,7 +62,7 @@ class _NavBarState extends State<NavBar> {
                 )),
 
                 ListTile(
-                  title: const Text("Settings"),
+                  title: Text(AppLocalizations.of(context)!.settings),
                   trailing: const Icon(Icons.settings),
                   onTap: (){
                     Get.to(() => Settings());
@@ -73,28 +70,28 @@ class _NavBarState extends State<NavBar> {
                 ),
                 const Divider(thickness: 2,),
                 ListTile(
-                  title: const Text("Privacy"),
+                  title: Text(AppLocalizations.of(context)!.privacy),
                   trailing: const Icon(Icons.privacy_tip_outlined),
                   onTap: (){
                     Get.to(() => PrivacyLanding());
                   },
                 ),
                 ListTile(
-                  title: const Text("About App"),
+                  title: Text(AppLocalizations.of(context)!.aboutApp),
                   trailing: const Icon(Icons.info_outline),
                   onTap: (){
                     Get.to(() => const AboutApp());
                   },
                 ),
                 ListTile(
-                  title: const Text("Attributions"),
+                  title: Text(AppLocalizations.of(context)!.attributions),
                   trailing: const Icon(Icons.check_box_outlined),
                   onTap: (){
                     Get.to(() => const Attributions());
                   },
                 ),
                 ListTile(
-                  title: const Text("Version History"),
+                  title: Text(AppLocalizations.of(context)!.versionHistory),
                   trailing: const Icon(Icons.history),
                   onTap: (){
                     Get.to(() => const VersionHistory());
@@ -102,7 +99,7 @@ class _NavBarState extends State<NavBar> {
                 ),
                 const Divider(thickness: 2,),
                 ListTile(
-                  title: widget.fryerController.isAppPro.value? RemoveAdsCopy.getPageTitleSupporter():  RemoveAdsCopy.getPageTitle(),
+                  title: widget.fryerController.isAppPro.value? RemoveAdsCopy.getPageTitleSupporter(context):  RemoveAdsCopy.getPageTitle(context),
                   trailing: const Icon(Icons.money_off),
                   onTap: (){
                     Get.to(() => RemoveAds());
@@ -111,7 +108,7 @@ class _NavBarState extends State<NavBar> {
                 const Divider(thickness: 2,),
                 //const SizedBox(height: 100,),
                 ListTile(
-                  title: const Text("Leave an App Review"),
+                  title: Text(AppLocalizations.of(context)!.appReview),
                   trailing: const Icon(Icons.reviews_outlined),
                   onTap: (){
                     inAppReview.openStoreListing(
@@ -127,13 +124,13 @@ class _NavBarState extends State<NavBar> {
           ),
               const Divider(thickness: 2,),
               ListTile(
-                title: const Text("Deleted Notes"),
+                title: Text(AppLocalizations.of(context)!.deletedNotes),
                 trailing: const Icon(Icons.delete_outline),
                 onTap: (){
                     Get.to(() => const DeletedNotes());
                   }),
           const SizedBox(height: 20,),
-          Text("App Version: $_buildVersion "),
+          Text("${AppLocalizations.of(context)!.appVersion}: $_buildVersion "),
           const SizedBox(height: 25,)
         ],
       ),
