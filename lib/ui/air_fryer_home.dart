@@ -12,6 +12,8 @@ import 'package:air_fryer_calculator/ui/air_fryer_notes.dart';
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:flutter/material.dart';
 import 'package:air_fryer_calculator/ui/navbar.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class AirFryerHome extends StatefulWidget {
   const AirFryerHome({Key? key}) : super(key: key);
@@ -86,18 +88,18 @@ class _AirFryerHomeState extends State<AirFryerHome> {
       },
       body: _children[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.calculate_outlined),
-            label: 'Calculator'
+            label: AppLocalizations.of(context)!.calculator
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.note_alt_outlined),
-            label: 'Notes'
+            label: AppLocalizations.of(context)!.notes
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.thermostat),
-              label: 'Temp Guide'
+              label: AppLocalizations.of(context)!.tempGuide
           )
         ],
         currentIndex: _selectedIndex,
