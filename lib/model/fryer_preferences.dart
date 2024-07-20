@@ -20,6 +20,8 @@ class FryerPreferences {
   static const _keyLastSalePromptDismissed = 'lastSalePromptDismissed';
   //First Use Demo
   static const _keyFirstDemo = 'firstUseDemo';
+  //locale
+  static const _keyLocale = 'locale';
 
 
   //Getters and setters
@@ -99,5 +101,14 @@ class FryerPreferences {
   static Future setLastSalePrompt(DateTime lastSalePrompt) async{
     await _preferences.setString(_keyLastSalePromptDismissed, lastSalePrompt.toString());
   }
+
+  //Getter and Setter for locale
+  static Future setLocalePreference(String locale) async {
+    await _preferences.setString(_keyLocale, locale);
+  }
+
+  static String getLocalePreference() {
+    return _preferences.getString(_keyLocale) ?? "en";
+}
 
 }
