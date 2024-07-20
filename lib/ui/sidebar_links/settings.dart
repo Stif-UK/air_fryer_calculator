@@ -1,5 +1,6 @@
 import 'package:air_fryer_calculator/controller/FryerController.dart';
 import 'package:air_fryer_calculator/controller/LanguageController.dart';
+import 'package:air_fryer_calculator/util/flag_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,12 +14,19 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+
   @override
   Widget build(BuildContext context) {
 
       List<DropdownMenuItem<String>> menuItems = [
-        DropdownMenuItem(child: Text("English"),value: "en"),
-        DropdownMenuItem(child: Text("Dutch"),value: "nl"),
+        DropdownMenuItem(child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Text("English"),
+        ),value: "en"),
+        DropdownMenuItem(child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Text("Dutch"),
+        ),value: "nl"),
 
       ];
 
@@ -42,6 +50,7 @@ class _SettingsState extends State<Settings> {
           Obx(()=> ListTile(
               title: Text("Language:"),
               trailing: DropdownButton(
+                icon: FlagHelper.getFlag(widget.languageController.locale.value),
                 value: widget.languageController.locale.value.languageCode,
                 items: menuItems,
                 onChanged: (newValue){
@@ -51,7 +60,8 @@ class _SettingsState extends State<Settings> {
 
               ),
             ),
-          )
+          ),
+          const Divider(thickness: 2,)
 
         ],
       ),

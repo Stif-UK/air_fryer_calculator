@@ -55,6 +55,7 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   share_plus: ^9.0.0
   flutter_localization: ^0.2.0
+  flutter_svg: ^2.0.9
 
 dependency_overrides:
   watcher: ^1.1.0
@@ -92,6 +93,7 @@ flutter:
     - assets/theme/appainter_theme_dark.json
     - assets/demo/
     - lang/
+    - assets/flags/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
