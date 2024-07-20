@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:air_fryer_calculator/ui/search/search_finder.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:get/get.dart';
+
 
 
 class SearchWidget extends SearchDelegate {
 
   @override
-  final String? searchFieldLabel = "Search Notebook";
+  final String? searchFieldLabel = AppLocalizations.of(Get.context!)!.searchNotebook;
 
   //Create an icon to clear the search query
   @override
