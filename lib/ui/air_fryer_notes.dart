@@ -202,7 +202,7 @@ class _AirFryerNotesState extends State<AirFryerNotes> {
   DropdownMenuItem<CategoryEnum> buildMenuItem(CategoryEnum item) => DropdownMenuItem(
     value: item,
     child: Text(
-      TextHelper.getCategoryText(item),
+      TextHelper.getCategoryText(item, context),
       style: Theme.of(context).textTheme.bodyLarge,
     )
 

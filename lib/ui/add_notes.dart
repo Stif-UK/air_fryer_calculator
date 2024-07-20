@@ -210,7 +210,7 @@ class _AddNotesState extends State<AddNotes> {
                                       //if view only then just show text
                                   Padding(
                                     padding: const EdgeInsets.fromLTRB(10.0, 0, 0, 0),
-                                    child: Text(TextHelper.getCategoryText(TextHelper.getEnumFromString(widget.currentNote!.category)),
+                                    child: Text(TextHelper.getCategoryText(TextHelper.getEnumFromString(widget.currentNote!.category), context),
                                     style: Theme.of(context).textTheme.bodyLarge,),
                                   ):
                                       //else show dropdown
@@ -234,7 +234,7 @@ class _AddNotesState extends State<AddNotes> {
                                         return DropdownMenuItem<CategoryEnum>(
                                           value: value,
                                           child: Text(
-                                            TextHelper.getCategoryText(value),
+                                            TextHelper.getCategoryText(value, context),
                                             style: Theme.of(context).textTheme.bodyLarge,
                                             textAlign: TextAlign.center,
                                           ),

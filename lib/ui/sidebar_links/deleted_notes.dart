@@ -88,7 +88,7 @@ class _DeletedNotesState extends State<DeletedNotes> {
                       final item = archiveList[index].toString();
                       var note = archiveList.elementAt(index);
                       String? _title = note.title;
-                      String? _category = TextHelper.getCategoryText(TextHelper.getEnumFromString(note.category));
+                      String? _category = TextHelper.getCategoryText(TextHelper.getEnumFromString(note.category), context);
 
 
                       return Dismissible(
