@@ -4,13 +4,13 @@ import 'package:air_fryer_calculator/model/notesmodel.dart';
 import 'package:air_fryer_calculator/provider/adstate.dart';
 import 'package:air_fryer_calculator/ui/note_listtile.dart';
 import 'package:air_fryer_calculator/util/ad_widget_helper.dart';
-import 'package:air_fryer_calculator/util/text_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hive/hive.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 
 
@@ -64,8 +64,8 @@ class _SearchFinderState extends State<SearchFinder> {
 
                 return results.isEmpty
                 //if there are no results, return 'no results' page
-                    ? const Center(
-                  child: Text('No results found',),
+                    ? Center(
+                  child: Text(AppLocalizations.of(context)!.noResultsFound),
                 )
                     : ListView.builder(
                     physics: const BouncingScrollPhysics(),

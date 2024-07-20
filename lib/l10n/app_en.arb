@@ -68,5 +68,6 @@
   "showPaymentOptions" : "Show Payment Options",
   "restorePurchase" : "Restore Purchase Status",
   "donateAgain" : "Donate Again",
-  "paymentQuickSummary" : "Pay what you like! Choose any option to remove ads"
+  "paymentQuickSummary" : "Pay what you like! Choose any option to remove ads",
+  "noResultsFound" : "No Results Found"
 }
