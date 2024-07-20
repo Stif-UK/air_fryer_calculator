@@ -4,9 +4,10 @@ import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 
 class LanguageController extends GetxController{
   final locale = Locale(FryerPreferences.getLocalePreference()).obs;
-  
+
   updateLocalePref(Locale value){
-    FryerPreferences.setLocalePreference(value.toString());
+    FryerPreferences.setLocalePreference(value.toLanguageTag());
+    print("Language tag: ${value.toLanguageTag()}");
     locale(value);
   }
 
