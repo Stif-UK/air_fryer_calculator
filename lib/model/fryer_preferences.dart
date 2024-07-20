@@ -108,7 +108,11 @@ class FryerPreferences {
   }
 
   static String getLocalePreference() {
-    return _preferences.getString(_keyLocale) ?? "en";
+    print("Prefs: Getting preference ${_preferences.getString(_keyLocale)}");
+    String returnString = _preferences.getString(_keyLocale) ?? "en";
+    print("Returning: $returnString");
+    return returnString;
+
 }
 
 }

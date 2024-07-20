@@ -3,6 +3,7 @@ import 'package:air_fryer_calculator/controller/LanguageController.dart';
 import 'package:air_fryer_calculator/util/flag_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Settings extends StatefulWidget {
   Settings({super.key});
@@ -17,6 +18,7 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
+
 
       List<DropdownMenuItem<String>> menuItems = [
         DropdownMenuItem(child: Padding(
@@ -33,7 +35,7 @@ class _SettingsState extends State<Settings> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Settings"),
+        title: Text(AppLocalizations.of(context)!.settings),
       ),
       body: Column(
         children: [

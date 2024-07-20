@@ -1,4 +1,6 @@
 import 'package:air_fryer_calculator/api/purchase_api.dart';
+import 'package:air_fryer_calculator/controller/LanguageController.dart';
+import 'package:air_fryer_calculator/l10n/l10n.dart';
 import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 import 'package:air_fryer_calculator/model/notesmodel.dart';
 import 'package:air_fryer_calculator/privacy/initialise_screen.dart';
@@ -13,6 +15,8 @@ import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:provider/provider.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -56,6 +60,7 @@ void main() async {
   //Check if user has seen the first use demo
   final hasSeenDemo = FryerPreferences.getHasSeenDemo() ?? false;
 
+  final langController = Get.put(LanguageController());
 
   runApp(
        Provider.value(
@@ -67,6 +72,14 @@ void main() async {
             darkTheme: themeDark,
             themeMode: ThemeMode.system,
             home: hasSeenDemo? const InitialiseScreen(targetWidget: const AirFryerHome()) : AirFryrOnboarding(),
+           locale: langController.locale.value,
+           supportedLocales: L10n.all,
+           localizationsDelegates: const[
+             AppLocalizations.delegate,
+             GlobalMaterialLocalizations.delegate,
+             GlobalWidgetsLocalizations.delegate,
+             GlobalCupertinoLocalizations.delegate
+           ],
           ),
        ),
 
