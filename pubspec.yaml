@@ -54,6 +54,7 @@ dependencies:
   in_app_review: ^2.0.6
   smooth_page_indicator: ^1.1.0
   share_plus: ^9.0.0
+  flutter_localization: ^0.2.0
 
 dependency_overrides:
   watcher: ^1.1.0
