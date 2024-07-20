@@ -61,5 +61,9 @@
   "deleting" : "Verwijderen",
   "showAll" : "Toon Alles",
   "pieces" : "stukken",
-  "whole" : "geheel"
+  "whole" : "geheel",
+  "showPaymentOptions" : "Betalingsopties tonen",
+  "restorePurchase" : "Aankoopstatus herstellen",
+  "donateAgain" : "Doneer opnieuw",
+  "paymentQuickSummary" : "Betaal wat je wilt! Kies een optie om advertenties te verwijderen"
 }

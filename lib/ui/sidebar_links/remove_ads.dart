@@ -4,6 +4,8 @@ import 'package:air_fryer_calculator/copy/remove_ads_copy.dart';
 import 'package:air_fryer_calculator/ui/widgets/paywall_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class RemoveAds extends StatefulWidget {
   RemoveAds({Key? key}) : super(key: key);
@@ -39,7 +41,7 @@ class _RemoveAdsState extends State<RemoveAds> {
                           fetchOffers();
                         },
 
-                        child: widget.fryerController.isAppPro.value? RemoveAdsCopy.getButtonLabelSupporter() : RemoveAdsCopy.getButtonLabel()),
+                        child: widget.fryerController.isAppPro.value? RemoveAdsCopy.getButtonLabelSupporter(context) : RemoveAdsCopy.getButtonLabel(context)),
                   )
 
                 ],
@@ -63,7 +65,7 @@ class _RemoveAdsState extends State<RemoveAds> {
                   );
                 }
 
-              }, child: Text("Restore Purchase Status"))
+              }, child: Text(AppLocalizations.of(context)!.restorePurchase))
             ],
           ),
         )
@@ -86,8 +88,8 @@ class _RemoveAdsState extends State<RemoveAds> {
           context: context,
           builder: (context) => PaywallWidget(
         packages: packages,
-        title: "Support Air Fryr",
-        description: "Pay what you like! Choose any option to remove ads",
+        title: AppLocalizations.of(context)!.supportAirFryr,
+        description: AppLocalizations.of(context)!.paymentQuickSummary,
         onClickedPackage: (package) async{
           //Pop context first - this will allow any exception dialog to show without being blocked by the bottom sheet.
           Navigator.pop(context);

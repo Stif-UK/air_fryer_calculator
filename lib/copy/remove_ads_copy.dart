@@ -33,17 +33,17 @@ class RemoveAdsCopy{
 
 
 
-  static getButtonLabel(){
+  static getButtonLabel(BuildContext context){
     return Padding(
       padding: const EdgeInsets.all(12.0),
-      child: Text("Show Payment Options"),
+      child: Text(AppLocalizations.of(context)!.showPaymentOptions),
     );
   }
 
-  static getButtonLabelSupporter(){
+  static getButtonLabelSupporter(BuildContext context){
     return Padding(
       padding: const EdgeInsets.all(12.0),
-      child: Text("Donate Again"),
+      child: Text(AppLocalizations.of(context)!.donateAgain),
     );
   }
 }

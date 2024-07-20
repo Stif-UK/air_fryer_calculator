@@ -64,5 +64,9 @@
   "deleting" : "Deleting",
   "showAll" : "Show All",
   "pieces" : "pieces",
-  "whole" : "whole"
+  "whole" : "whole",
+  "showPaymentOptions" : "Show Payment Options",
+  "restorePurchase" : "Restore Purchase Status",
+  "donateAgain" : "Donate Again",
+  "paymentQuickSummary" : "Pay what you like! Choose any option to remove ads"
 }
