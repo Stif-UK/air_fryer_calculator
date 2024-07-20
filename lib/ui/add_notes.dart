@@ -265,7 +265,7 @@ class _AddNotesState extends State<AddNotes> {
                             Expanded(
                               child: Padding(
                                 padding: const EdgeInsets.all(10.0),
-                                child: Text("Temperature: ${widget.temperature.toInt()} ${TextHelper.getTempSuffix(widget.fryerController.tempIsCelcius.value)}",
+                                child: Text("Temperature: ${widget.temperature.toInt()} ${TextHelper.getTempSuffix(widget.fryerController.tempIsCelsius.value)}",
                                   textAlign: TextAlign.start,
                                   style: Theme.of(context).textTheme.bodyLarge,),
                               ),
@@ -299,7 +299,7 @@ class _AddNotesState extends State<AddNotes> {
                             => widget.temperature = value);
                           },
                           divisions: 90,
-                          label: "${widget.temperature.toInt()} ${TextHelper.getTempSuffix(widget.fryerController.tempIsCelcius.value)}",),
+                          label: "${widget.temperature.toInt()} ${TextHelper.getTempSuffix(widget.fryerController.tempIsCelsius.value)}",),
                         const Divider(thickness: 2,),
                         Row(
                           children: [
@@ -361,7 +361,7 @@ class _AddNotesState extends State<AddNotes> {
                                 //Check that fields are valid
                                 if(_formKey.currentState!.validate()) {
                               //Add a new object to the database, notify user and close the window
-                              await DataBaseHelper.addNote(titleFieldController.text, _selectedCategory, widget.temperature, widget.time, notesFieldController.text, widget.fryerController.tempIsCelcius.value, false); //TODO: Update value of 'favourite'
+                              await DataBaseHelper.addNote(titleFieldController.text, _selectedCategory, widget.temperature, widget.time, notesFieldController.text, widget.fryerController.tempIsCelsius.value, false); //TODO: Update value of 'favourite'
                               Get.back();
                               title = titleFieldController.text;
                               Get.snackbar(
@@ -488,7 +488,7 @@ double increaseTemp(double currentTemp){
 
   String _generateShareText() {
     return "${widget.currentNote!.title}\n\n"
-        "Temperature: ${widget.currentNote!.temperature.round()} ${TextHelper.getTempSuffix(widget.fryerController.tempIsCelcius.value)}\n" //TODO: Add units
+        "Temperature: ${widget.currentNote!.temperature.round()} ${TextHelper.getTempSuffix(widget.fryerController.tempIsCelsius.value)}\n" //TODO: Add units
         "Time: ${widget.currentNote!.time.round()} minutes.\n\n"
         "${widget.currentNote!.notes}\n\n"
         "www.getairfryr.com";

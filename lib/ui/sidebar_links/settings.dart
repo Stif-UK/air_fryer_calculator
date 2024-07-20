@@ -22,14 +22,16 @@ class _SettingsState extends State<Settings> {
       body: Column(
         children: [
           Obx(()=> SwitchListTile(
-              title: widget.fryerController.tempIsCelcius.value? const Text("Temperature: Celsius"): const Text("Temperature: Fahrenheit"),
-              value: widget.fryerController.tempIsCelcius.value,
+              title: widget.fryerController.tempIsCelsius.value? const Text("Temperature: Celsius"): const Text("Temperature: Fahrenheit"),
+              value: widget.fryerController.tempIsCelsius.value,
               onChanged: (bool newValue) async{
-                widget.fryerController.tempIsCelcius(newValue);
+                widget.fryerController.tempIsCelsius(newValue);
               },
 
             ),
           ),
+          const Divider(thickness: 2,),
+
         ],
       ),
     );

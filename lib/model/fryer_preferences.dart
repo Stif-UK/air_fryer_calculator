@@ -57,7 +57,7 @@ class FryerPreferences {
       await _preferences.setBool(_keyAppReviewPrompt, appReviewPrompted);
 
   //Getter and setter for purchased bool
-  static bool? getTemperaturePreference() => _preferences.getBool(_keyTempPreference);
+  static bool getTemperaturePreference() => _preferences.getBool(_keyTempPreference) ?? true;
 
   static Future setTemperaturePreference(bool tempPreference) async =>
       await _preferences.setBool(_keyTempPreference, tempPreference);

@@ -74,9 +74,9 @@ class _AirFryerTemperatureState extends State<AirFryerTemperature> {
                 child: Obx(() => Column(
                   children: [
                     Text("Beef", style: Theme.of(context).textTheme.headlineSmall,),
-                    Text("rare: ${fryerController.tempIsCelcius.value == true? "60": "140"}${TextHelper.getTempSuffix(fryerController.tempIsCelcius.value)}"),
-                    Text("medium: ${fryerController.tempIsCelcius.value == true? "71": "160"}${TextHelper.getTempSuffix(fryerController.tempIsCelcius.value)}"),
-                    Text("well done: ${fryerController.tempIsCelcius.value == true? "77": "170"}${TextHelper.getTempSuffix(fryerController.tempIsCelcius.value)}")
+                    Text("rare: ${fryerController.tempIsCelsius.value == true? "60": "140"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}"),
+                    Text("medium: ${fryerController.tempIsCelsius.value == true? "71": "160"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}"),
+                    Text("well done: ${fryerController.tempIsCelsius.value == true? "77": "170"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}")
                   ],
 
                 )),
@@ -93,7 +93,7 @@ class _AirFryerTemperatureState extends State<AirFryerTemperature> {
                       children: [
                         Text("Pork", style: Theme.of(context).textTheme.headlineSmall,),
                         Text(""),
-                        Text("temp: ${fryerController.tempIsCelcius.value == true? "71": "160"}${TextHelper.getTempSuffix(fryerController.tempIsCelcius.value)}"),
+                        Text("temp: ${fryerController.tempIsCelsius.value == true? "71": "160"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}"),
                         Text(""),
                       ],
                     ),
@@ -112,8 +112,8 @@ class _AirFryerTemperatureState extends State<AirFryerTemperature> {
                   child: Obx(()=> Column(
                       children: [
                         Text("Poultry", style: Theme.of(context).textTheme.headlineSmall,),
-                        Text("pieces: ${fryerController.tempIsCelcius.value == true? "74": "165"}${TextHelper.getTempSuffix(fryerController.tempIsCelcius.value)}"),
-                        Text("whole: ${fryerController.tempIsCelcius.value == true? "85": "185"}${TextHelper.getTempSuffix(fryerController.tempIsCelcius.value)}"),
+                        Text("pieces: ${fryerController.tempIsCelsius.value == true? "74": "165"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}"),
+                        Text("whole: ${fryerController.tempIsCelsius.value == true? "85": "185"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}"),
                         Text(""),
                       ],
 
@@ -132,7 +132,7 @@ class _AirFryerTemperatureState extends State<AirFryerTemperature> {
                       children: [
                         Text("Fish", style: Theme.of(context).textTheme.headlineSmall,),
                         Text(""),
-                        Text("temp: ${fryerController.tempIsCelcius.value == true? "58": "137"}${TextHelper.getTempSuffix(fryerController.tempIsCelcius.value)}"),
+                        Text("temp: ${fryerController.tempIsCelsius.value == true? "58": "137"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}"),
                         Text(""),
                       ],
                     ),
@@ -151,9 +151,9 @@ class _AirFryerTemperatureState extends State<AirFryerTemperature> {
                   child: Obx(() => Column(
                       children: [
                         Text("Baking", style: Theme.of(context).textTheme.headlineSmall,),
-                        Text("cake: ${fryerController.tempIsCelcius.value == true? "98": "210"}${TextHelper.getTempSuffix(fryerController.tempIsCelcius.value)}"),
-                        Text("bread: ${fryerController.tempIsCelcius.value == true? "98": "210"}${TextHelper.getTempSuffix(fryerController.tempIsCelcius.value)}"),
-                        Text("brownies: ${fryerController.tempIsCelcius.value == true? "88": "190"}${TextHelper.getTempSuffix(fryerController.tempIsCelcius.value)}"),
+                        Text("cake: ${fryerController.tempIsCelsius.value == true? "98": "210"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}"),
+                        Text("bread: ${fryerController.tempIsCelsius.value == true? "98": "210"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}"),
+                        Text("brownies: ${fryerController.tempIsCelsius.value == true? "88": "190"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}"),
                       ],
 
                     ),

@@ -7,10 +7,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class FryerController extends GetxController{
   //Manage temperature scale preference
-  final tempIsCelcius = FryerPreferences.getTemperaturePreference()!.obs;
+  final tempIsCelsius = FryerPreferences.getTemperaturePreference().obs;
 
   updateTempPreference(bool tempPref) async {
-    tempIsCelcius(tempPref);
+    tempIsCelsius(tempPref);
     await FryerPreferences.setTemperaturePreference(tempPref);
   }
 
@@ -21,10 +21,10 @@ class FryerController extends GetxController{
     temperature(temp);
   }
 
-  final cooktime = 40.0.obs;
+  final cookTime = 40.0.obs;
 
   updateTime(double time){
-    cooktime(time);
+    cookTime(time);
   }
 
   //Status of navigation drawer

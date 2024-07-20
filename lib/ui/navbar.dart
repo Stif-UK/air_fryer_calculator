@@ -29,7 +29,6 @@ class _NavBarState extends State<NavBar> {
 
   final InAppReview inAppReview = InAppReview.instance;
   String _buildVersion = "Not Determined";
-  bool _celcius = FryerPreferences.getTemperaturePreference() ?? false;
 
   @override
   void initState() {
@@ -72,19 +71,6 @@ class _NavBarState extends State<NavBar> {
                     Get.to(() => Settings());
                   },
                 ),
-                // SwitchListTile(
-                //   title: _celcius? const Text("Temperature: Celsius"): const Text("Temperature: Fahrenheit"),
-                //   value: _celcius,
-                //   onChanged: (bool newValue) async{
-                //     await FryerPreferences.setTemperaturePreference(newValue);
-                //     widget.fryerController.tempIsCelcius(newValue);
-                //     setState(() {
-                //       _celcius = newValue;
-                //
-                //     });
-                //   },
-                //
-                // ),
                 const Divider(thickness: 2,),
                 ListTile(
                   title: const Text("Privacy"),
