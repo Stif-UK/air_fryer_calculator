@@ -2,6 +2,8 @@ PODS:
   - app_tracking_transparency (0.0.1):
     - Flutter
   - Flutter (1.0.0)
+  - flutter_localization (0.0.1):
+    - Flutter
   - Google-Mobile-Ads-SDK (10.4.0):
     - GoogleAppMeasurement (< 11.0, >= 7.0)
     - GoogleUserMessagingPlatform (>= 1.1)
@@ -87,6 +89,7 @@ PODS:
 DEPENDENCIES:
   - app_tracking_transparency (from `.symlinks/plugins/app_tracking_transparency/ios`)
   - Flutter (from `Flutter`)
+  - flutter_localization (from `.symlinks/plugins/flutter_localization/ios`)
   - google_mobile_ads (from `.symlinks/plugins/google_mobile_ads/ios`)
   - in_app_review (from `.symlinks/plugins/in_app_review/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
@@ -113,6 +116,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/app_tracking_transparency/ios"
   Flutter:
     :path: Flutter
+  flutter_localization:
+    :path: ".symlinks/plugins/flutter_localization/ios"
   google_mobile_ads:
     :path: ".symlinks/plugins/google_mobile_ads/ios"
   in_app_review:
@@ -135,6 +140,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   app_tracking_transparency: 5b1745ef9ade815f7455cb6a0848349589afb7c5
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  flutter_localization: f43b18844a2b3d2c71fd64f04ffd6b1e64dd54d4
   Google-Mobile-Ads-SDK: 32fe7836431a06a29f7734ae092b600137c8108d
   google_mobile_ads: 53b1f0d74445963e5810e34ac38dfb27aabe278e
   GoogleAppMeasurement: f9de05ee17401e3355f68e8fc8b5064d429f5918
@@ -149,7 +155,7 @@ SPEC CHECKSUMS:
   PurchasesHybridCommon: 4022d5944cb30ec44ba5159e42aa161fe0e30175
   RevenueCat: 3d934653b7e8b09af88fd47e9e84cfaf5d0a89ba
   share_plus: 8875f4f2500512ea181eef553c3e27dba5135aad
-  shared_preferences_foundation: 986fc17f3d3251412d18b0265f9c64113a8c2472
+  shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
   url_launcher_ios: 08a3dfac5fb39e8759aeb0abbd5d9480f30fc8b4
   webview_flutter_wkwebview: 2e2d318f21a5e036e2c3f26171342e95908bd60a
 
