@@ -61,6 +61,7 @@ void main() async {
   final hasSeenDemo = FryerPreferences.getHasSeenDemo() ?? false;
 
   final langController = Get.put(LanguageController());
+  print(langController.locale.value);
 
   runApp(
        Provider.value(

@@ -7,10 +7,8 @@ class LanguageController extends GetxController{
 
   updateLocalePref(Locale value){
     FryerPreferences.setLocalePreference(value.toLanguageTag());
-    print("Language tag: ${value.toLanguageTag()}");
-    print("Controller: Checking pref value: ${FryerPreferences.getLocalePreference()}");
     locale(value);
-    update();
+    Get.updateLocale(value);
   }
 
 
