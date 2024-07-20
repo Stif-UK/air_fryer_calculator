@@ -58,6 +58,8 @@
   "translations" : "Vertalingen",
   "emptyNotebook" : "Je notitieboekje is momenteel leeg",
   "emptyFilter" : "Er is niets te zien voor het huidige filter",
-  "deleting" : "Verwijderen"
+  "deleting" : "Verwijderen",
+  "showAll" : "Toon Alles"
+
 
 }

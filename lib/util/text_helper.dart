@@ -2,41 +2,43 @@ import 'package:air_fryer_calculator/model/enums/category_enums.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class TextHelper{
-  static getCategoryText(CategoryEnum category){
+  static getCategoryText(CategoryEnum category, BuildContext context){
     String returnText = "";
 
     switch (category){
       case CategoryEnum.sides:
-        returnText = "Sides";
+        returnText = AppLocalizations.of(context)!.sides;
         break;
       case CategoryEnum.meat:
-        returnText = "Meat";
+        returnText = AppLocalizations.of(context)!.meat;
         break;
       case CategoryEnum.seafood:
-        returnText = "Seafood";
+        returnText = AppLocalizations.of(context)!.seafood;
         break;
       case CategoryEnum.poultry:
-        returnText = "Poultry";
+        returnText = AppLocalizations.of(context)!.poultry;
         break;
       case CategoryEnum.vegetarian:
-        returnText = "Vegetarian";
+        returnText = AppLocalizations.of(context)!.vegetarian;
         break;
       case CategoryEnum.dessert:
-        returnText = "Dessert";
+        returnText = AppLocalizations.of(context)!.dessert;
         break;
       case CategoryEnum.other:
-        returnText = "Other";
+        returnText = AppLocalizations.of(context)!.other;
         break;
       case CategoryEnum.vegan:
-        returnText = "Vegan";
+        returnText = AppLocalizations.of(context)!.vegan;
         break;
       case CategoryEnum.baking:
-        returnText = "Baking";
+        returnText = AppLocalizations.of(context)!.baking;
         break;
       case CategoryEnum.all:
-        returnText = "Show All";
+        returnText = AppLocalizations.of(context)!.showAll;
         break;
 
     }
