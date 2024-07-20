@@ -62,5 +62,7 @@
   "emptyNotebook" : "Your Notebook is currently empty",
   "emptyFilter" : "Nothing to show for the current filter",
   "deleting" : "Deleting",
-  "showAll" : "Show All"
+  "showAll" : "Show All",
+  "pieces" : "pieces",
+  "whole" : "whole"
 }

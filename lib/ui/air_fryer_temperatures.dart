@@ -10,6 +10,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class AirFryerTemperature extends StatefulWidget {
   AirFryerTemperature({Key? key}) : super(key: key);
@@ -54,7 +56,7 @@ class _AirFryerTemperatureState extends State<AirFryerTemperature> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(12.0),
-                  child: Text("Temperature Guide",
+                  child: Text(AppLocalizations.of(context)!.tempGuide,
                   style: Theme.of(context).textTheme.headlineMedium,),
                 ),
                 IconButton(
@@ -73,10 +75,10 @@ class _AirFryerTemperatureState extends State<AirFryerTemperature> {
                 flex: 5,
                 child: Obx(() => Column(
                   children: [
-                    Text("Beef", style: Theme.of(context).textTheme.headlineSmall,),
-                    Text("rare: ${fryerController.tempIsCelsius.value == true? "60": "140"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}"),
-                    Text("medium: ${fryerController.tempIsCelsius.value == true? "71": "160"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}"),
-                    Text("well done: ${fryerController.tempIsCelsius.value == true? "77": "170"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}")
+                    Text(AppLocalizations.of(context)!.beef, style: Theme.of(context).textTheme.headlineSmall,),
+                    Text("${AppLocalizations.of(context)!.rare}: ${fryerController.tempIsCelsius.value == true? "60": "140"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}"),
+                    Text("${AppLocalizations.of(context)!.medium}: ${fryerController.tempIsCelsius.value == true? "71": "160"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}"),
+                    Text("${AppLocalizations.of(context)!.wellDone}: ${fryerController.tempIsCelsius.value == true? "77": "170"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}")
                   ],
 
                 )),
@@ -91,9 +93,9 @@ class _AirFryerTemperatureState extends State<AirFryerTemperature> {
                   flex: 5,
                   child: Obx(() => Column(
                       children: [
-                        Text("Pork", style: Theme.of(context).textTheme.headlineSmall,),
+                        Text(AppLocalizations.of(context)!.pork, style: Theme.of(context).textTheme.headlineSmall,),
                         Text(""),
-                        Text("temp: ${fryerController.tempIsCelsius.value == true? "71": "160"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}"),
+                        Text("${AppLocalizations.of(context)!.temperature}: ${fryerController.tempIsCelsius.value == true? "71": "160"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}"),
                         Text(""),
                       ],
                     ),
@@ -111,9 +113,9 @@ class _AirFryerTemperatureState extends State<AirFryerTemperature> {
                   flex: 5,
                   child: Obx(()=> Column(
                       children: [
-                        Text("Poultry", style: Theme.of(context).textTheme.headlineSmall,),
-                        Text("pieces: ${fryerController.tempIsCelsius.value == true? "74": "165"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}"),
-                        Text("whole: ${fryerController.tempIsCelsius.value == true? "85": "185"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}"),
+                        Text(AppLocalizations.of(context)!.poultry, style: Theme.of(context).textTheme.headlineSmall,),
+                        Text("${AppLocalizations.of(context)!.pieces}: ${fryerController.tempIsCelsius.value == true? "74": "165"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}"),
+                        Text("${AppLocalizations.of(context)!.whole}: ${fryerController.tempIsCelsius.value == true? "85": "185"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}"),
                         Text(""),
                       ],
 
@@ -130,9 +132,9 @@ class _AirFryerTemperatureState extends State<AirFryerTemperature> {
                   flex: 5,
                   child: Obx(() => Column(
                       children: [
-                        Text("Fish", style: Theme.of(context).textTheme.headlineSmall,),
+                        Text(AppLocalizations.of(context)!.fish, style: Theme.of(context).textTheme.headlineSmall,),
                         Text(""),
-                        Text("temp: ${fryerController.tempIsCelsius.value == true? "58": "137"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}"),
+                        Text("${AppLocalizations.of(context)!.temperature}: ${fryerController.tempIsCelsius.value == true? "58": "137"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}"),
                         Text(""),
                       ],
                     ),
@@ -150,10 +152,10 @@ class _AirFryerTemperatureState extends State<AirFryerTemperature> {
                   flex: 5,
                   child: Obx(() => Column(
                       children: [
-                        Text("Baking", style: Theme.of(context).textTheme.headlineSmall,),
-                        Text("cake: ${fryerController.tempIsCelsius.value == true? "98": "210"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}"),
-                        Text("bread: ${fryerController.tempIsCelsius.value == true? "98": "210"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}"),
-                        Text("brownies: ${fryerController.tempIsCelsius.value == true? "88": "190"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}"),
+                        Text(AppLocalizations.of(context)!.baking, style: Theme.of(context).textTheme.headlineSmall,),
+                        Text("${AppLocalizations.of(context)!.cake}: ${fryerController.tempIsCelsius.value == true? "98": "210"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}"),
+                        Text("${AppLocalizations.of(context)!.bread}: ${fryerController.tempIsCelsius.value == true? "98": "210"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}"),
+                        Text("${AppLocalizations.of(context)!.brownies}: ${fryerController.tempIsCelsius.value == true? "88": "190"}${TextHelper.getTempSuffix(fryerController.tempIsCelsius.value)}"),
                       ],
 
                     ),
