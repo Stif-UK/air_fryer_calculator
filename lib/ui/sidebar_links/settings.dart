@@ -23,11 +23,11 @@ class _SettingsState extends State<Settings> {
       List<DropdownMenuItem<String>> menuItems = [
         DropdownMenuItem(child: Padding(
           padding: const EdgeInsets.all(12.0),
-          child: Text("English"),
+          child: Text(AppLocalizations.of(context)!.english),
         ),value: "en"),
         DropdownMenuItem(child: Padding(
           padding: const EdgeInsets.all(12.0),
-          child: Text("Dutch"),
+          child: Text(AppLocalizations.of(context)!.dutch),
         ),value: "nl"),
 
       ];
@@ -40,7 +40,7 @@ class _SettingsState extends State<Settings> {
       body: Column(
         children: [
           Obx(()=> SwitchListTile(
-              title: widget.fryerController.tempIsCelsius.value? const Text("Temperature: Celsius"): const Text("Temperature: Fahrenheit"),
+              title: widget.fryerController.tempIsCelsius.value? Text(AppLocalizations.of(context)!.tempCelsius): Text(AppLocalizations.of(context)!.tempFahrenheit),
               value: widget.fryerController.tempIsCelsius.value,
               onChanged: (bool newValue) async{
                 widget.fryerController.tempIsCelsius(newValue);
@@ -50,7 +50,7 @@ class _SettingsState extends State<Settings> {
           ),
           const Divider(thickness: 2,),
           Obx(()=> ListTile(
-              title: Text("Language:"),
+              title: Text("${AppLocalizations.of(context)!.language}:"),
               trailing: DropdownButton(
                 icon: FlagHelper.getFlag(widget.languageController.locale.value),
                 value: widget.languageController.locale.value.languageCode,
