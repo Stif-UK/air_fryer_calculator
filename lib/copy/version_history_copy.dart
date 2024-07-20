@@ -14,11 +14,11 @@ class VersionHistoryCopy{
 
   static String _composeVersionCopy(){
     bool isPro = FryerPreferences.getAppPurchasedStatus() ?? false;
-    String latestVersion = "### v1.7\n"
-        "* Added ability to quickly share notes.\n"
-        "* Added additional save button to notes page.\n"
-        "* Bugs: Corrected spelling of Celsius.\n"
-        "* Behind the scenes updates to remain platform compliant\n"
+    String latestVersion = "### v1.7.1\n"
+        "* Implemented translation framework.\n"
+        "* Dutch translation available (see Settings).\n"
+        "\n"
+        "* Would you like additional translations? Please let me know!\n"
         " --- \n\n";
 
     String proFooter = "Thank you for Supporting Air Fryr - your donation helps keep the app alive!";
