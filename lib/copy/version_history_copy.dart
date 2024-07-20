@@ -37,16 +37,22 @@ class VersionHistoryCopy{
       padding: EdgeInsets.all(12.0),
       child: Markdown(
           data: "## Latest Version:\n"
+              "### v1.7.1\n"
+              "* Implemented translation framework.\n"
+              "* Dutch translation available (see Settings).\n"
+              "\n"
+              "* Would you like additional translations? Please let me know!\n"
+              " --- \n\n"
+
+
+
+          "## Previous Releases:\n"
               "### v1.7\n"
               "* Added ability to quickly share notes.\n"
               "* Added additional save button to notes page.\n"
               "* Bugs: Corrected spelling of Celsius.\n"
               "* Behind the scenes updates to remain platform compliant\n"
               " --- \n\n"
-
-
-
-          "## Previous Releases:\n"
               "### v1.6\n"
               "* Added keyboard entry option to the calculator - press the button above the slider to add info quickly\n"
               "* Made it easier to dismiss the keyboard when entering or editing notes\n"
