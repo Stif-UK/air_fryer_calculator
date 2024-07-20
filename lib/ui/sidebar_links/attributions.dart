@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:air_fryer_calculator/copy/attributions_copy.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 
 class Attributions extends StatelessWidget {
@@ -9,7 +11,7 @@ class Attributions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Attributions"),
+        title: Text(AppLocalizations.of(context)!.attributions),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -37,6 +39,16 @@ class Attributions extends StatelessWidget {
             children: [
               AttributionsCopy.getAttributionFlutterIcons()
             ],),
+            const Divider(thickness: 2,),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Text("${AppLocalizations.of(context)!.translations}:",
+                style: Theme.of(context).textTheme.bodyLarge,),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Text("I would also like to express thanks to Folkert Voos for supporting the Dutch translation of the app"),
+            )
           ],
         ),
       ),

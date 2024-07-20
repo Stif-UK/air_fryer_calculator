@@ -57,5 +57,6 @@
   "settings" : "Settings",
   "english" : "English",
   "dutch" : "Dutch",
-  "language" : "Language"
+  "language" : "Language",
+  "translations" : "Translations"
 }

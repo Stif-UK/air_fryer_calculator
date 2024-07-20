@@ -54,5 +54,7 @@
   "settings" : "Instellingen",
   "english" : "Engels",
   "dutch" : "Nederlands",
-  "language" : "Taal"
+  "language" : "Taal",
+  "translations" : "Vertalingen"
+
 }
