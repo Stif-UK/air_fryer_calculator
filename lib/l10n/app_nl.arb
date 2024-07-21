@@ -74,7 +74,10 @@
   "addedToNotebok" : "toegevoegd aan notitieboekje",
   "notebookUpdated" : "Uw notitieboekje is bijgewerkt",
   "updateNote" : "Opmerking bijwerken",
-  "shareNote" : "Deel notitie"
+  "shareNote" : "Deel notitie",
+  "restoringNote" : "Notitie herstellen",
+  "deletedPageGuidance" : "Wanneer u een notitie uit het hoofdnotitieblok verwijdert, wordt deze hier weergegeven. \n\n U kunt er vervolgens voor kiezen om volledig te verwijderen door naar links te vegen of te herstellen naar het notitieblok door naar rechts te vegen."
+
 
 
 

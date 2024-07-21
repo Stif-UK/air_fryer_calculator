@@ -11,7 +11,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../model/fryer_preferences.dart';
 
 class DeletedNotes extends StatefulWidget {
@@ -52,7 +52,7 @@ class _DeletedNotesState extends State<DeletedNotes> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Deleted Notes"),
+        title: Text(AppLocalizations.of(context)!.deletedNotes),
         actions: [
           IconButton(
               icon: const Icon(Icons.help_outline),
@@ -74,10 +74,9 @@ class _DeletedNotesState extends State<DeletedNotes> {
 
                   return archiveList.isEmpty?Container(
                     alignment: Alignment.center,
-                    child: const Padding(
+                    child: Padding(
                       padding: EdgeInsets.all(12.0),
-                      child: Text("When you delete a note from the main notebook it will appear here.\n\n"
-                          "You can then choose to fully delete by swiping left or restore to the notebook by swiping to the right.",
+                      child: Text(AppLocalizations.of(context)!.deletedPageGuidance,
                         textAlign: TextAlign.center,),
                     ),
                   ):
@@ -123,7 +122,7 @@ class _DeletedNotesState extends State<DeletedNotes> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(15.0, 0, 15.0, 0),
-                                child: Text("Restoring Note",
+                                child: Text(AppLocalizations.of(context)!.restoringNote,
                                   style: Theme.of(context).textTheme.bodyLarge,),
                               ),
                               const Padding(
@@ -139,7 +138,7 @@ class _DeletedNotesState extends State<DeletedNotes> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(15.0, 0, 15.0, 0),
-                                child: Text("Deleting",
+                                child: Text(AppLocalizations.of(context)!.deleting,
                                   style: Theme.of(context).textTheme.bodyLarge,),
                               ),
                               const Padding(
