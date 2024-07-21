@@ -69,5 +69,13 @@
   "noResultsFound" : "geen resultaten gevonden",
   "mustBeANumber" : "Moet een getal tussen zijn",
   "inputOvenTemp" : "Oventemperatuur invoeren",
-  "inputOvenTime" : "Voer de oventijd in minuten in"
+  "inputOvenTime" : "Voer de oventijd in minuten in",
+  "minutes" : "minuten",
+  "addedToNotebok" : "toegevoegd aan notitieboekje",
+  "notebookUpdated" : "Uw notitieboekje is bijgewerkt",
+  "updateNote" : "Opmerking bijwerken",
+  "shareNote" : "Deel notitie"
+
+
+
 }

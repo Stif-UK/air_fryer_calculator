@@ -19,6 +19,8 @@ import '../provider/adstate.dart';
 import 'package:get/get.dart';
 import 'package:air_fryer_calculator/util/string_extention.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class AddNotes extends StatefulWidget {
   AddNotes({
@@ -154,7 +156,7 @@ class _AddNotesState extends State<AddNotes> {
                         //Title Row
                         CustomFormField(
                           enabled: noteState == NoteEnum.view? false: true,
-                          fieldTitle: "Title:",
+                          fieldTitle: "${AppLocalizations.of(context)!.title}:",
                           hintText: "Title",
                           maxLines: 1,
                           controller: titleFieldController,
@@ -265,7 +267,7 @@ class _AddNotesState extends State<AddNotes> {
                             Expanded(
                               child: Padding(
                                 padding: const EdgeInsets.all(10.0),
-                                child: Text("Temperature: ${widget.temperature.toInt()} ${TextHelper.getTempSuffix(widget.fryerController.tempIsCelsius.value)}",
+                                child: Text("${AppLocalizations.of(context)!.temperature}: ${widget.temperature.toInt()} ${TextHelper.getTempSuffix(widget.fryerController.tempIsCelsius.value)}",
                                   textAlign: TextAlign.start,
                                   style: Theme.of(context).textTheme.bodyLarge,),
                               ),
@@ -306,7 +308,7 @@ class _AddNotesState extends State<AddNotes> {
                             Expanded(
                               child: Padding(
                                 padding: const EdgeInsets.all(10.0),
-                                child: Text("Time: ${widget.time.toInt()} minutes",
+                                child: Text("${AppLocalizations.of(context)!.time}: ${widget.time.toInt()} ${AppLocalizations.of(context)!.minutes}",
                                   textAlign: TextAlign.start,
                                   style: Theme.of(context).textTheme.bodyLarge,),
                               ),
@@ -343,7 +345,7 @@ class _AddNotesState extends State<AddNotes> {
                         const Divider(thickness: 2,),
                         CustomFormField(
                           enabled: noteState == NoteEnum.view? false: true,
-                          fieldTitle: "Notes:",
+                          fieldTitle: "${AppLocalizations.of(context)!.notes}:",
                           hintText: "Enter Notes",
                           minLines: 4,
                           maxLines: 150,
@@ -365,8 +367,8 @@ class _AddNotesState extends State<AddNotes> {
                               Get.back();
                               title = titleFieldController.text;
                               Get.snackbar(
-                                  "$title added to notebook",
-                                  "Your notebook has been updated",
+                                  "$title ${AppLocalizations.of(context)!.addedToNotebok}",
+                                  "${AppLocalizations.of(context)!.notebookUpdated}",
                               snackPosition: SnackPosition.BOTTOM,
                               icon: TextHelper.getCategoryIcon(_selectedCategory));
 
@@ -379,12 +381,12 @@ class _AddNotesState extends State<AddNotes> {
                             child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             mainAxisSize: MainAxisSize.min,
-                            children: const [
+                            children: [
                               Padding(
                                 padding: EdgeInsets.all(8.0),
                                 child: Icon(Icons.save),
                               ),
-                              Text("Save Note"),
+                              Text(AppLocalizations.of(context)!.saveNote),
                             ],
                           )
                           ),
@@ -399,12 +401,12 @@ class _AddNotesState extends State<AddNotes> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 mainAxisSize: MainAxisSize.min,
-                                children: const [
+                                children: [
                                   Padding(
                                     padding: EdgeInsets.all(8.0),
                                     child: Icon(Icons.save),
                                   ),
-                                  Text("Update Note"),
+                                  Text(AppLocalizations.of(context)!.updateNote),
                                 ],
                               )
                           ),
@@ -459,7 +461,7 @@ double increaseTemp(double currentTemp){
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Share note:",style: Theme.of(context).textTheme.bodyLarge,),
+                Text("${AppLocalizations.of(context)!.shareNote}:",style: Theme.of(context).textTheme.bodyLarge,),
 
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -488,8 +490,8 @@ double increaseTemp(double currentTemp){
 
   String _generateShareText() {
     return "${widget.currentNote!.title}\n\n"
-        "Temperature: ${widget.currentNote!.temperature.round()} ${TextHelper.getTempSuffix(widget.fryerController.tempIsCelsius.value)}\n" //TODO: Add units
-        "Time: ${widget.currentNote!.time.round()} minutes.\n\n"
+        "${AppLocalizations.of(context)!.temperature}: ${widget.currentNote!.temperature.round()} ${TextHelper.getTempSuffix(widget.fryerController.tempIsCelsius.value)}\n"
+        "${AppLocalizations.of(context)!.time}: ${widget.currentNote!.time.round()} ${AppLocalizations.of(context)!.minutes}.\n\n"
         "${widget.currentNote!.notes}\n\n"
         "www.getairfryr.com";
 
@@ -522,7 +524,7 @@ double increaseTemp(double currentTemp){
       });
       Get.snackbar(
           "$title has been edited",
-          "Your notebook has been updated",
+          "${AppLocalizations.of(context)!.notebookUpdated}",
           snackPosition: SnackPosition.BOTTOM,
           icon: TextHelper.getCategoryIcon(_selectedCategory));
 

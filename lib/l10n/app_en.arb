@@ -72,6 +72,11 @@
   "noResultsFound" : "No Results Found",
   "mustBeANumber" : "Must be a number between",
   "inputOvenTemp" : "Input Oven Temperature",
-  "inputOvenTime" : "Input oven time in minutes"
+  "inputOvenTime" : "Input oven time in minutes",
+  "minutes" : "minutes",
+  "addedToNotebok" : "added to notebook",
+  "notebookUpdated" : "Your notebook has been updated",
+  "updateNote" : "Update Note",
+  "shareNote" : "Share note"
 
 }
