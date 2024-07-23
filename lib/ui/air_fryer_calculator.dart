@@ -95,7 +95,7 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0,10,0,25),
                     child: ElevatedButton(
-                      child: Text("${AppLocalizations.of(context)!.ovenTime}: ${widget.fryerController.cookTime.toInt()} minutes",
+                      child: Text("${AppLocalizations.of(context)!.ovenTime}: ${widget.fryerController.cookTime.toInt()} ${AppLocalizations.of(context)!.minutes}",
                       style: TextStyle(fontWeight: FontWeight.bold)),
                       onPressed: () {
                         Get.defaultDialog(
@@ -129,7 +129,7 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("${AppLocalizations.of(context)!.time}:\n ${calculateTime(widget.fryerController.cookTime.value).toInt()} minutes",
+                    child: Text("${AppLocalizations.of(context)!.time}:\n ${calculateTime(widget.fryerController.cookTime.value).toInt()} ${AppLocalizations.of(context)!.minutes}",
                     style: Theme.of(context).textTheme.displaySmall,
                     textAlign: TextAlign.center,),
                   ),
