@@ -14,10 +14,11 @@ class VersionHistoryCopy{
 
   static String _composeVersionCopy(){
     bool isPro = FryerPreferences.getAppPurchasedStatus() ?? false;
-    String latestVersion = "### v1.7.4\n"
-        "* Dutch translation updated (see Settings).\n"
+    String latestVersion = "### v1.8.0\n"
+        "* Added ability to backup and restore the app notebook\n"
+        "* Fixed some sections missing from the original translation\n"
+        "* Added the app logo to the navigation sidebar"
         "\n"
-        "* Would you like additional translations? Please let me know!\n"
         " --- \n\n";
 
     String proFooter = "Thank you for Supporting Air Fryr - your donation helps keep the app alive!";
@@ -36,16 +37,22 @@ class VersionHistoryCopy{
       padding: EdgeInsets.all(12.0),
       child: Markdown(
           data: "## Latest Version:\n"
-              "### v1.7.1 - 1.7.4\n"
-              "* Implemented translation framework.\n"
-              "* Dutch translation available (see Settings).\n"
+              "### v1.8.0\n"
+              "* Added ability to backup and restore the app notebook\n"
+              "* Fixed some sections missing from the original translation\n"
+              "* Added the app logo to the navigation sidebar"
               "\n"
-              "* Would you like additional translations? Please let me know!\n"
               " --- \n\n"
 
 
 
           "## Previous Releases:\n"
+              "### v1.7.1 - 1.7.3\n"
+              "* Implemented translation framework.\n"
+              "* Dutch translation added (see Settings).\n"
+              "\n"
+              "* Would you like additional translations? Please let me know!\n"
+              " --- \n\n"
               "### v1.7\n"
               "* Added ability to quickly share notes.\n"
               "* Added additional save button to notes page.\n"
