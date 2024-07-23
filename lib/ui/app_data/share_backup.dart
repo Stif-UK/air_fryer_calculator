@@ -92,7 +92,7 @@ class _ShareBackupState extends State<ShareBackup> {
             Expanded(child:
             SizedBox()),
             //Insert Ad Widget into tree
-            widget.fryerController.isAppPro.value? const SizedBox(height: 0,) : AdWidgetHelper.buildSmallAdSpace(banner, context),
+            widget.fryerController.isAppPro.value? const SizedBox(height: 0,) : AdWidgetHelper.buildRectangleSpace(banner, context),
             const SizedBox(height: 20,)
                   ],
                 ),

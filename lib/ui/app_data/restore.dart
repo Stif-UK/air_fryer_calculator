@@ -120,7 +120,7 @@ class _RestoreState extends State<Restore> {
               ),
             ),
           ),
-          purchaseStatus? const SizedBox(height: 0,) : AdWidgetHelper.buildSmallAdSpace(banner, context),
+          purchaseStatus? const SizedBox(height: 0,) : AdWidgetHelper.buildRectangleSpace(banner, context),
           const SizedBox(height: 50,)
         ],
       ),
