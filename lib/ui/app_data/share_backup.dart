@@ -52,13 +52,6 @@ class _ShareBackupState extends State<ShareBackup> {
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.backup),
-        actions: [
-          IconButton(
-              icon: const Icon(Icons.help_outline),
-              onPressed: (){
-                //Dialogs.getBackupHelpDialog();
-              } )
-        ],
       ),
       body: Obx(() => Column(
           mainAxisAlignment: MainAxisAlignment.start,

@@ -53,14 +53,6 @@ class _RestoreState extends State<Restore> {
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.restoreDatabase),
-        actions: [
-          IconButton(
-              icon: const Icon(Icons.help_outline),
-              onPressed: (){
-                //ToDo: Update help information
-                //Dialogs.getBackupHelpDialog();
-              } )
-        ],
       ),
       body: Column(
         children: [
