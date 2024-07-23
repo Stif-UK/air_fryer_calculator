@@ -35,7 +35,7 @@ class _ShareBackupState extends State<ShareBackup> {
         setState(() {
           banner = BannerAd(
             //TODO: Update AdUnit
-              adUnitId: AdUnits.deletedNotesBannerAdUnitId,
+              adUnitId: AdUnits.backupPageBannerAdUnitID,
               //If the device screen is large enough display a larger ad on this screen
               size: AdSize.banner,
               request: const AdRequest(),
