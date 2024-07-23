@@ -176,7 +176,7 @@ class _AddNotesState extends State<AddNotes> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Expanded(
-                                child: Text("Favourite:",
+                                child: Text("${AppLocalizations.of(context)!.favourite}:",
                                   textAlign: TextAlign.start,
                                   style: Theme.of(context).textTheme.bodyLarge,),
                               ),
@@ -200,7 +200,7 @@ class _AddNotesState extends State<AddNotes> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(10.0),
-                              child: Text("Category:",
+                              child: Text("${AppLocalizations.of(context)!.category}:",
                                 textAlign: TextAlign.start,
                                 style: Theme.of(context).textTheme.bodyLarge,),
                             ),
