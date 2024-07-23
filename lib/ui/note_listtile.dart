@@ -4,6 +4,8 @@ import 'package:air_fryer_calculator/util/text_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:air_fryer_calculator/ui/add_notes.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class NoteListtile extends StatelessWidget{
   const NoteListtile({
@@ -25,7 +27,7 @@ class NoteListtile extends StatelessWidget{
         },
       ),
       title: Text(currentNote.title),
-      subtitle: Text("${currentNote.temperature.toInt()}${TextHelper.getTempSuffix(currentNote.isCelcius)} for ${currentNote.time.toInt()} minutes"),
+      subtitle: Text("${currentNote.temperature.toInt()}${TextHelper.getTempSuffix(currentNote.isCelcius)} for ${currentNote.time.toInt()} ${AppLocalizations.of(context)!.minutes}"),
       onTap: (){
         Get.to(() => AddNotes(time: currentNote.time, temperature: currentNote.temperature, currentNote: currentNote,));
       },
