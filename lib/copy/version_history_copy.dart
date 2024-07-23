@@ -14,9 +14,8 @@ class VersionHistoryCopy{
 
   static String _composeVersionCopy(){
     bool isPro = FryerPreferences.getAppPurchasedStatus() ?? false;
-    String latestVersion = "### v1.7.1\n"
-        "* Implemented translation framework.\n"
-        "* Dutch translation available (see Settings).\n"
+    String latestVersion = "### v1.7.4\n"
+        "* Dutch translation updated (see Settings).\n"
         "\n"
         "* Would you like additional translations? Please let me know!\n"
         " --- \n\n";
@@ -37,7 +36,7 @@ class VersionHistoryCopy{
       padding: EdgeInsets.all(12.0),
       child: Markdown(
           data: "## Latest Version:\n"
-              "### v1.7.1\n"
+              "### v1.7.1 - 1.7.4\n"
               "* Implemented translation framework.\n"
               "* Dutch translation available (see Settings).\n"
               "\n"
