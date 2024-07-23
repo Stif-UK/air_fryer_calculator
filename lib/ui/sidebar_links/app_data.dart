@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:get/get.dart';
 
 
 class AppData extends StatefulWidget {
@@ -24,19 +25,18 @@ class _AppDataState extends State<AppData> {
               width: (MediaQuery.of(context).size.width)*0.8,
               height: (MediaQuery.of(context).size.height)*0.15,
               child: ElevatedButton(
-                  child: const Padding(
+                  child: Padding(
                     padding: EdgeInsets.all(12.0),
                     child: Text("Backup",
-                      style: TextStyle(
-                        fontSize: 30,
-                      ),),
+                      style: Theme.of(context).textTheme.headlineLarge
+                    ),
                   ),
                   onPressed: (){
                     //Get.to(() => ShareBackup());
                     //Platform.isIOS? Get.to(()=> const ShareBackup()) :Get.to(() => const Backup());
                   },
                   style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(Theme.of(context).buttonTheme.colorScheme!.inversePrimary),
+                      backgroundColor: Get.isDarkMode? WidgetStateProperty.all(Theme.of(context).buttonTheme.colorScheme!.inversePrimary) : WidgetStateProperty.all(Theme.of(context).buttonTheme.colorScheme!.primary),
                       shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20.0),
@@ -56,18 +56,17 @@ class _AppDataState extends State<AppData> {
                 width: (MediaQuery.of(context).size.width)*0.8,
                 height: (MediaQuery.of(context).size.height)*0.15,
                 child: ElevatedButton(
-                    child: const Padding(
+                    child: Padding(
                       padding: EdgeInsets.all(12.0),
                       child: Text("Restore",
-                        style: TextStyle(
-                          fontSize: 30,
-                        ),),
+                        style: Theme.of(context).textTheme.headlineLarge
+                      ),
                     ),
                     onPressed: (){
                       //Get.to(() => const Restore());
                     },
                     style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all(Theme.of(context).buttonTheme.colorScheme!.inversePrimary),
+                        backgroundColor: Get.isDarkMode? WidgetStateProperty.all(Theme.of(context).buttonTheme.colorScheme!.inversePrimary) : WidgetStateProperty.all(Theme.of(context).buttonTheme.colorScheme!.primary),
                         shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.0),
