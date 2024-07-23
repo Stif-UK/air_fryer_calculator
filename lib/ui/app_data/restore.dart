@@ -9,6 +9,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'dart:io';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 
 class Restore extends StatefulWidget {
@@ -50,7 +52,7 @@ class _RestoreState extends State<Restore> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Restore Database"),
+        title: Text(AppLocalizations.of(context)!.restoreDatabase),
         actions: [
           IconButton(
               icon: const Icon(Icons.help_outline),
@@ -69,14 +71,14 @@ class _RestoreState extends State<Restore> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const SizedBox(height: 20,),
-                  Text("Please select backup file", style: Theme.of(context).textTheme.bodyLarge,),
+                  Text(AppLocalizations.of(context)!.pleaseSelectBackupFile, style: Theme.of(context).textTheme.bodyLarge,),
                   const SizedBox(height: 20,),
                   ElevatedButton(
                     child: Column(
                       children: [
                         Padding(
                           padding: _textPadding(),
-                          child: const Text("Select Backup File"),
+                          child: Text(AppLocalizations.of(context)!.selectBackupFile),
                         ),
                         Padding(
                           padding: _imagePadding(),
@@ -94,7 +96,7 @@ class _RestoreState extends State<Restore> {
                   },
                   ),
                   const SizedBox(height: 20,),
-                  _backupFile != null? Text("File selected: $_backupFile. \n\nReady to load"): const Text(""),
+                  _backupFile != null? Text("${AppLocalizations.of(context)!.fileSelected}: $_backupFile. \n\n${AppLocalizations.of(context)!.readyToLoad}"): const Text(""),
                   const Divider(thickness: 2,),
                   const SizedBox(height: 20,),
                   _backupFile == null? const SizedBox(height: 20,): ElevatedButton(
@@ -102,7 +104,7 @@ class _RestoreState extends State<Restore> {
                         children: [
                           Padding(
                             padding: _textPadding(),
-                            child: const Text("Restore from Backup"),
+                            child: Text(AppLocalizations.of(context)!.restoreFromBackup),
                           ),
                           Padding(
                             padding: _imagePadding(),

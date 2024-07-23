@@ -84,7 +84,19 @@
   "backup" : "Back-up",
   "backupDatabase" : "Back-up Database",
   "backupGuidance" : "Druk op de knop hieronder om een kopie van de app database te maken (dit kan een paar seconden duren!). \n\nEenmaal gemaakt zal er een 'share' pop-up verschijnen waarin je kunt kiezen waar je het back-up bestand naartoe wilt sturen.  ",
-  "restore" : "Herstellen"
+  "restore" : "Herstellen",
+  "restoreDatabase" : "Database herstellen",
+  "pleaseSelectBackupFile": "  Selecteer back-upbestand",
+  "selectBackupFile" : "Selecteer back-upbestand",
+  "fileSelected" : "Bestand geselecteerd",
+  "readyToLoad" : "Klaar om te laden",
+  "restoreFromBackup" : "Herstellen vanaf back-up"
+
+
+
+
+
+
 
 
 }

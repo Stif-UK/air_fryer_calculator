@@ -87,6 +87,12 @@
   "backup" : "Backup",
   "backupDatabase" : "Backup Database",
   "backupGuidance" : "Press the button below to create a copy of the app database (this can take a few seconds!). \n\nOnce created a 'share' pop-up should appear, allowing you to choose where to send the backup file.",
-  "restore" : "Restore"
+  "restore" : "Restore",
+  "restoreDatabase" : "Restore Database",
+  "pleaseSelectBackupFile": "Please select backup file",
+  "selectBackupFile" : "Select Backup File",
+  "fileSelected" : "File selected",
+  "readyToLoad" : "Ready to load",
+  "restoreFromBackup" : "Restore from Backup"
 
 }
