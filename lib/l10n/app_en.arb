@@ -81,6 +81,8 @@
   "shareNote" : "Share note",
   "restoringNote" : "Restoring Note",
   "deletedPageGuidance" : "When you delete a note from the main notebook it will appear here.\n\nYou can then choose to fully delete by swiping left or restore to the notebook by swiping to the right.",
-  "appData" : "App Data"
+  "appData" : "App Data",
+  "backupComplete" : "Backup Complete",
+  "noteBookSaved" : "Notebook Data has been saved."
 
 }
