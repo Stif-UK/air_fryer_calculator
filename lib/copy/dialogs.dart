@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:air_fryer_calculator/copy/help_copy.dart';
+import 'package:air_fryer_calculator/model/backup_restore_methods.dart';
 import 'package:air_fryer_calculator/model/notesmodel.dart';
 import 'package:air_fryer_calculator/util/database_helper.dart';
 import 'package:flutter/material.dart';
@@ -78,6 +81,22 @@ class Dialogs{
         barrierDismissible: true,
         middleText: "The file $filename does not match the expected file of notebook.hive\n\n"
             "Please select a notebook.hive file"
+    );
+  }
+
+  static getConfirmRestoreDialog(File notebook){
+    Get.defaultDialog(
+        title: "Restore from Backup",
+        barrierDismissible: false,
+        middleText: "Restoring this backup will over-write your current notebook.\n\n"
+            "Do you want to continue?",
+        confirmTextColor: Colors.white,
+        buttonColor: Colors.lightBlueAccent,
+        onCancel: (){},
+        onConfirm: (){
+          BackupRestoreMethods.restoreNoteBook(notebook);
+          Get.back();
+        }
     );
   }
 

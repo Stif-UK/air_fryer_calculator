@@ -1,3 +1,4 @@
+import 'package:air_fryer_calculator/ui/app_data/restore.dart';
 import 'package:air_fryer_calculator/ui/app_data/share_backup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -63,7 +64,7 @@ class _AppDataState extends State<AppData> {
                       ),
                     ),
                     onPressed: (){
-                      //Get.to(() => const Restore());
+                      Get.to(() => const Restore());
                     },
                     style: ButtonStyle(
                         backgroundColor: Get.isDarkMode? WidgetStateProperty.all(Theme.of(context).buttonTheme.colorScheme!.inversePrimary) : WidgetStateProperty.all(Theme.of(context).buttonTheme.colorScheme!.primary),
