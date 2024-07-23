@@ -1,7 +1,10 @@
 import 'package:air_fryer_calculator/copy/help_copy.dart';
+import 'package:air_fryer_calculator/model/notesmodel.dart';
+import 'package:air_fryer_calculator/util/database_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 
 class Dialogs{
@@ -40,6 +43,41 @@ class Dialogs{
             "$error\n\n"
             "It could be that the selected location is not accessible to the application. Try with a different location.\n\n"
             "If this doesn't work, please provide feedback to the developer via the app store."
+    );
+  }
+
+  static getRestoreFailedDialog(String error){
+    Get.defaultDialog(
+        title: "Restore Failed",
+        barrierDismissible: true,
+        middleText: "Failed to restore from backup, an error occurred:\n\n"
+            "$error\n\n"
+            "Please try again - if the issue persists please contact the app developer"
+    );
+  }
+
+  static getRestoreSuccessDialog(){
+    Get.defaultDialog(
+        title: "Restore Successful",
+        barrierDismissible: true,
+        middleText: "Database successfully restored!\n\n"
+            "If notes don't show immediately try navigating between the main tabs.",
+        confirmTextColor: Colors.white,
+        buttonColor: Colors.lightBlueAccent,
+        onConfirm: () async {
+          var box = DataBaseHelper.getNotes();
+          await box.close().then((_) => Hive.openBox<Notes>("NoteBook"));
+          Get.back();
+        }
+    );
+  }
+
+  static getIncorrectFilenameDialog(String filename){
+    Get.defaultDialog(
+        title: "Incorrect file",
+        barrierDismissible: true,
+        middleText: "The file $filename does not match the expected file of notebook.hive\n\n"
+            "Please select a notebook.hive file"
     );
   }
 
