@@ -1,3 +1,4 @@
+import 'package:air_fryer_calculator/ui/app_data/share_backup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
@@ -32,8 +33,7 @@ class _AppDataState extends State<AppData> {
                     ),
                   ),
                   onPressed: (){
-                    //Get.to(() => ShareBackup());
-                    //Platform.isIOS? Get.to(()=> const ShareBackup()) :Get.to(() => const Backup());
+                    Get.to(() => ShareBackup());
                   },
                   style: ButtonStyle(
                       backgroundColor: Get.isDarkMode? WidgetStateProperty.all(Theme.of(context).buttonTheme.colorScheme!.inversePrimary) : WidgetStateProperty.all(Theme.of(context).buttonTheme.colorScheme!.primary),
