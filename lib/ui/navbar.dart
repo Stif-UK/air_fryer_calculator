@@ -47,19 +47,28 @@ class _NavBarState extends State<NavBar> {
           Expanded(
             child: ListView(
               children: [
-                DrawerHeader(child: IconButton(
-                  splashColor: Colors.transparent,
-                  icon: const Icon(Icons.fastfood, size: 40.0),
-                  onPressed: () async {
-                    print(clickCounter);
-                    clickCounter++;
-                    print(clickCounter);
-                    if (clickCounter > 5) {
-                      Get.to(() => DeveloperStats());
-                    }
-                  },
-
-                )),
+                DrawerHeader(child:
+                        GestureDetector(
+                          child: Container(
+                          width: 130,
+                            height: 130,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                  image:  AssetImage('assets/icon/drawer_header.png'),
+                                  fit: BoxFit.contain
+                              ),
+                            ),
+                          ),
+                          onTap: () async {
+                                print(clickCounter);
+                                clickCounter++;
+                                print(clickCounter);
+                                if (clickCounter > 5) {
+                                  Get.to(() => DeveloperStats());
+                                }
+                              },
+                        )),
 
                 ListTile(
                   title: Text(AppLocalizations.of(context)!.settings),

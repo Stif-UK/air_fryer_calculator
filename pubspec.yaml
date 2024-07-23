@@ -97,6 +97,7 @@ flutter:
     - assets/theme/appainter_theme_dark.json
     - assets/demo/
     - assets/flags/
+    - assets/icon/drawer_header.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
