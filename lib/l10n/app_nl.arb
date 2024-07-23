@@ -77,9 +77,7 @@
   "updateNote" : "Opmerking bijwerken",
   "shareNote" : "Deel notitie",
   "restoringNote" : "Notitie herstellen",
-  "deletedPageGuidance" : "Wanneer u een notitie uit het hoofdnotitieblok verwijdert, wordt deze hier weergegeven. \n\n U kunt er vervolgens voor kiezen om volledig te verwijderen door naar links te vegen of te herstellen naar het notitieblok door naar rechts te vegen."
-
-
-
+  "deletedPageGuidance" : "Wanneer u een notitie uit het hoofdnotitieblok verwijdert, wordt deze hier weergegeven. \n\n U kunt er vervolgens voor kiezen om volledig te verwijderen door naar links te vegen of te herstellen naar het notitieblok door naar rechts te vegen.",
+  "appData" : "App Data"
 
 }

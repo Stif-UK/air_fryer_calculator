@@ -1,6 +1,7 @@
 import 'package:air_fryer_calculator/controller/FryerController.dart';
 import 'package:air_fryer_calculator/copy/remove_ads_copy.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/about_app.dart';
+import 'package:air_fryer_calculator/ui/sidebar_links/app_data.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/attributions.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/deleted_notes.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/developer_stats.dart';
@@ -75,6 +76,14 @@ class _NavBarState extends State<NavBar> {
                   trailing: const Icon(Icons.settings),
                   onTap: (){
                     Get.to(() => Settings());
+                  },
+                ),
+                const Divider(thickness: 2,),
+                ListTile(
+                  title: Text(AppLocalizations.of(context)!.appData),
+                  trailing: const Icon(Icons.data_object),
+                  onTap: (){
+                    Get.to(() => AppData());
                   },
                 ),
                 const Divider(thickness: 2,),
