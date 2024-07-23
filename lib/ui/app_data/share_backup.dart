@@ -8,8 +8,9 @@ import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:air_fryer_calculator/controller/FryerController.dart';
-import 'package:air_fryer_calculator/copy/dialogs.dart';
 import 'package:air_fryer_calculator/model/backup_restore_methods.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class ShareBackup extends StatefulWidget {
   ShareBackup({Key? key}) : super(key: key);
@@ -34,7 +35,6 @@ class _ShareBackupState extends State<ShareBackup> {
       adState.initialization.then((status) {
         setState(() {
           banner = BannerAd(
-            //TODO: Update AdUnit
               adUnitId: AdUnits.backupPageBannerAdUnitID,
               //If the device screen is large enough display a larger ad on this screen
               size: AdSize.banner,
@@ -51,7 +51,7 @@ class _ShareBackupState extends State<ShareBackup> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Backup"),
+        title: Text(AppLocalizations.of(context)!.backup),
         actions: [
           IconButton(
               icon: const Icon(Icons.help_outline),
@@ -65,7 +65,7 @@ class _ShareBackupState extends State<ShareBackup> {
           children: [
             Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Text("Press the button below to create a copy of the app database (this can take a few seconds!). \n\nOnce created a 'share' pop-up should appear, allowing you to choose where to send the backup file.  ",
+              child: Text(AppLocalizations.of(context)!.backupGuidance,
               style: Theme.of(context).textTheme.bodyLarge,
               textAlign: TextAlign.start,),
             ),
@@ -75,7 +75,7 @@ class _ShareBackupState extends State<ShareBackup> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text("Backup Database",
+                    Text(AppLocalizations.of(context)!.backupDatabase,
                     style: Theme.of(context).textTheme.headlineSmall,),
                     Padding(
                       padding: const EdgeInsets.all(12.0),
