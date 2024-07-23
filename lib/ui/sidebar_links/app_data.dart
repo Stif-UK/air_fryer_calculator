@@ -62,7 +62,7 @@ class _AppDataState extends State<AppData> {
                     child: ElevatedButton(
                         child: Padding(
                           padding: EdgeInsets.all(12.0),
-                          child: Text("Backup",
+                          child: Text(AppLocalizations.of(context)!.backup,
                             style: Theme.of(context).textTheme.headlineLarge
                           ),
                         ),
@@ -92,7 +92,7 @@ class _AppDataState extends State<AppData> {
                       child: ElevatedButton(
                           child: Padding(
                             padding: EdgeInsets.all(12.0),
-                            child: Text("Restore",
+                            child: Text(AppLocalizations.of(context)!.restore,
                               style: Theme.of(context).textTheme.headlineLarge
                             ),
                           ),
