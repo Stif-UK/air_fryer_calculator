@@ -14,10 +14,8 @@ class VersionHistoryCopy{
 
   static String _composeVersionCopy(){
     bool isPro = FryerPreferences.getAppPurchasedStatus() ?? false;
-    String latestVersion = "### v1.8.0\n"
-        "* Added ability to backup and restore the app notebook\n"
-        "* Fixed some sections missing from the original translation\n"
-        "* Added the app logo to the navigation sidebar"
+    String latestVersion = "### v1.8.1\n"
+        "* Bug Fix: Fixed an issue where the app was failing to save the preference of showing Fahrenheit"
         "\n"
         " --- \n\n";
 
@@ -37,16 +35,19 @@ class VersionHistoryCopy{
       padding: EdgeInsets.all(12.0),
       child: Markdown(
           data: "## Latest Version:\n"
-              "### v1.8.0\n"
-              "* Added ability to backup and restore the app notebook\n"
-              "* Fixed some sections missing from the original translation\n"
-              "* Added the app logo to the navigation sidebar"
+              "### v1.8.1\n"
+              "* Bug Fix: Fixed an issue where the app was failing to save the preference of showing Fahrenheit"
               "\n"
               " --- \n\n"
 
 
-
           "## Previous Releases:\n"
+          "### v1.8.0\n"
+          "* Added ability to backup and restore the app notebook\n"
+          "* Fixed some sections missing from the original translation\n"
+          "* Added the app logo to the navigation sidebar"
+          "\n"
+          " --- \n\n"
               "### v1.7.1 - 1.7.3\n"
               "* Implemented translation framework.\n"
               "* Dutch translation added (see Settings).\n"
