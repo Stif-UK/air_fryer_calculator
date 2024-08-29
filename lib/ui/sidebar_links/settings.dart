@@ -75,7 +75,7 @@ class _SettingsState extends State<Settings> {
                     title: widget.fryerController.tempIsCelsius.value? Text(AppLocalizations.of(context)!.tempCelsius): Text(AppLocalizations.of(context)!.tempFahrenheit),
                     value: widget.fryerController.tempIsCelsius.value,
                     onChanged: (bool newValue) async{
-                      widget.fryerController.tempIsCelsius(newValue);
+                      widget.fryerController.updateTempPreference(newValue);
                     },
 
                   ),
