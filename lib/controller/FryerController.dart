@@ -3,7 +3,6 @@ import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class FryerController extends GetxController{
   //Manage temperature scale preference
