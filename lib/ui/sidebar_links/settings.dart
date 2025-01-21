@@ -58,6 +58,10 @@ class _SettingsState extends State<Settings> {
           padding: const EdgeInsets.all(12.0),
           child: Text(AppLocalizations.of(context)!.dutch),
         ),value: "nl"),
+        DropdownMenuItem(child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Text(AppLocalizations.of(context)!.danish),
+        ),value: "da"),
 
       ];
 
@@ -90,6 +94,7 @@ class _SettingsState extends State<Settings> {
                       onChanged: (newValue){
                         widget.languageController.updateLocalePref(Locale(newValue!));
                       }
+
 
 
                     ),

@@ -74,7 +74,11 @@ void main() async {
             themeMode: ThemeMode.system,
             home: hasSeenDemo? const InitialiseScreen(targetWidget: const AirFryerHome()) : AirFryrOnboarding(),
            locale: langController.locale.value,
-           supportedLocales: L10n.all,
+           supportedLocales: [
+             Locale('en', ''),
+             Locale('nl', ''),
+             Locale('da', ''),
+           ],
            localizationsDelegates: const[
              AppLocalizations.delegate,
              GlobalMaterialLocalizations.delegate,

@@ -5,19 +5,26 @@ class FlagHelper{
 
   static Widget? getFlag(Locale loc){
     var language = loc.languageCode;
+    double dimension = 24.0;
 
     switch(language) {
       case "en":
         return SvgPicture.asset(
     "assets/flags/GB.svg",
-    width: 24,
-    height: 24,
+    width: dimension,
+    height: dimension,
     );
       case "nl":
         return SvgPicture.asset(
           "assets/flags/NL.svg",
-          width: 24,
-          height: 24,
+          width: dimension,
+          height: dimension,
+        );
+      case "da":
+        return SvgPicture.asset(
+          "assets/flags/DA.svg",
+          width: dimension,
+          height: dimension,
         );
       default: return null;
 
