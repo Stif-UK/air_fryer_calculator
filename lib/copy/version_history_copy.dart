@@ -14,8 +14,9 @@ class VersionHistoryCopy{
 
   static String _composeVersionCopy(){
     bool isPro = FryerPreferences.getAppPurchasedStatus() ?? false;
-    String latestVersion = "### v1.8.1\n"
-        "* Bug Fix: Fixed an issue where the app was failing to save the preference of showing Fahrenheit"
+    String latestVersion = "### v1.9.0\n"
+        "* Added Danish language translation\n\n"
+        "If you'd like to see Air Fryr in other languages please contact feedback@getairfryr.com\n"
         "\n"
         " --- \n\n";
 
@@ -35,13 +36,18 @@ class VersionHistoryCopy{
       padding: EdgeInsets.all(12.0),
       child: Markdown(
           data: "## Latest Version:\n"
-              "### v1.8.1\n"
-              "* Bug Fix: Fixed an issue where the app was failing to save the preference of showing Fahrenheit"
+              "### v1.9.0\n"
+              "* Added Danish language translation\n\n"
+              "If you'd like to see Air Fryr in other languages please contact feedback@getairfryr.com\n"
               "\n"
               " --- \n\n"
 
 
           "## Previous Releases:\n"
+              "### v1.8.1\n"
+              "* Bug Fix: Fixed an issue where the app was failing to save the preference of showing Fahrenheit"
+              "\n"
+              " --- \n\n"
           "### v1.8.0\n"
           "* Added ability to backup and restore the app notebook\n"
           "* Fixed some sections missing from the original translation\n"
