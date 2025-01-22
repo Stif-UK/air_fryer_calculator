@@ -20,8 +20,8 @@ class Dialogs{
 
   static getTemperatureHelpDialog(){
     return Get.defaultDialog(
-      title: "Temperature Reference",
-      middleText: HelpCopy.getTemperatureHelpDialog()
+      title: AppLocalizations.of(Get.context!)!.tempReference,
+      middleText: AppLocalizations.of(Get.context!)!.tempGuidance
     );
   }
 
