@@ -12,7 +12,7 @@ import 'package:air_fryer_calculator/ui/air_fryer_notes.dart';
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:flutter/material.dart';
 import 'package:air_fryer_calculator/ui/navbar.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:air_fryer_calculator/l10n/app_localizations.dart';
 
 
 class AirFryerHome extends StatefulWidget {

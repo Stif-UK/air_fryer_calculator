@@ -4,7 +4,7 @@ import 'package:air_fryer_calculator/copy/remove_ads_copy.dart';
 import 'package:air_fryer_calculator/ui/widgets/paywall_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:air_fryer_calculator/l10n/app_localizations.dart';
 
 
 class RemoveAds extends StatefulWidget {

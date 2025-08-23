@@ -4,7 +4,7 @@ import 'package:air_fryer_calculator/util/text_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:air_fryer_calculator/ui/add_notes.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:air_fryer_calculator/l10n/app_localizations.dart';
 
 
 class NoteListtile extends StatelessWidget{

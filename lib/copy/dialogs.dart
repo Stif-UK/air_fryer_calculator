@@ -1,12 +1,12 @@
 import 'dart:io';
 
 import 'package:air_fryer_calculator/copy/help_copy.dart';
+import 'package:air_fryer_calculator/l10n/app_localizations.dart';
 import 'package:air_fryer_calculator/model/backup_restore_methods.dart';
 import 'package:air_fryer_calculator/model/notesmodel.dart';
 import 'package:air_fryer_calculator/util/database_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 

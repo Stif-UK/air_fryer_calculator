@@ -19,7 +19,7 @@ import '../provider/adstate.dart';
 import 'package:get/get.dart';
 import 'package:air_fryer_calculator/util/string_extention.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:air_fryer_calculator/l10n/app_localizations.dart';
 
 
 class AddNotes extends StatefulWidget {

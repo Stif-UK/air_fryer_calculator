@@ -42,7 +42,7 @@
   "beef" : "Rundvlees",
   "rare" : "rare",
   "medium" : "medium",
-  "well done" : "well done",
+  "wellDone" : "well done",
   "pork" : "Varkensvlees",
   "fish" : "Vis",
   "cake" : "taart",

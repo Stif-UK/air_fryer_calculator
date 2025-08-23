@@ -2,7 +2,7 @@ import 'package:air_fryer_calculator/controller/FryerController.dart';
 import 'package:air_fryer_calculator/util/string_extention.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:air_fryer_calculator/l10n/app_localizations.dart';
 
 
 class OvenSettings extends StatefulWidget {

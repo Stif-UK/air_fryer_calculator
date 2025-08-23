@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:air_fryer_calculator/privacy/initialisation_helper.dart';
 import 'package:air_fryer_calculator/ui/sidebar_links/privacy_policy.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:air_fryer_calculator/l10n/app_localizations.dart';
 
 
 class PrivacyLanding extends StatefulWidget {

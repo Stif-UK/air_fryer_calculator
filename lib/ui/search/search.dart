@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:air_fryer_calculator/ui/search/search_finder.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:air_fryer_calculator/l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
 

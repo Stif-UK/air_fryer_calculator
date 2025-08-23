@@ -8,6 +8,7 @@ import 'package:air_fryer_calculator/provider/adstate.dart';
 import 'package:air_fryer_calculator/ui/air_fryer_home.dart';
 import 'package:air_fryer_calculator/ui/first_use_demo/onboarding.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:json_theme/json_theme.dart';
@@ -16,10 +17,11 @@ import 'dart:convert';
 import 'package:provider/provider.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'l10n/app_localizations.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await FlutterLocalization.instance.ensureInitialized();
   //Initialise Ads
   final initFuture = MobileAds.instance.initialize();
   final adState = AdState(initFuture);
