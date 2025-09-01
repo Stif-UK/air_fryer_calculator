@@ -35,89 +35,92 @@ class _AirFryrOnboardingState extends State<AirFryrOnboarding> {
     // }
 
 
-    return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.only(bottom: 80),
-        child: PageView(
-          controller: pageViewController,
-          onPageChanged: (index){
-            setState(()=> isLastPage = index == 3);
-          },
-          children: [
-            buildPage(
-                colour: Theme.of(context).canvasColor,
-                urlImage: 'assets/demo/page1_logo.png',
-                title: "Air Fryr",
-                subtitle: "Get the most from your air fryer!\nSwipe to learn what Air Fryr can do..."),
-            buildPage(
-                colour: Theme.of(context).canvasColor,
-                urlImage: Get.isDarkMode? 'assets/demo/calculator_dark.png':'assets/demo/calculator_light.png',
-                title: "Calculator",
-                subtitle: "Convert fan oven cooking times to air fryer equivalents"),
-            buildPage(
-                colour: Theme.of(context).canvasColor,
-                urlImage: Get.isDarkMode? 'assets/demo/notes_dark.png': 'assets/demo/notes_light.png',
-                title: "Notebook",
-                subtitle: "Save calculations and recipes. \nUse real-time search to quickly access them"),
-            buildPage(
-                colour: Theme.of(context).canvasColor,
-                urlImage: Get.isDarkMode? 'assets/demo/temperature_dark.png':'assets/demo/temperature_light.png',
-                title: "Reference",
-                subtitle: "Handy temperature reference to check your food is fully cooked"),
-          ],
-        ),
-      ),
-      bottomSheet:  isLastPage? Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: TextButton(
-          style: TextButton.styleFrom(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0)
-            ),
-            foregroundColor: Colors.white,
-            backgroundColor: getAFColour(),
-            minimumSize: const Size.fromHeight(80),
+    return SafeArea(
+      top: false,
+      child: Scaffold(
+        body: Container(
+          padding: const EdgeInsets.only(bottom: 80),
+          child: PageView(
+            controller: pageViewController,
+            onPageChanged: (index){
+              setState(()=> isLastPage = index == 3);
+            },
+            children: [
+              buildPage(
+                  colour: Theme.of(context).canvasColor,
+                  urlImage: 'assets/demo/page1_logo.png',
+                  title: "Air Fryr",
+                  subtitle: "Get the most from your air fryer!\nSwipe to learn what Air Fryr can do..."),
+              buildPage(
+                  colour: Theme.of(context).canvasColor,
+                  urlImage: Get.isDarkMode? 'assets/demo/calculator_dark.png':'assets/demo/calculator_light.png',
+                  title: "Calculator",
+                  subtitle: "Convert fan oven cooking times to air fryer equivalents"),
+              buildPage(
+                  colour: Theme.of(context).canvasColor,
+                  urlImage: Get.isDarkMode? 'assets/demo/notes_dark.png': 'assets/demo/notes_light.png',
+                  title: "Notebook",
+                  subtitle: "Save calculations and recipes. \nUse real-time search to quickly access them"),
+              buildPage(
+                  colour: Theme.of(context).canvasColor,
+                  urlImage: Get.isDarkMode? 'assets/demo/temperature_dark.png':'assets/demo/temperature_light.png',
+                  title: "Reference",
+                  subtitle: "Handy temperature reference to check your food is fully cooked"),
+            ],
           ),
-          child: const Text("Let's go!",
-            style: TextStyle(fontSize: 22),),
-          onPressed: () async {
-            await FryerPreferences.setHasSeenDemo(true);
-            Get.off(()=> InitialiseScreen(targetWidget: AirFryerHome()));
-          },
         ),
-      ) :Container(
-        padding: const EdgeInsets.all(10.0),
-        height: 80,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            TextButton(
-              child: const Text("SKIP"),
-              onPressed: (){
-                pageViewController.jumpToPage(3);
-              },),
-            Center(
-              child: SmoothPageIndicator(
-                  controller: pageViewController,
-                  effect: SlideEffect(
-                    type: SlideType.slideUnder,
-                    dotColor: Get.isDarkMode? Colors.white24: Colors.black26,
-                    activeDotColor: getAFColour(),
-                  ),
-                  onDotClicked: (index) => pageViewController.animateToPage(
-                      index,
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.easeIn),
-                  count: 4),
+        bottomSheet:  isLastPage? Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: TextButton(
+            style: TextButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0)
+              ),
+              foregroundColor: Colors.white,
+              backgroundColor: getAFColour(),
+              minimumSize: const Size.fromHeight(80),
             ),
-            TextButton(
-              child: const Text("NEXT"),
-              onPressed: (){
-                pageViewController.nextPage(
-                    duration: const Duration(microseconds: 500),
-                    curve: Curves.easeInOut);
-              },),
-          ],
+            child: const Text("Let's go!",
+              style: TextStyle(fontSize: 22),),
+            onPressed: () async {
+              await FryerPreferences.setHasSeenDemo(true);
+              Get.off(()=> InitialiseScreen(targetWidget: AirFryerHome()));
+            },
+          ),
+        ) :Container(
+          padding: const EdgeInsets.all(10.0),
+          height: 80,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              TextButton(
+                child: const Text("SKIP"),
+                onPressed: (){
+                  pageViewController.jumpToPage(3);
+                },),
+              Center(
+                child: SmoothPageIndicator(
+                    controller: pageViewController,
+                    effect: SlideEffect(
+                      type: SlideType.slideUnder,
+                      dotColor: Get.isDarkMode? Colors.white24: Colors.black26,
+                      activeDotColor: getAFColour(),
+                    ),
+                    onDotClicked: (index) => pageViewController.animateToPage(
+                        index,
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.easeIn),
+                    count: 4),
+              ),
+              TextButton(
+                child: const Text("NEXT"),
+                onPressed: (){
+                  pageViewController.nextPage(
+                      duration: const Duration(microseconds: 500),
+                      curve: Curves.easeInOut);
+                },),
+            ],
+          ),
         ),
       ),
     );
