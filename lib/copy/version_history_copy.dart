@@ -14,7 +14,7 @@ class VersionHistoryCopy{
 
   static String _composeVersionCopy(){
     bool isPro = FryerPreferences.getAppPurchasedStatus() ?? false;
-    String latestVersion = "### v1.9.1\n"
+    String latestVersion = "### v1.9.3\n"
         "* Behind the scenes updates to maintain compliance with app store policies\n\n"
         "If you'd like to see Air Fryr in other languages please contact feedback@getairfryr.com\n"
         "\n"
@@ -36,11 +36,12 @@ class VersionHistoryCopy{
       padding: EdgeInsets.all(12.0),
       child: Markdown(
           data: "## Latest Version:\n"
-              "### v1.9.2\n"
+              "### v1.9.2 \ v1.9.3 \n"
               "* Updates to target Android and iOS versions\n"
               "* Updates to billing library\n"
               "* Updates to core SDKs\n"
-              "* Bug Fix: Minor fix to the Dutch translation file"
+              "* Bug Fix: Minor fix to the Dutch translation file\n"
+              "* v1.9.3 (Android only) Bug Fix to correct 'edge to edge' screen implementation and prevent buttons from being hidden on Android 15+"
               "\n"
               " --- \n\n"
 
