@@ -60,7 +60,7 @@ class _AirFryerTemperatureState extends State<AirFryerTemperature> {
                   style: Theme.of(context).textTheme.headlineMedium,),
                 ),
                 IconButton(
-                  icon: Icon(FontAwesomeIcons.circleQuestion),
+                  icon: FaIcon(FontAwesomeIcons.circleQuestion),
                     onPressed: (){
                       Dialogs.getTemperatureHelpDialog();
                     })
@@ -70,7 +70,7 @@ class _AirFryerTemperatureState extends State<AirFryerTemperature> {
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Expanded(flex: 5, child: Center(child: Icon(FontAwesomeIcons.cow, size: 50,))),
+              Expanded(flex: 5, child: Center(child: FaIcon(FontAwesomeIcons.cow, size: 50,))),
               Expanded(
                 flex: 5,
                 child: Obx(() => Column(
@@ -101,14 +101,14 @@ class _AirFryerTemperatureState extends State<AirFryerTemperature> {
                     ),
                   ),
                 ),
-                Expanded(flex: 5, child: Center(child: Icon(FontAwesomeIcons.bacon, size: 50,))),
+                Expanded(flex: 5, child: Center(child: FaIcon(FontAwesomeIcons.bacon, size: 50,))),
               ],
             ),
             const Divider(thickness: 2,),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Expanded(flex: 5, child: Center(child: Icon(FontAwesomeIcons.drumstickBite, size: 50,))),
+                Expanded(flex: 5, child: Center(child: FaIcon(FontAwesomeIcons.drumstickBite, size: 50,))),
                 Expanded(
                   flex: 5,
                   child: Obx(()=> Column(
@@ -140,14 +140,14 @@ class _AirFryerTemperatureState extends State<AirFryerTemperature> {
                     ),
                   ),
                 ),
-                Expanded(flex: 5, child: Center(child: Icon(FontAwesomeIcons.fish, size: 50,))),
+                Expanded(flex: 5, child: Center(child: FaIcon(FontAwesomeIcons.fish, size: 50,))),
               ],
             ),
             const Divider(thickness: 2,),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Expanded(flex: 5, child: Center(child: Icon(FontAwesomeIcons.cakeCandles, size: 50,))),
+                Expanded(flex: 5, child: Center(child: FaIcon(FontAwesomeIcons.cakeCandles, size: 50,))),
                 Expanded(
                   flex: 5,
                   child: Obx(() => Column(

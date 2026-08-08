@@ -124,7 +124,7 @@ class _AddNotesState extends State<AddNotes> {
           [Padding(
             padding: const EdgeInsets.all(8.0),
             child: IconButton(
-                icon: noteState == NoteEnum.view? const Icon(FontAwesomeIcons.penToSquare) : const Icon(FontAwesomeIcons.floppyDisk),
+                icon: noteState == NoteEnum.view? const FaIcon(FontAwesomeIcons.penToSquare) : const FaIcon(FontAwesomeIcons.floppyDisk),
                 onPressed: (){
                   if(noteState == NoteEnum.view) {
                           setState(() {

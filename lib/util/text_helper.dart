@@ -46,39 +46,39 @@ class TextHelper{
     return returnText;
   }
 
-  static Icon getCategoryIcon(CategoryEnum category){
-    Icon returnIcon = const Icon(FontAwesomeIcons.bowlFood);
+  static Widget getCategoryIcon(CategoryEnum category){
+    FaIcon returnIcon = const FaIcon(FontAwesomeIcons.bowlFood);
 
     switch (category){
       case CategoryEnum.sides:
-        returnIcon = const Icon(FontAwesomeIcons.bowlFood);
+        returnIcon = const FaIcon(FontAwesomeIcons.bowlFood);
         break;
       case CategoryEnum.meat:
-        returnIcon = const Icon(FontAwesomeIcons.burger);
+        returnIcon = const FaIcon(FontAwesomeIcons.burger);
         break;
       case CategoryEnum.seafood:
-        returnIcon = const Icon(FontAwesomeIcons.fish);
+        returnIcon = const FaIcon(FontAwesomeIcons.fish);
         break;
       case CategoryEnum.poultry:
-        returnIcon = const Icon(FontAwesomeIcons.drumstickBite);
+        returnIcon = const FaIcon(FontAwesomeIcons.drumstickBite);
         break;
       case CategoryEnum.vegetarian:
-        returnIcon = const Icon(FontAwesomeIcons.carrot);
+        returnIcon = const FaIcon(FontAwesomeIcons.carrot);
         break;
       case CategoryEnum.dessert:
-        returnIcon = const Icon(FontAwesomeIcons.iceCream);
+        returnIcon = const FaIcon(FontAwesomeIcons.iceCream);
         break;
       case CategoryEnum.other:
-        returnIcon = const Icon(FontAwesomeIcons.pizzaSlice);
+        returnIcon = const FaIcon(FontAwesomeIcons.pizzaSlice);
         break;
       case CategoryEnum.vegan:
-        returnIcon = const Icon(FontAwesomeIcons.plateWheat);
+        returnIcon = const FaIcon(FontAwesomeIcons.plateWheat);
         break;
       case CategoryEnum.baking:
-        returnIcon = const Icon(FontAwesomeIcons.breadSlice);
+        returnIcon = const FaIcon(FontAwesomeIcons.breadSlice);
         break;
       case CategoryEnum.all:
-        returnIcon = const Icon(FontAwesomeIcons.filterCircleXmark);
+        returnIcon = const FaIcon(FontAwesomeIcons.filterCircleXmark);
         break;
 
     }

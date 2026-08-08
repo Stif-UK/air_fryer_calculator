@@ -72,7 +72,7 @@ class _ShareBackupState extends State<ShareBackup> {
                     style: Theme.of(context).textTheme.headlineSmall,),
                     Padding(
                       padding: const EdgeInsets.all(12.0),
-                      child: Icon(FontAwesomeIcons.download),
+                      child: FaIcon(FontAwesomeIcons.download),
                     )
                   ],
                 ),
