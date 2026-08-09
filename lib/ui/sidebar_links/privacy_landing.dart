@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:air_fryer_calculator/privacy/initialisation_helper.dart';
-import 'package:air_fryer_calculator/ui/sidebar_links/privacy_policy.dart';
 import 'package:air_fryer_calculator/l10n/app_localizations.dart';
 
 
@@ -24,8 +24,11 @@ class _PrivacyLandingState extends State<PrivacyLanding> {
         children: [
           ListTile(title: Text(AppLocalizations.of(context)!.privacyPolicy),
           leading: const Icon(Icons.privacy_tip_outlined),
-          onTap: (){
-            Get.to(() => PrivacyPolicy());
+          onTap: () async {
+            final Uri url = Uri.parse('https://www.getairfryr.com/privacypolicy/');
+            if (!await launchUrl(url)) {
+              Get.snackbar('Error', 'Could not launch Privacy Policy link');
+            }
           }),
           const Divider(thickness: 2,),
           ListTile(title: Text(AppLocalizations.of(context)!.privacySettings),
