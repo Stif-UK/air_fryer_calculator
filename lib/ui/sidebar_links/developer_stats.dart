@@ -4,6 +4,7 @@ import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 import 'package:air_fryer_calculator/ui/first_use_demo/onboarding.dart';
 import 'package:air_fryer_calculator/util/startup_helper.dart';
 import 'package:air_fryer_calculator/util/text_helper.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -230,6 +231,12 @@ class _DeveloperStatsState extends State<DeveloperStats> {
               snackPosition: SnackPosition.BOTTOM
               );
             },
+          ),
+          const Divider(thickness: 2,),
+          ListTile(
+            title: const Text("Generate Crash"),
+            subtitle: const Text("Triggers an app crash for test purposes"),
+            onTap: () => FirebaseCrashlytics.instance.crash(),
           )
 
 
