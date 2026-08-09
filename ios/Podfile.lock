@@ -1,22 +1,16 @@
 PODS:
   - Flutter (1.0.0)
-  - flutter_localization (0.0.1):
-    - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
-  - flutter_localization (from `.symlinks/plugins/flutter_localization/ios`)
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
-  flutter_localization:
-    :path: ".symlinks/plugins/flutter_localization/ios"
 
 SPEC CHECKSUMS:
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
-  flutter_localization: 72299fb6cb4e51cae587bd953ed0b958040b71e6
 
-PODFILE CHECKSUM: 106d893700b614ab7b6d2015d9db5e1918d3f233
+PODFILE CHECKSUM: ab7b1b662aed33580bfe3ceff16c9d3f3cbb156c
 
 COCOAPODS: 1.16.2

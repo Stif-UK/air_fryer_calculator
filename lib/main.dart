@@ -17,11 +17,14 @@ import 'dart:convert';
 import 'package:provider/provider.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'l10n/app_localizations.dart';
 
 Future<void> main() async {
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  await Firebase.initializeApp();
   await FlutterLocalization.instance.ensureInitialized();
   //Initialise Ads
   final initFuture = MobileAds.instance.initialize();
@@ -71,6 +74,9 @@ Future<void> main() async {
          value: adState,
          builder: (context, child) => GetMaterialApp(
             debugShowCheckedModeBanner: false,
+            navigatorObservers: [
+              FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance),
+            ],
             title: 'Air Fryer Calculator',
             theme: themeLight,
             darkTheme: themeDark,

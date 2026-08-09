@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "656100570764",
+    "project_id": "air-fryr",
+    "storage_bucket": "air-fryr.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:656100570764:android:7b54f07111f9c1d45a6da9",
+        "android_client_info": {
+          "package_name": "com.stifdev.airfryr"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDklAKj8o9uZfk1ZGJuZ7CRZo3KjYb5YCc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
