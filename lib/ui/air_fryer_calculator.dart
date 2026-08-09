@@ -4,6 +4,7 @@ import 'package:air_fryer_calculator/ui/add_notes.dart';
 import 'package:air_fryer_calculator/ui/widgets/oven_settings.dart';
 import 'package:air_fryer_calculator/util/ad_widget_helper.dart';
 import 'package:air_fryer_calculator/util/text_helper.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +25,11 @@ class _AirFryerCalculatorState extends State<AirFryerCalculator> {
   BannerAd? banner;
   bool purchaseStatus = FryerPreferences.getAppPurchasedStatus() ?? false;
 
-
+  @override
+  void initState() {
+    super.initState();
+    FirebaseAnalytics.instance.logScreenView(screenName: 'Air Fryer Calculator');
+  }
 
   @override
   void didChangeDependencies() {

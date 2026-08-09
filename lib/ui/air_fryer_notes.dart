@@ -8,6 +8,7 @@ import 'package:air_fryer_calculator/ui/note_listtile.dart';
 import 'package:air_fryer_calculator/util/ad_widget_helper.dart';
 import 'package:air_fryer_calculator/util/text_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
@@ -33,6 +34,12 @@ class _AirFryerNotesState extends State<AirFryerNotes> {
 
   BannerAd? banner;
   bool purchaseStatus = FryerPreferences.getAppPurchasedStatus() ?? false;
+
+  @override
+  void initState() {
+    super.initState();
+    FirebaseAnalytics.instance.logScreenView(screenName: 'Air Fryer Notes');
+  }
 
   @override
   void didChangeDependencies() {

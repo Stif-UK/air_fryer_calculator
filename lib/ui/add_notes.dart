@@ -13,6 +13,7 @@ import 'package:air_fryer_calculator/util/text_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../provider/adstate.dart';
@@ -46,6 +47,12 @@ class _AddNotesState extends State<AddNotes> {
   //Setup Ads
   BannerAd? banner;
   bool purchaseStatus = FryerPreferences.getAppPurchasedStatus() ?? false;
+
+  @override
+  void initState() {
+    super.initState();
+    FirebaseAnalytics.instance.logScreenView(screenName: 'Add Notes');
+  }
 
   @override
   void didChangeDependencies() {

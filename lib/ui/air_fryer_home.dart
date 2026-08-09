@@ -6,6 +6,7 @@ import 'package:air_fryer_calculator/ui/add_notes.dart';
 import 'package:air_fryer_calculator/ui/air_fryer_temperatures.dart';
 import 'package:air_fryer_calculator/ui/search/search.dart';
 import 'package:air_fryer_calculator/util/startup_helper.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:get/get.dart';
 import 'package:air_fryer_calculator/ui/air_fryer_calculator.dart';
 import 'package:air_fryer_calculator/ui/air_fryer_notes.dart';
@@ -112,6 +113,25 @@ class _AirFryerHomeState extends State<AirFryerHome> {
     setState(() {
       _selectedIndex = index;
     });
+    _logScreenView(index);
+  }
+
+  void _logScreenView(int index) {
+    String screenName;
+    switch (index) {
+      case 0:
+        screenName = 'Air Fryer Calculator';
+        break;
+      case 1:
+        screenName = 'Air Fryer Notes';
+        break;
+      case 2:
+        screenName = 'Air Fryer Temperature Guide';
+        break;
+      default:
+        screenName = 'Home';
+    }
+    FirebaseAnalytics.instance.logScreenView(screenName: screenName);
   }
 }
 

@@ -5,6 +5,7 @@ import 'package:air_fryer_calculator/model/fryer_preferences.dart';
 import 'package:air_fryer_calculator/provider/adstate.dart';
 import 'package:air_fryer_calculator/util/ad_widget_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +25,12 @@ class _RestoreState extends State<Restore> {
   File? _backupFile;
   BannerAd? banner;
   bool purchaseStatus = FryerPreferences.getAppPurchasedStatus() ?? false;
+
+  @override
+  void initState() {
+    super.initState();
+    FirebaseAnalytics.instance.logScreenView(screenName: 'Restore');
+  }
 
   @override
   void didChangeDependencies() {

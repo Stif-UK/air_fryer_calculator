@@ -6,6 +6,7 @@ import 'package:air_fryer_calculator/provider/adstate.dart';
 import 'package:air_fryer_calculator/util/ad_widget_helper.dart';
 import 'package:air_fryer_calculator/util/text_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -25,6 +26,12 @@ class _AirFryerTemperatureState extends State<AirFryerTemperature> {
 
   BannerAd? banner;
   bool purchaseStatus = FryerPreferences.getAppPurchasedStatus() ?? false;
+
+  @override
+  void initState() {
+    super.initState();
+    FirebaseAnalytics.instance.logScreenView(screenName: 'Air Fryer Temperature Guide');
+  }
 
   @override
   void didChangeDependencies() {
