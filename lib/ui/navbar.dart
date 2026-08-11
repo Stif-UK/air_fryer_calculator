@@ -140,16 +140,24 @@ class _NavBarState extends State<NavBar> {
               ],
             ),
           ),
-              const Divider(thickness: 2,),
-              ListTile(
-                title: Text(AppLocalizations.of(context)!.deletedNotes),
-                trailing: const Icon(Icons.delete_outline),
-                onTap: (){
-                    Get.to(() => const DeletedNotes());
-                  }),
-          const SizedBox(height: 20,),
-          Text("${AppLocalizations.of(context)!.appVersion}: $_buildVersion "),
-          const SizedBox(height: 25,)
+          SafeArea(
+            top: false,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Divider(thickness: 2,),
+                ListTile(
+                    title: Text(AppLocalizations.of(context)!.deletedNotes),
+                    trailing: const Icon(Icons.delete_outline),
+                    onTap: (){
+                      Get.to(() => const DeletedNotes());
+                    }),
+                const SizedBox(height: 20,),
+                Text("${AppLocalizations.of(context)!.appVersion}: $_buildVersion "),
+                const SizedBox(height: 25,)
+              ],
+            ),
+          ),
         ],
       ),
     );
