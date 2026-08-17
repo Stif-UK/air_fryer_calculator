@@ -69,8 +69,11 @@ class BackupRestoreMethods{
   isn't utilised for the restore.
    */
   static Future<File?> pickBackupFile() async {
-    FilePicker.clearTemporaryFiles();
-    FilePickerResult? result = await FilePicker.pickFiles();
+    await FilePicker.clearTemporaryFiles();
+    FilePickerResult? result = await FilePicker.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['hive'],
+    );
     File? file;
 
     if (result != null) {

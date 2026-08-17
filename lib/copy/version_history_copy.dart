@@ -36,7 +36,7 @@ class VersionHistoryCopy{
       padding: EdgeInsets.all(12.0),
       child: Markdown(
           data: "## Latest Version:\n"
-              "### v1.10.0\n"
+              "### v1.10.1\n"
               "* Updates to target Android and iOS versions\n"
               "* Updates to billing library\n"
               "* Updates to core SDKs\n"

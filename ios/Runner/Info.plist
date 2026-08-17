@@ -30,6 +30,10 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>This app uses a library which may request access to the camera, however the app does not require this access to function.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app uses a library which may request access to your location, however the app does not require this access to function.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app uses a library which may request access to the Photo library, however the app does not require this access to function.</string>
 	<key>NSUserTrackingUsageDescription</key>
