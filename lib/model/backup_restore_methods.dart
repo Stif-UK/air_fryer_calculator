@@ -35,7 +35,7 @@ class BackupRestoreMethods{
 
     try {
       bool _errored = false;
-      backupPath = backupPath+"/watchbox.hive";
+      backupPath = backupPath+"/NoteBook.hive";
       await File(boxPath!).copy(backupPath).onError((error, stackTrace) {
         _errored = true;
         Dialogs.getBackupFailedDialog(error.toString());
@@ -71,14 +71,17 @@ class BackupRestoreMethods{
   static Future<File?> pickBackupFile() async {
     await FilePicker.clearTemporaryFiles();
     FilePickerResult? result = await FilePicker.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['hive'],
+      type: FileType.any,
     );
     File? file;
 
     if (result != null) {
       String fileName = basename(result.files.single.path!);
-      fileName == "notebook.hive"? file = File(result.files.single.path!): Dialogs.getIncorrectFilenameDialog(fileName);
+      if (fileName.toLowerCase() == "notebook.hive") {
+        file = File(result.files.single.path!);
+      } else {
+        Dialogs.getIncorrectFilenameDialog(fileName);
+      }
     }
     return file;
   }
